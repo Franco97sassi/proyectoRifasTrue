@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-import NavBar from '../../components/navbar/NavBar';
+import NavBar from '../../components/navbar/NavBar.jsx';
 import Footer from '../../components/footer/footer';
 import RegisterForm from '../../components/registerForm/registerForm';
 

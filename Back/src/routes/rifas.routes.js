@@ -20,7 +20,7 @@ router.get('/checkRifas', checkRifas);
 router.get('/detail/:id', rifaDetail);
 
 router.post('/createRifa', createRifa);
-//  router.post('/deleteRifa/:id',deleteRifa);
+router.delete('/deleteRifa/:id',deleteRifa);
 
 // router.post('/updateRifa', isUserLoggedInAdmin, updateRifa);
 

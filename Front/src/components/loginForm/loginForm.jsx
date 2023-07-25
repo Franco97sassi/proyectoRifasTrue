@@ -144,26 +144,12 @@ function LogInForm() {
                 color: loginFont,
                 marginBottom: '18px',
                 justifyContent: 'flexStart',
+                textAlign: 'center',
               }}
             >
               Iniciar sesión
             </Typography>
-            <Typography
-              component='h1'
-              sx={{
-                fontSize: '14px',
-                fontWeight: '400',
-                color: loginFont,
-                lineHeight: '20px',
-                marginBottom: '1px',
-              }}
-            >
-              ¿No tienes una cuenta?{' '}
-              <Link to='/register' style={{ textDecoration: 'underline', color: '#FFA840' }}>
-                Crea una cuenta.
-              </Link>
-              Tomara solo unos minutos
-            </Typography>
+            
             <Box sx={{ mt: 1 }}>
               <Formik
                 onSubmit={handleFormSubmit}
@@ -245,6 +231,22 @@ function LogInForm() {
                       control={<Checkbox value="remember" color="primary" />}
                       label="Recuerdame"
                     /> */}
+                     <Typography
+              component='h1'
+              sx={{
+                fontSize: '14px',
+                fontWeight: '400',
+                color: loginFont,
+                lineHeight: '20px',
+                marginBottom: '1px',
+              }}
+            >
+              ¿No tienes una cuenta?{' '}
+              <Link to='/register' style={{ textDecoration: 'underline', color: '#FFA840' }}>
+                Crea una cuenta.
+              </Link>
+              Tomara solo unos minutos
+            </Typography>
           <Grid
            sx={{
             display: 'flex',

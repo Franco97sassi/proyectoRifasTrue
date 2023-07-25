@@ -39,10 +39,10 @@ const LandingPage = () => {
     <Typography
      variant='h1'
      textAlign='center'
-     marginTop='2em'
-    //  paddingLeft= '2em',
+     marginTop='2.5em'
+      paddingLeft= '0.3em'
 
-     fontSize='5em'
+     fontSize='4em'
      color='whitesmoke'
      style={{
       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
@@ -68,11 +68,12 @@ const LandingPage = () => {
        variant='contained'
        sx={{
         width: '200px',
-        height: '60px',
-        fontSize: '1.5rem',
+        height: '40px',
+        fontSize: '1rem',
         borderRadius: '2rem',
-        margin: '1em',
- 
+        marginLeft: '3em',
+        marginTop: '0.5em',
+
         backgroundColor: '#9e0423',
         '&:hover': {
          backgroundColor: '#630014',

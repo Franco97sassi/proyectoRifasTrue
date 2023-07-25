@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 import LoginForm from '../../components/loginForm/loginForm';
-import NavBar from '../../components/navbar/NavBar';
+import NavBar from '../../components/navbar/NavBar.jsx';
 import Footer from '../../components/footer/footer';
 
 //////////////////////
@@ -13,7 +13,8 @@ const Login = () => {
     height: '100vh',
     display: 'flex',
     flexDirection: 'column',
-   }}>
+   }}
+   >
    <NavBar />
    <Box sx={{ flex: '1 1 auto' }}>
     <LoginForm />

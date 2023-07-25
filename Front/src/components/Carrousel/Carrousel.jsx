@@ -26,7 +26,7 @@ const Carrousel = () =>{
         <Carousel>
             {
                 items.map( (item, i) => <><Box  sx={{display:"flex", justifyContent:"center"}} key={i} item={item}>
-                <img src={item.img} style={{width:"100%", maxWidth:"1012px", height:"100%", maxHeight:"400px"}}></img>
+                <img src={item.img} style={{ height:"100%", maxHeight:"400px"}}></img>
                 <Typography sx={{position:"absolute", fontSize:"28px", fontWeight:"600",color:"white", display:"flex", alignItems:"center", marginTop:"25%"}}>
                     {item.description}</Typography>
                 </Box></> )

@@ -108,25 +108,25 @@ const rifaDetail = async (req, res) => {
   res.status(500).json({ 'Error en el servidor: ': error.message });
  }
 };
-// const deleteRifa = async (req, res) => {
-//   const { pid } = req.params;
-//   try{
-//     const deletedProduct = await Rifa.deleteOne({_id:pid});
-//     if (!deletedProduct) {
-//       res.status(404).send({ status: "error", msg: "El producto no existe" });
-//     }
-//     res.status(200).json(deletedProduct);
+const deleteRifa = async (req, res) => {
+  let {id} = req.params ;
+ 
+   try{  
+      const deletedProduct = await Rifa.deleteOne({_id:id});
+    res.status(200).json(deletedProduct);
 
-//   }
-//   catch (error) {
-//     res.send({ status: "successful", msg: "Producto eliminado correctamente" });
-//   }
-//  }
+    res.send({ status: "error", msg: "El producto se elimino" });
+  
+}catch {
+     res.status(404).send({ status: "error", msg: "El producto no existe" });
 
+  }
+} ;
+     
 module.exports = {
  createRifa,
  checkRifas,
  rifaDetail,
  buyRifa,
-  // deleteRifa,
+  deleteRifa,
 };

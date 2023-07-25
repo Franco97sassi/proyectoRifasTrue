@@ -52,11 +52,13 @@ const ShopCart = () => {
    width='80%' // Añadido para reducir el ancho del componente
    margin='0 auto' // Centra el componente horizontalmente
   >
+    
    <Typography
     margin='1em'
     style={{ color: '#333333' }} // Aumenta el tamaño de la fuente
     variant='h2'
-    align='center'
+    // align='center'
+      
     gutterBottom>
     Carrito de Compras
    </Typography>
@@ -76,9 +78,9 @@ const ShopCart = () => {
         </ListItemAvatar> */}
           <Box
    sx={{
-    width: '375px',
-    height: '375px',
-    background:"#FFA840",
+    width: '230px',
+    height: '282px',
+    background:"#D9D9D9",
     backgroundSize: 'contain',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -109,15 +111,15 @@ const ShopCart = () => {
     src={item.imgProduct}
     alt={item.product}
     style={{
-      width: '250px',
-     height: '250px',
+      width: '172px',
+     height: '178px',
      
      marginBottom: '1rem',
-     boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
+    //  boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
      borderRadius: 10,
-     borderColor: '#000000  ',
+     borderColor: '#423E3F  ',
         borderStyle: 'solid',
-        borderWidth: '10px',
+        borderWidth: '6px',
     }}
    />
         <Typography sx={{fontSize:"18px", fontWeight:"500", color:"black"}}>$ {item.numbersPrice}</Typography>  
@@ -125,7 +127,7 @@ const ShopCart = () => {
   </Box>
   <Box
    sx={{
-    width: '600px',height: '375px', background:"#FFA840",backgroundSize: 'contain',backgroundPosition: 'center',
+    width: '600px',height: '282px', background:"#D9D9D9",backgroundSize: 'contain',backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',borderRadius: 2,margin: '1rem',padding: '1rem' ,
     display: 'flex',flexDirection: 'row'  
     }}>
@@ -134,32 +136,35 @@ const ShopCart = () => {
          primary={
           <Typography
            variant='body1'
-           style={{ color: 'green',   fontWeight: 'bold' }}>
+           style={{ color: '#423E3F',   fontWeight: 'bold' }}>
            Número Seleccionado:
            </Typography>
          }
          
          primaryTypographyProps={{
-          style: { color: 'green', textAlign: 'left' },
+          style: { color: '#423E3F', textAlign: 'left' },
          }}
-         style={{ flex: 1 }}
+         style={{ flex: 1}}
         />  
-           <Box
+           <Button
       //  maxHeigth='10%'
        
-       sx={{
+       sx={{ 
         
         
-        backgroundColor:'#b31d1d5c',
+        backgroundColor:'#423E3F',
         borderRadius: '50%', 
             fontSize: '1.5rem',
             width: '4rem',
             height: '4rem',
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+           
+            color: '#D9D9D9',
+            '&:hover': {
+              backgroundColor: '#423E3F',
+             },
        }}> 
-            {item.number}</Box>  </Box>
+            {item.number}  </Button> </Box>
           {/* </Typography>
          }
          
@@ -172,7 +177,7 @@ const ShopCart = () => {
          primary={
           <Typography
            variant='h5'
-           style={{ color: 'green', textAlign: 'right', fontWeight: 'bold' }}>
+           style={{ color: '#423E3F', textAlign: 'right', fontWeight: 'bold' }}>
            Subtotal: ${item.numbersPrice}
           </Typography>
          }
@@ -214,15 +219,15 @@ const ShopCart = () => {
          
   <Box
    sx={{
-    width: '600px',height: '50px', background:"#FFA840",backgroundSize: 'contain',backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',borderRadius: 2,marginRight: '5rem',paddingRight: '3.5rem', 
+    width: '600px',height: '50px', background:"#D9D9D9",backgroundSize: 'contain',backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',borderRadius: 2,marginRight: '9.2rem',paddingRight: '3.5rem', 
     display: 'flex',justifyContent:'flex-end', 
     }}>
       <ListItemText
          primary={
          <Typography
            variant='h4'
-           style={{ color: 'green',   fontWeight: 'bold'  }}>
+           style={{ color: '#423E3F',   fontWeight: 'bold'  }}>
            Total: 
            <span
                                     children={"$" + cart.reduce((acc, item) => acc + item.numbersPrice  , 0)} />        

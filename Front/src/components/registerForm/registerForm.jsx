@@ -137,25 +137,11 @@ function RegisterForm() {
         fontWeight: '600',
         color: loginFont,
         marginBottom: '18px',
+        textAlign: 'center',
        }}>
-       ¡ Registrarme ahora !
+       Registrarme 
       </Typography>
-      <Typography
-       component='h1'
-       sx={{
-        fontSize: '14px',
-        fontWeight: '400',
-        color: loginFont,
-        lineHeight: '20px',
-        marginBottom: '18px',
-       }}>
-       ¿Ya tienes una cuenta?{' '}
-       <Link
-        to='/login'
-        style={{ textDecoration: 'underline', color: '#FFA840' }}>
-        Iniciar sesión.
-       </Link>
-      </Typography>
+     
       <Box sx={{ mt: 1 }}>
        <Formik
         onSubmit={handleFormSubmit}
@@ -248,7 +234,22 @@ function RegisterForm() {
                       control={<Checkbox value="remember" color="primary" />}
                       label="Recuerdame"
                     /> */}
-
+  <Typography
+       component='h1'
+       sx={{
+        fontSize: '14px',
+        fontWeight: '400',
+        color: loginFont,
+        lineHeight: '20px',
+        marginBottom: '18px',
+       }}>
+       ¿Ya tienes una cuenta?{' '}
+       <Link
+        to='/login'
+        style={{ textDecoration: 'underline', color: '#FFA840' }}>
+        Iniciar sesión.
+       </Link>
+      </Typography>
           <Button
            type='submit'
            fullWidth

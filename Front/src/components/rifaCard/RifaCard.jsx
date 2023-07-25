@@ -9,13 +9,13 @@ const RifaCard = ({ rifa }) => {
  return (
   <Box
    sx={{
-    width: '375px',
-    height: '375px',
-    background:"#FFA840",
+    width: '230px',
+    height: '282px',
+    background:"#D9D9D9",
     backgroundSize: 'contain',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    borderRadius: 2,
+    borderRadius: 6,
     
     padding: '1rem',
     textAlign: 'center',
@@ -29,7 +29,7 @@ const RifaCard = ({ rifa }) => {
     variant='body1' // HACER RESPONSIVE CARD
     fontSize='1.54em'
     textOverflow='ellipsis'
-    style={{ color: 'black', 
+    style={{ color: '#423E3F', 
     fontWeight:"500" ,
 //     backgroundColor: 'rgba(0, 0, 0, 0.5)' 
 }}
@@ -42,19 +42,19 @@ paddingBottom="0.5rem"
     src={rifa.imgProduct}
     alt={rifa.product}
     style={{
-     width: '250px',
-     height: '250px',
+     width: '172px',
+     height: '178px',
      
      marginBottom: '1rem',
-     boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
+    //  boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
      borderRadius: 10,
-     borderColor: '#000000  ',
+     borderColor: '#423E3F',
         borderStyle: 'solid',
-        borderWidth: '10px',
+        borderWidth: '6px',
 
     }}
    />
-        <Typography sx={{fontSize:"18px", fontWeight:"500", color:"black"}}>$ {rifa.numbersPrice}</Typography>  
+        <Typography sx={{fontSize:"18px", fontWeight:"500", color:'#423E3F'}}>$ {rifa.numbersPrice}</Typography>  
 
   </Box>
  );
