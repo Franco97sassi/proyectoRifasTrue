@@ -87,7 +87,7 @@ function LogInForm() {
    <Grid
     container
     component='main'
-    sx={{ alignItems: 'center'  
+    sx={{ alignItems: 'center'   
      ,background: loginbackground, padding: '1em' }}>
     <Grid
      item
@@ -122,7 +122,7 @@ function LogInForm() {
           xs={12}
           sm={12}
           md={5}
-          elevation={6}
+          elevation={6} 
           sx={{ justifyContent: 'flexStart', display: 'flex' }}
         >
           <Box
@@ -130,11 +130,12 @@ function LogInForm() {
               width: '400px',
               height: '497px',
               marginTop: '4em',
-              marginBottom: '2em',
-              mx: 4,
-              display: 'flex',
+              marginBottom: '2em',   
+               mx: 4,
+              display: 'flex',  
               flexDirection: 'column',
-            }}
+              paddingLeft: '7em',
+             }}
           >
             <Typography
               component='h1'
@@ -172,7 +173,7 @@ function LogInForm() {
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
-                      justifyContent: 'flex-start',
+                      justifyContent: 'flex-start', 
                     }}
                   >
                     <Typography
@@ -192,7 +193,7 @@ function LogInForm() {
                       required
                       fullWidth
                       id='email'
-                      label='Ingresa tu email'
+                      // label='Ingresa tu email'
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.email}
@@ -217,7 +218,7 @@ function LogInForm() {
                       required
                       fullWidth
                       name='password'
-                      label='Ingresa tu contraseña'
+                      // label='Ingresa tu contraseña'
                       type='password'
                       id='password'
                       onBlur={handleBlur}
@@ -245,8 +246,7 @@ function LogInForm() {
               <Link to='/register' style={{ textDecoration: 'underline', color: '#FFA840' }}>
                 Crea una cuenta.
               </Link>
-              Tomara solo unos minutos
-            </Typography>
+             </Typography>
           <Grid
            sx={{
             display: 'flex',

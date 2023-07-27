@@ -445,7 +445,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
      padding='3em'
      display='flex'
      flexDirection="row"
-     gap="2em"
+      gap="2em"
       // flexDirection='row'
      sx={{
       bgcolor: '#FFFFFF',
@@ -535,10 +535,10 @@ const RifaDetailCard = ({ rifaDetail }) => {
     
    <Typography
     variant='body1' // HACER RESPONSIVE CARD
-    fontSize='1.54em'
+    fontSize='1epx'
     textOverflow='ellipsis'
-    style={{ color: 'black', 
-    fontWeight:"500"    // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
+    style={{ color: '#423E3F', 
+    fontWeight:"600"    // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
     }}>
     {rifaDetail.product}
    </Typography>
@@ -559,7 +559,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
     }}
    />
-        <Typography sx={{fontSize:"18px", fontWeight:"500", color:"black"}}>$ {rifaDetail.numbersPrice}</Typography>  
+        <Typography sx={{fontSize:"13px", fontWeight:"600", color:"#423E3F"}}>$ {rifaDetail.numbersPrice}</Typography>  
 
   </Box>
       
@@ -627,7 +627,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
        textAlign='left'
        fontWeight="700"
        style={{ color: '#333333'  }}>
-       Numeros Disponibles
+       Números Disponibles
       </Typography>
       <Typography
        variant='h4'
@@ -636,7 +636,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
        fontWeight="700"
 
        style={{ color: '#33333', textAlign: 'center' }}>
-       Selecciona los numeros que desees comprar
+       Selecciona los números que desees comprar
       </Typography>
       <Box
        maxHeigth='10%'

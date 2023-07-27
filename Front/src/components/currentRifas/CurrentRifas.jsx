@@ -46,7 +46,7 @@ const CurrentRifas = () => {
      fontSize="28px"
      color='#433F40'
      variant='h1'>
-        Rifas todas las semanas,probá y ganá!
+        Rifas todas las semanas,prueba y gana!
     
         </Typography>
 

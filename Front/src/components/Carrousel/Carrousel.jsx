@@ -11,12 +11,12 @@ const Carrousel = () =>{
     var items = [
         {
             name: "Random Name #1",
-            description: "¡ Rifas todas las semanas, proba y gana !",
+            description: "¡ Rifas todas las semanas,prueba y gana!",
             img:img1
         },
         {
             name: "Random Name #2",
-            description: "Tus pagos estan 100% protegidos",
+            description: "Tus pagos están 100% protegidos",
             img: img2
         }
     ]

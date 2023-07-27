@@ -139,7 +139,7 @@ const NavBar = () => {
                 <RouterLink to='/cart'>
                   <IconButton>
                     {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
-                    <Typography sx={{ color: font, fontSize: "20px", fontWeight: "1000", letterSpacing: '2px',  }}>CARRITO</Typography>
+                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px',  }}>CARRITO</Typography>
                   </IconButton>
                 </RouterLink>
 

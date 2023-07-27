@@ -97,10 +97,10 @@ const ShopCart = () => {
 
     <Typography
     variant='body1' // HACER RESPONSIVE CARD
-    fontSize='1.54em' key={item.id}
+    fontSize='13px' key={item.id}
     textOverflow='ellipsis'
-    style={{ color: 'black', 
-    fontWeight:"500"    // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
+    style={{ color: '#423E3F', 
+    fontWeight:"600"    // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
     }}  >
              
 
@@ -122,7 +122,7 @@ const ShopCart = () => {
         borderWidth: '6px',
     }}
    />
-        <Typography sx={{fontSize:"18px", fontWeight:"500", color:"black"}}>$ {item.numbersPrice}</Typography>  
+        <Typography sx={{fontSize:"13px", fontWeight:"600", color:"#423E3F"}}>$ {item.numbersPrice}</Typography>  
 
   </Box>
   <Box
@@ -135,7 +135,7 @@ const ShopCart = () => {
           <ListItemText
          primary={
           <Typography
-           variant='body1'
+           variant='body1' paddingTop={5}  paddingLeft={5}
            style={{ color: '#423E3F',   fontWeight: 'bold' }}>
            Número Seleccionado:
            </Typography>
@@ -154,7 +154,7 @@ const ShopCart = () => {
         
         backgroundColor:'#423E3F',
         borderRadius: '50%', 
-            fontSize: '1.5rem',
+            fontSize: '2rem',
             width: '4rem',
             height: '4rem',
             display: 'flex',
@@ -177,7 +177,7 @@ const ShopCart = () => {
          primary={
           <Typography
            variant='h5'
-           style={{ color: '#423E3F', textAlign: 'right', fontWeight: 'bold' }}>
+           style={{ color: '#423E3F', textAlign: 'right',display:"flex",justifyContent:"flex-end", paddingTop:"235px",fontWeight: 'bold' }}>
            Subtotal: ${item.numbersPrice}
           </Typography>
          }
@@ -187,7 +187,7 @@ const ShopCart = () => {
          onClick={() => handleDeleteCart(item.rifaId, item.number)}
          edge='end'
           padding='1rem'
-          aria-label='delete'>
+           aria-label='delete'>
          <DeleteIcon  />
         </IconButton> </Box>
        </ListItem> 
@@ -219,15 +219,15 @@ const ShopCart = () => {
          
   <Box
    sx={{
-    width: '600px',height: '50px', background:"#D9D9D9",backgroundSize: 'contain',backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',borderRadius: 2,marginRight: '9.2rem',paddingRight: '3.5rem', 
-    display: 'flex',justifyContent:'flex-end', 
+    width: '600px',height: '65px', background:"#D9D9D9",backgroundSize: 'contain',backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',borderRadius: 2,marginRight: '9.6rem',paddingRight: '3.5rem' 
+      
     }}>
       <ListItemText
          primary={
          <Typography
            variant='h4'
-           style={{ color: '#423E3F',   fontWeight: 'bold'  }}>
+           style={{ color: '#423E3F',   fontWeight: 'bold',paddingTop:"20px",paddingLeft:"450px"  }}>
            Total: 
            <span
                                     children={"$" + cart.reduce((acc, item) => acc + item.numbersPrice  , 0)} />        
@@ -239,11 +239,14 @@ const ShopCart = () => {
      <Button
       variant='contained'
       sx={{
-       width: '200px',
-       height: '60px',
-       fontSize: '1.05rem',
-       margin: '2em',marginRight: '5rem',
-       backgroundColor: '#9e0423',
+       width: '186px',
+       height: '44px',
+       fontSize: '1.05rem',         borderRadius: '40px',
+       color:"#423E3F",
+       fontWeight: '700',
+
+       margin: '2em',marginRight: '9.5rem',
+       backgroundColor: '#D68E30',
        '&:hover': {
         backgroundColor: '#630014',
        },

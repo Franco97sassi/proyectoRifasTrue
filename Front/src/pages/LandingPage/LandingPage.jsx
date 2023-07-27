@@ -74,7 +74,7 @@ const LandingPage = () => {
         marginLeft: '3em',
         marginTop: '0.5em',
 
-        backgroundColor: '#9e0423',
+        backgroundColor: '#D68E30',
         '&:hover': {
          backgroundColor: '#630014',
         },

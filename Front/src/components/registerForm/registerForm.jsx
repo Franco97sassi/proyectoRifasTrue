@@ -83,14 +83,13 @@ function RegisterForm() {
    <Grid
     container
     component='main'
-    sx={{ alignItems: 'center', background: loginbackground, padding: '4em' }}>
+    sx={{ alignItems: 'center', background: loginbackground, padding: '1em' }}>
     <Grid
      item
      md={7}
      sx={{
       display: { xs: 'none', md: 'flex', sm: 'none' },
-      justifyContent: 'center',
-     }}>
+      }}>
      <Grid
       sx={{
        display: 'flex',
@@ -129,6 +128,8 @@ function RegisterForm() {
        mx: 4,
        display: 'flex',
        flexDirection: 'column',
+       paddingLeft: '3em',
+
       }}>
       <Typography
        component='h1'
@@ -174,7 +175,7 @@ function RegisterForm() {
            required
            fullWidth
            id='username'
-           label='Ingresa tu nombre y apellido'
+          //  label='Ingresa tu nombre y apellido'
            onBlur={handleBlur}
            onChange={handleChange}
            value={values.name}
@@ -197,7 +198,7 @@ function RegisterForm() {
            required
            fullWidth
            id='email'
-           label='Ingresa tu email'
+          //  label='Ingresa tu email'
            onBlur={handleBlur}
            onChange={handleChange}
            value={values.email}
@@ -220,7 +221,7 @@ function RegisterForm() {
            required
            fullWidth
            name='password'
-           label='Ingresa tu contraseña'
+          //  label='Ingresa tu contraseña'
            type='password'
            id='password'
            onBlur={handleBlur}

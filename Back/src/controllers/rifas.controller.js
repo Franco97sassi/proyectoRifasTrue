@@ -108,20 +108,26 @@ const rifaDetail = async (req, res) => {
   res.status(500).json({ 'Error en el servidor: ': error.message });
  }
 };
+
 const deleteRifa = async (req, res) => {
-  let {id} = req.params ;
- 
-   try{  
-      const deletedProduct = await Rifa.deleteOne({_id:id});
-    res.status(200).json(deletedProduct);
+  const { id } = req.params; // Destructuramos el id directamente del req.params
 
-    res.send({ status: "error", msg: "El producto se elimino" });
-  
-}catch {
-     res.status(404).send({ status: "error", msg: "El producto no existe" });
+  try {
+    const deletedRifa = await Rifa.destroy({
+      where: { id: id }, // Utilizamos un objeto where para especificar la condición de eliminación por el id.
+    });
 
+    if (deletedRifa === 0) {
+      // Si el número de filas eliminadas es 0, significa que no se encontró la Rifa con el id dado.
+      return res.status(404).json({ status: "error", msg: "El producto no existe" });
+    }
+
+    res.status(200).json({ status: "success", msg: "El producto se eliminó exitosamente" });
+  } catch (error) {
+    console.error("Error al eliminar la Rifa:", error);
+    res.status(500).json({ status: "error", msg: "Hubo un error al eliminar la Rifa" });
   }
-} ;
+};
      
 module.exports = {
  createRifa,
