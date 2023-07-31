@@ -66,20 +66,41 @@ export const addNumbersToCart =
   }
  };
 
-export const removeNumbersToCart = (id, rifaNumber) => async (dispatch) => {
- //  console.log('esto me llega: ', { id, rifaNumber });
- let rifas = JSON.parse(localStorage.getItem('persist:root'));
- let rifaParse = JSON.parse(rifas.rifas);
- let cart = rifaParse.cart;
- //  console.log(cart);
+// export const removeNumbersToCart = (id, rifaNumber) => async (dispatch) => {
+//  //  console.log('esto me llega: ', { id, rifaNumber });
+//  let rifas = JSON.parse(localStorage.getItem('persist:root'));
+//  let rifaParse = JSON.parse(rifas.rifas);
+//  let cart = rifaParse.cart;
+//  //  console.log(cart);
 
- const rifasFiltered = cart.filter(
-  (rifa) => rifa.rifaId !== id || rifa.number !== rifaNumber,
- );
+//  const rifasFiltered = cart.filter(
+//   (rifa) => rifa.rifaId !== id || rifa.number !== rifaNumber,
+//  );
 
- await dispatch(delNumbersToCart(rifasFiltered));
-};
-
+//  await dispatch(delNumbersToCart(rifasFiltered));
+// };
+export const removeNumbersToCart = (rifaId) => async (dispatch) => {
+    try {
+      // Obtenemos el carrito del localStorage
+      const persistedCart = JSON.parse(localStorage.getItem('persist:root'));
+      const cart = JSON.parse(persistedCart?.rifas)?.cart || [];
+  
+      // Filtramos los elementos que tengan el mismo rifaId
+      const updatedCart = cart.filter((rifa) => rifa.rifaId !== rifaId);
+  
+      // Actualizamos el carrito en el localStorage
+      localStorage.setItem(
+        'persist:root',
+        JSON.stringify({ ...persistedCart, rifas: JSON.stringify({ cart: updatedCart }) })
+      );
+  
+      // Actualizamos el estado del carrito en Redux
+      dispatch(delNumbersToCart(updatedCart));
+    } catch (error) {
+      console.error('Error al eliminar números del carrito:', error);
+    }
+  };
+  
 export const buyRifas = (cartItems) => async (dispatch) => {
  try {
   const userData = JSON.parse(sessionStorage.getItem('userData'));
