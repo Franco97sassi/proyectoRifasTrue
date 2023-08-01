@@ -1,17 +1,19 @@
 const express = require('express');
+const server = express();
+
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.routes.js');
-
+const mercadopago=require('mercadopago');
 require('./db.js');
 
-const server = express();
-
+ 
 server.name = 'RIFASMX BACK';
 
 server.use(cookieParser());
+server.use(express.json());
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
@@ -38,5 +40,39 @@ server.use((err, req, res, next) => {
  console.error(err);
  res.status(status).send(message);
 });
+
+//mercado pago
+mercadopago.configure({
+    access_token:"TEST-2046136018984093-080112-a931cacc09a8158c6648a9973b5ab5f0-190722808"
+});
+server.post("/create_preference", (req, res) => {
+    let preference = {
+        items: [
+            {
+                title: req.body.description,
+                unit_price: Number(req.body.price),
+                quantity: Number(req.body.quantity),
+            },
+        ],
+        back_urls: {
+            success: "http://localhost:5173",
+            failure: "http://localhost:5173",
+            pending: "",
+        },
+        auto_return: "approved",
+    };
+    mercadopago.preferences
+        .create(preference)
+        .then(function (response) {
+            res.json({ id: response.body.id }); 
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}); 
+
+
+
+//fin mercado pago
 
 module.exports = server;

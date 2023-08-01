@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -15,7 +15,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { removeNumbersToCart, buyRifas } from "../../store/state/actions/rifas";
 import "./shopCart.css"; // Importa el archivo CSS para las transiciones
-
+import { initMercadoPago,Wallet } from "@mercadopago/sdk-react";
+ import axios from "axios";
 const ShopCart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,20 +26,48 @@ const ShopCart = () => {
     dispatch(removeNumbersToCart(rifaId));
   };
 
-  const handleBuyClick = () => {
-    // Filtrar y transformar el carrito según los campos necesarios
-    const filteredCart = cart.map((item) => {
-      return {
-        rifaId: item.rifaId,
-        number: item.number,
-        userId: item.userId,
-      };
-    });
-    console.log("filtrado", filteredCart);
-    // Llamar a la acción buyRifas con el carrito filtrado
-    dispatch(buyRifas(filteredCart));
-    navigate("");
-  };
+ 
+
+//mercado pago
+const [preferenceId, setPreferenceId] = useState(null);
+initMercadoPago( "TEST-b3944798-0320-4a5f-9f12-f95c52c42fd5");
+
+const createPreference = async () => {
+ console.log(createPreference)
+  try {
+    const response = await axios.post("http://localhost:8080/api/create_preference", {
+      description: "Bananita contenta",
+      price: 100,
+      quantity: 1,
+  })
+const {id}= response.data;
+return id;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleBuyClick = () => {
+  const {id} =  createPreference();
+
+  if(id){
+    setPreferenceId(id);
+  }
+   // Filtrar y transformar el carrito según los campos necesarios
+  // const filteredCart = cart.map((item) => {
+  //   return {
+  //     rifaId: item.rifaId,
+  //     number: item.number,
+  //     userId: item.userId,
+  //   };
+  // });
+  // console.log("filtrado", filteredCart);
+  // // Llamar a la acción buyRifas con el carrito filtrado
+  // dispatch(buyRifas(filteredCart));
+  // navigate("");
+   
+};  
+
 
   return (
     <Box
@@ -280,6 +309,7 @@ const ShopCart = () => {
               style={{ textAlign: "right" }}
             />
           </Box>
+
           <Button
             variant="contained"
             sx={{
@@ -303,6 +333,8 @@ const ShopCart = () => {
           >
             Finalizar Compra
           </Button>
+          
+          {preferenceId && <Wallet initialization={{preferenceId}} /> }
         </Box>
       )}
     </Box>
