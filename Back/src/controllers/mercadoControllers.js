@@ -1,6 +1,6 @@
  const mercadopago = require('mercadopago');
 const axios = require("axios")
-// const { User } = require('../../db')
+ const { Orden, User } = require('../db')
 const { v4: uuidv4 } = require('uuid');
 
 const {
@@ -42,26 +42,8 @@ const {
           pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
           failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
         },
-        notification_url: `https://drive.google.com/drive/folders/1iMiYS-2z1XPS5p8PRWjsry2AdKvmA9sY`,
+        notification_url: `https://b49b-45-224-189-42.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
       };
-
-
-
-
-    //   const preference = {
-    //     items: items,
-
-    //     back_urls: {
-    //       success: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
-    //       pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
-    //       failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
-    //     },
-    //     notification_url: `${NOTIFICATION_MERCADOPAGO_BACK}/pagos/webhook?preferenceId=${preferenceId}`,
-    //   };
-
-
-
-
 
 
   
@@ -73,20 +55,11 @@ const {
       
   
       // Guardar la orden en la base de datos
-    //   const orden = await Orden.create({
-    //     preferenceId,
-    //     senderName,
-    //     receiverName,
-    //     deliveryType,
-    //     address,
-    //     cellphone,
-    //     pickupTime,
-    //     cart,
-    //     userId:userId,
-    //     username:username,
-        
-    //     // Otros campos de la orden
-    //   });
+      const orden = await Orden.create({
+        preferenceId,
+        cart,
+        userId:cart[0].userId,
+      });
   
       // Redirigir al usuario al checkout de MercadoPago
       res.send({ response });
@@ -97,5 +70,79 @@ const {
   };
 
 
+
+
+  const getMercado = async (req, res) => {
+    try {
+      const payment = req.query;
+  
+      console.log(req.query);
+      if (payment.type === "payment") {
+        const data = await mercadopago.payment.findById(payment['data.id']);
+        const preferenceId = payment.preferenceId;
+  
+        const orden = await Orden.findOne({ where: { preferenceId: preferenceId } });
+        if (orden && data.body.status === 'approved') {
+          orden.estado = 'PAGADO CON EXITO';
+          orden.idCompra = payment['data.id']; // numero de id compra q nos da mercadopago
+  
+          await orden.save();
+  
+          const user = await User.findOne({ where: { id: orden.userId } });
+  
+          // Iterar sobre el array orden.cart y hacer una solicitud PUT por cada elemento
+          for (const item of orden.cart) {
+            const { rifaId, number, userId } = item;
+  
+            // Llamar a la ruta PUT buyRifa con los datos necesarios
+            try {
+              const response = await axios.put('http://localhost:4000/rifas/buyRifa', {
+                rifaId,
+                number,
+                userId,
+              });
+              const buyRifaResult = response.data;
+              // Procesar buyRifaResult si es necesario
+            } catch (error) {
+              console.log('Error en la solicitud PUT a buyRifa:', error.message);
+            }
+          }
+        }
+      }
+  
+      res.send("webhook");
+  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+
+
+
+
+  const Ordenes = async (req, res) => {
+    try {
+      const { userId } = req.params; // Obtener el ID de usuario desde los parámetros de URL
+      
+      const ordenes = await Orden.findAll({ where: { userId: userId } });
+  
+      if (!ordenes || ordenes.length === 0) {
+        return res.status(404).json({ message: 'No se encontraron órdenes para el usuario proporcionado.' });
+      }
+  
+      res.json(ordenes);
+    } catch (error) {
+      res.status(500).json({ message: 'Error en el servidor.', error: error.message });
+    }
+  };
+
+
+
+
+
+
   module.exports = {
-     postPagar}; 
+     postPagar , getMercado, Ordenes}; 

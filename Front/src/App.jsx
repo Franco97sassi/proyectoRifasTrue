@@ -21,6 +21,7 @@ import Register from './pages/Register/Register';
 import RifaDetail from './pages/RifaDetail/RifaDetail';
 import Cart from './pages/Cart/Cart';
 import ActivateAccount from './pages/ActivateAccount/ActivateAccount';
+import OrdenesComponent from './pages/Orden/Orden';
 
 /////////////////
 function App() {
@@ -97,6 +98,8 @@ function App() {
       element={!isUserLoggedIn ? <Login /> : <Navigate to='/login' />}
      />
 
+     
+
      <Route
       path='/register'
       element={!isUserLoggedIn ? <Register /> : <Navigate to='/login' />}
@@ -110,6 +113,11 @@ function App() {
      <Route
       path='/cart'
       element={isUserLoggedIn ? <Cart /> : <Navigate to='/login' />}
+     />
+
+      <Route
+      path='/ordenes'
+      element={isUserLoggedIn ? <OrdenesComponent /> : <Navigate to='/login' />}
      />
 
      <Route
