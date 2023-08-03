@@ -427,6 +427,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
    ),
   );
   setSelectedNumbers([]);
+  
  };
 
  // Ordenar los números en función de su valor

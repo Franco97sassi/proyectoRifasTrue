@@ -15,8 +15,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { removeNumbersToCart, buyRifas } from "../../store/state/actions/rifas";
 import "./shopCart.css"; // Importa el archivo CSS para las transiciones
-import { initMercadoPago,Wallet } from "@mercadopago/sdk-react";
- import axios from "axios";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import axios from "axios";
 const ShopCart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,48 +26,54 @@ const ShopCart = () => {
     dispatch(removeNumbersToCart(rifaId));
   };
 
- 
 
-//mercado pago
-const [preferenceId, setPreferenceId] = useState(null);
-initMercadoPago( "TEST-b3944798-0320-4a5f-9f12-f95c52c42fd5");
 
-const createPreference = async () => {
- console.log(createPreference)
-  try {
-    const response = await axios.post("http://localhost:8080/api/create_preference", {
-      description: "Bananita contenta",
-      price: 100,
-      quantity: 1,
-  })
-const {id}= response.data;
-return id;
-  } catch (error) {
-    console.log(error);
-  }
-};
+  //mercado pago
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago("TEST-b3944798-0320-4a5f-9f12-f95c52c42fd5");
 
-const handleBuyClick = () => {
-  const {id} =  createPreference();
+  const createPreference = async () => {
+    console.log(createPreference)
+    try {
+      const response = await axios.post("http://localhost:4000/rifas/mercadoPago", {
+        cart
 
-  if(id){
-    setPreferenceId(id);
-  }
-   // Filtrar y transformar el carrito según los campos necesarios
-  // const filteredCart = cart.map((item) => {
-  //   return {
-  //     rifaId: item.rifaId,
-  //     number: item.number,
-  //     userId: item.userId,
-  //   };
-  // });
-  // console.log("filtrado", filteredCart);
-  // // Llamar a la acción buyRifas con el carrito filtrado
-  // dispatch(buyRifas(filteredCart));
-  // navigate("");
-   
-};  
+      })
+      const { id } = response.data;
+      console.log("soy response", response)
+      if (response.data.response && response.data.response.body) {
+        const initPoint = response.data.response.body.sandbox_init_point
 
+        console.log("soy initPoint", initPoint)
+         window.location.href = initPoint
+      }
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBuyClick = () => {
+    const { id } = createPreference();
+
+    if (id) {
+      setPreferenceId(id);
+    }
+    //  Filtrar y transformar el carrito según los campos necesarios
+    const filteredCart = cart.map((item) => {
+      return {
+        rifaId: item.rifaId,
+        number: item.number,
+        userId: item.userId,
+      };
+    });
+    console.log("filtrado", filteredCart);
+    // Llamar a la acción buyRifas con el carrito filtrado
+    dispatch(buyRifas(filteredCart));
+    // navigate("");
+
+  };
+  console.log("soy cart", cart)
 
   return (
     <Box
@@ -164,6 +170,9 @@ const handleBuyClick = () => {
                       margin: "1rem",
                       display: "flex",
                       flexDirection: "row",
+                      paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
+                      paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
+
                     }}
                   >
                     <Box
@@ -171,19 +180,21 @@ const handleBuyClick = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "flex-start",
-                        alignItems: "center", 
-                         paddingTop:"1px",
+                        alignItems: "center",
+                        paddingTop: "1px",
                         paddingBottom: "1rem", // Añade un poco de espacio en la parte inferior
                         maxHeight: "282", // Establece una altura máxima para la caja
-                        overflowY: "auto", // Habilita el desplazamiento vertical si el contenido excede la altura máxima
-                       paddingRight: "0.1rem", // Añade un poco de espacio en la parte derecha
+                        // overflowY: "auto", // Habilita el desplazamiento vertical si el contenido excede la altura máxima
+                        paddingRight: "0.1rem", // Añade un poco de espacio en la parte derecha
+                        // Añade un poco de espacio en la parte superior
+                        // Añade un poco de espacio en la parte inferior
                       }}
                     >
                       <Typography
                         variant="body1"
                         // paddingTop="10px"
                         paddingLeft={5}
-                      
+
                         style={{ color: "#423E3F", fontWeight: "bold" }}
                       >
                         Números Seleccionados:
@@ -219,6 +230,7 @@ const handleBuyClick = () => {
                       </Box>
                     </Box>
                     <ListItemText
+
                       primary={
                         <Typography
                           variant="h5"
@@ -227,13 +239,17 @@ const handleBuyClick = () => {
                             textAlign: "right",
                             display: "flex",
                             flexDirection: "row",
-                             justifyContent: "flex-end",
+                            justifyContent: "flex-end",
                             paddingTop: "235px",
                             paddingRight: "1rem",
                             fontWeight: "bold",
                           }}
+
                         >
-                          Subtotal: ${item.numbers.length * item.numbersPrice}
+                          <Box
+                          >
+                            Subtotal: ${item.numbers.length * item.numbersPrice}
+                          </Box>
                         </Typography>
                       }
                       style={{ textAlign: "right" }}
@@ -242,6 +258,7 @@ const handleBuyClick = () => {
                       onClick={() => handleDeleteCart(item.rifaId)}
                       edge="end"
                       padding="1rem"
+
                       aria-label="delete"
                     >
                       <DeleteIcon />
@@ -283,7 +300,7 @@ const handleBuyClick = () => {
               backgroundRepeat: "no-repeat",
               borderRadius: 2,
               marginRight: "9.6rem",
-              paddingRight: "3.0rem",
+              paddingRight: "3.5rem",
             }}
           >
             <ListItemText
@@ -331,10 +348,10 @@ const handleBuyClick = () => {
               handleBuyClick();
             }}
           >
-            Finalizar Compra
+            COMPRAR
           </Button>
-          
-          {preferenceId && <Wallet initialization={{preferenceId}} /> }
+
+          {preferenceId && <Wallet initialization={{ preferenceId }} />}
         </Box>
       )}
     </Box>

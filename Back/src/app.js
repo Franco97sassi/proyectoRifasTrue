@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.routes.js');
-const mercadopago=require('mercadopago');
+  const mercadopago=require('mercadopago');
 require('./db.js');
 
  

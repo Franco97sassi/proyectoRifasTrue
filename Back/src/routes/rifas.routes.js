@@ -9,8 +9,10 @@ const {
  updateRifa,
  buyRifa,
  deleteRifa,
+
 } = require('../controllers/rifas.controller');
 
+const{postPagar}=require("../controllers/mercadoControllers")
 const router = Router();
 
 //-------------------- Rifas Routes --------------------------
@@ -29,5 +31,5 @@ router.delete('/deleteRifa/:id',deleteRifa);
 router.put('/buyRifa', isUserLoggedIn, buyRifa);
 
 ///////////////////////////////////////////////
-
+router.post("/mercadoPago",postPagar)
 module.exports = router;
