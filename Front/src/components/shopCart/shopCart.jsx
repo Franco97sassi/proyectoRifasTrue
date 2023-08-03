@@ -52,6 +52,7 @@ const ShopCart = () => {
       console.log(error);
     }
   };
+  
 
   const handleBuyClick = () => {
     const { id } = createPreference();
@@ -74,6 +75,13 @@ const ShopCart = () => {
 
   };
   console.log("soy cart", cart)
+
+
+
+
+
+
+
 
   return (
     <Box
@@ -119,7 +127,7 @@ const ShopCart = () => {
                       textAlign: "center",
                       transition: "0.3s",
                       "&:hover": {
-                        boxShadow: " 0px 5px 61px 6px #FFA840",
+                        boxShadow: " 0px 5px 61px 6px #D9D9D9",
                       },
                     }}
                   >
@@ -208,6 +216,7 @@ const ShopCart = () => {
                         }}
                       >
                         {item.numbers.map((number) => (
+                          
                           <Button
                             key={number}
                             sx={{

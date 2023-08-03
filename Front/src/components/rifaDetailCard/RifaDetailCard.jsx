@@ -554,9 +554,9 @@ const RifaDetailCard = ({ rifaDetail }) => {
      marginBottom: '1rem',
     //  boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
      borderRadius: 10,
-     borderColor: '#423E3F  ',
-        borderStyle: 'solid',
-        borderWidth: '6px',
+    //  borderColor: '#423E3F  ',
+        // borderStyle: 'solid',
+        // borderWidth: '6px',
 
     }}
    />
@@ -651,10 +651,12 @@ const RifaDetailCard = ({ rifaDetail }) => {
         container
         justifyContent='center'
          spacing={2}>
+
         {sortedNumeros.map((element) => (
          <Grid
           item
           key={element.number}>
+        
          <Button
            fullWidth
            sx={{
@@ -673,8 +675,10 @@ const RifaDetailCard = ({ rifaDetail }) => {
            onClick={() => handleNumberClick(element)}
            disabled={!element.available}>
            {element.number}
+
           </Button>
          </Grid>
+         
         ))}
        </Grid>
       </Box>

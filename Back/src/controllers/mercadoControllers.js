@@ -38,7 +38,7 @@ const {
         items: items,
 
         back_urls: {
-          success: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
+          success: `http://localhost:5173/home`,
           pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
           failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
         },
@@ -98,4 +98,4 @@ const {
 
 
   module.exports = {
-     postPagar};
+     postPagar}; 

@@ -30,13 +30,14 @@ const CurrentRifas = () => {
   <Box>
    <Box
     margin='4rem'
-    padding='2rem'
+    marginTop='0.1rem'
+    padding='0.1rem'
     
     
     >
          
     <Typography
-     margin='1em'
+     margin='0.1em'
      textAlign='center'
      gutterBottom
     
