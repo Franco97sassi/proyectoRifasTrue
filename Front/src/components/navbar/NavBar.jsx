@@ -37,7 +37,7 @@ import UserIconNoLogged from './userIconNoLogged';
 import venado from '../../assets/venado.png';
 
 /////////////////////////
-const NavBar = () => {
+const NavBar = ({ isUserAdmin }) => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const userData = JSON.parse(sessionStorage.getItem('userData'));
   //  const dispatch = useDispatch();
@@ -75,12 +75,12 @@ const NavBar = () => {
         // User Logged Navbar
         <AppBar position='static'>
           <CssBaseline />
-           <Box
+          <Box
             display='flex'
             // justifyContent='space-around'
-            
+
             alignItems='center'
-             bgcolor={alt}>  
+            bgcolor={alt}>
             <Box
               display='flex'
 
@@ -88,8 +88,8 @@ const NavBar = () => {
               alignItems='center'
               height='75px'
               paddingLeft='50px'
-              // paddingLeft='100px'
-              >
+            // paddingLeft='100px'
+            >
               <Typography
                 fontWeight='bold'
                 fontSize='clamp(1rem, 2rem, 2.25rem)'
@@ -100,7 +100,7 @@ const NavBar = () => {
                     transition: '0.4s',
                     backgroundColor: dark,
                     cursor: 'pointer',
-                    borderRadius: '15px',       
+                    borderRadius: '15px',
 
                   },
                 }}>
@@ -127,24 +127,30 @@ const NavBar = () => {
 
             {isNonMobileScreens ? (
               <Box
-              display='flex'
+                display='flex'
 
-              justifyContent='flex-end'
-            alignItems='center'
-            gap='0.1rem'
-           height='75px'  paddingLeft='1000px'
-               >
-               
+                justifyContent='flex-end'
+                alignItems='center'
+                gap='0.1rem'
+                height='75px' paddingLeft='1000px'
+              >
+
 
                 <RouterLink to='/cart'>
                   <IconButton>
                     {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
-                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px',  }}>CARRITO</Typography>
+                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>CARRITO</Typography>
                   </IconButton>
                 </RouterLink>
-
-
-
+{ isUserAdmin &&   
+                <RouterLink to='/admin'>
+ 
+                  <IconButton>
+                    {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
+                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>PANEL</Typography>
+                  </IconButton>
+                </RouterLink>
+ }
                 <UserIcon
                   onLoginClick={handleLoginClick}
                   onRegisterClick={handleRegisterClick}
@@ -206,7 +212,7 @@ const NavBar = () => {
                 </Box>
               </Drawer>
             )}
-          </Box>  
+          </Box>
         </AppBar>
       ) : (
         // User No Logged Navbar
@@ -226,8 +232,8 @@ const NavBar = () => {
               display='flex'
               //  justifyContent='space-between'
               alignItems='center'
-              // marginLeft={"10px"}
-              >
+            // marginLeft={"10px"}
+            >
               <Typography
                 fontWeight='bold'
                 fontSize='clamp(1rem, 2rem, 2.25rem)'
@@ -266,32 +272,32 @@ const NavBar = () => {
               <Box
                 display='flex'
                 justifyContent='space-between'
-                  alignItems='center'
-                 flexGrow={1}
+                alignItems='center'
+                flexGrow={1}
+                gap='1rem'
+                paddingLeft='825px'
+                paddingRight='25px'
+              >
+                <Box
+                  display='flex'
+
+                  justifyContent='flex-end'  // Alinea RouterLink a la derecha
                   gap='1rem'
-                  paddingLeft='825px'
-               paddingRight='25px'
-                  >
-                    <Box
-  display='flex'
-  
-  justifyContent='flex-end'  // Alinea RouterLink a la derecha
-  gap='1rem'
-  alignItems='center'
-  
+                  alignItems='center'
 
->
-                <RouterLink
-                  to='/register'
-                  style={{ textDecoration: 'none' }}>
-                  <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px'  }}>REGISTRARME</Typography>
-                </RouterLink>
 
-                <RouterLink
-                  to='/login'
-                  style={{ textDecoration: 'none' }}>
-                  <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px'   }}>INICIO SESION</Typography>
-                </RouterLink>
+                >
+                  <RouterLink
+                    to='/register'
+                    style={{ textDecoration: 'none' }}>
+                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px' }}>REGISTRARME</Typography>
+                  </RouterLink>
+
+                  <RouterLink
+                    to='/login'
+                    style={{ textDecoration: 'none' }}>
+                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px' }}>INICIO SESION</Typography>
+                  </RouterLink>
                 </Box>
                 <Box flexGrow={1} display='flex' justifyContent='flex-end'>
                   <UserIconNoLogged
@@ -300,13 +306,13 @@ const NavBar = () => {
                   />
                 </Box>
               </Box>
-            ) 
-            :
-             (
-              <IconButton onClick={handleOpenMenu}>
-                <MenuHamb />
-              </IconButton>
             )
+              :
+              (
+                <IconButton onClick={handleOpenMenu}>
+                  <MenuHamb />
+                </IconButton>
+              )
             }
 
 

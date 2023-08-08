@@ -37,7 +37,7 @@ const Cart = () => {
     display: 'flex',
     flexDirection: 'column',
    }}>  
-      <NavBar />
+      <NavBar  />
        <Box
     sx={{ flex: '1 1 auto' }}
     bgcolor='#F5F5F5'> 

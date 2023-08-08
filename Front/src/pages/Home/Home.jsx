@@ -6,7 +6,7 @@ import NavBar from '../../components/navbar/navBar';
 import CurrentRifas from '../../components/currentRifas/CurrentRifas';
 import Carrousel from '../../components/Carrousel/Carrousel';
 ////////////////////////
-const Home = () => {
+const Home = ({isUserAdmin}) => {
  return (
   <Box
    sx={{
@@ -14,7 +14,7 @@ const Home = () => {
     display: 'flex',
     flexDirection: 'column',
    }}>
-   <NavBar />
+   <NavBar isUserAdmin={isUserAdmin} />
    
 
    <Box

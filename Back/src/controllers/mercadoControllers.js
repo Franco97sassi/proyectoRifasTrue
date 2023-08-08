@@ -38,11 +38,11 @@ const {
         items: items,
 
         back_urls: {
-          success: `http://localhost:5173/home`,
+          success: `http://localhost:5173/ordenes`,
           pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
           failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
         },
-        notification_url: `https://b49b-45-224-189-42.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
+        notification_url: `https://4dcc-186-136-152-49.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
       };
 
 

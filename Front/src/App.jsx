@@ -15,6 +15,7 @@ import { themeSettings } from './utils/theme';
 //-------------------- Pages --------------------------
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Home from './pages/Home/Home';
+import Admin from './pages/Admin/Admin';
 import Login from './pages/Login/Login';
 import NotFound from './pages/404/NotFound.jsx';
 import Register from './pages/Register/Register';
@@ -87,37 +88,41 @@ function App() {
       path='/'
       element={<LandingPage />}
      />
+ <Route
+      path='/admin'
+      element={isUserAdmin ? <Admin isUserAdmin={isUserAdmin} /> : <Navigate to='/Home' />}  
+     />
 
      <Route
       path='/home'
-      element={isUserLoggedIn ? <Home /> : <Navigate to='/login' />}
+      element={isUserLoggedIn ? <Home isUserAdmin={isUserAdmin}  /> : <Navigate to='/login' />}
      />
 
      <Route
       path='/login'
-      element={!isUserLoggedIn ? <Login /> : <Navigate to='/login' />}
+      element={!isUserLoggedIn ? <Login isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
 
      
 
      <Route
       path='/register'
-      element={!isUserLoggedIn ? <Register /> : <Navigate to='/login' />}
+      element={!isUserLoggedIn ? <Register isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
 
      <Route
       path='/rifa/:id'
-      element={isUserLoggedIn ? <RifaDetail /> : <Navigate to='/login' />}
+      element={isUserLoggedIn ? <RifaDetail isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
 
      <Route
       path='/cart'
-      element={isUserLoggedIn ? <Cart /> : <Navigate to='/login' />}
+      element={isUserLoggedIn ? <Cart isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
 
       <Route
       path='/ordenes'
-      element={isUserLoggedIn ? <OrdenesComponent /> : <Navigate to='/login' />}
+      element={isUserLoggedIn ? <OrdenesComponent isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
 
      <Route
