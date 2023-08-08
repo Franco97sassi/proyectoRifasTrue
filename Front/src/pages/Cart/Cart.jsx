@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Box, Button, IconButton, Typography } from '@mui/material';
 import "./stylesCart.css"
 //-------------------- Components --------------------------
-import NavBar from '../../components/navbar/NavBar';
-import Footer from '../../components/footer/footer';
+ import Footer from '../../components/footer/footer';
 import ShopCart from '../../components/shopCart/shopCart';
 import CurrentRifas from '../../components/currentRifas/CurrentRifas';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
@@ -13,6 +12,7 @@ import  ReactTextTransition  from 'react-text-transition';
 import RifaCard from '../../components/rifaCard/RifaCard';
 import rifaMuestra  from "./rifaMuestra.js"
   import Form from '../../components/Form';
+import NavBar from '../../components/navbar/navBar';
 ////////////////////
 const Cart = () => {
   const rifaas=  
@@ -37,7 +37,7 @@ const Cart = () => {
     display: 'flex',
     flexDirection: 'column',
    }}>  
-      <NavBar  />
+      <NavBar/>
        <Box
     sx={{ flex: '1 1 auto' }}
     bgcolor='#F5F5F5'> 

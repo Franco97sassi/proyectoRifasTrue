@@ -90,7 +90,8 @@ const ShopCart = () => {
       alignItems="center"
       width="80%" // Añadido para reducir el ancho del componente
       margin="0 auto" // Centra el componente horizontalmente
-    >
+      padding="2rem" 
+      >
       <Typography
         margin="1em"
         style={{ color: "#333333" }} // Aumenta el tamaño de la fuente
@@ -100,6 +101,7 @@ const ShopCart = () => {
         Carrito de Compras
       </Typography>
       <TransitionGroup component={List}>
+        
         {cart && cart.length > 0 ? (
           cart
             .reduce((acc, item) => {
@@ -116,8 +118,9 @@ const ShopCart = () => {
                 <ListItem>
                   <Box
                     sx={{
-                      width: "230px",
-                      height: "282px",
+                      // width: "230px",
+                      // height: "282px",
+ 
                       background: "#D9D9D9",
                       backgroundSize: "contain",
                       backgroundPosition: "center",
@@ -168,7 +171,7 @@ const ShopCart = () => {
                   </Box>
                   <Box
                     sx={{
-                      width: "1000px",
+                      width: "50rem",
                       height: "282px",
                       background: "#D9D9D9",
                       backgroundSize: "contain",
@@ -301,14 +304,14 @@ const ShopCart = () => {
         >
           <Box
             sx={{
-              width: "1000px",
+              width: "50rem",
               height: "65px",
               background: "#D9D9D9",
               backgroundSize: "contain",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               borderRadius: 2,
-              marginRight: "9.6rem",
+              marginRight: "14.6rem",
               paddingRight: "3.5rem",
             }}
           >
@@ -321,6 +324,7 @@ const ShopCart = () => {
                     fontWeight: "bold",
                     paddingTop: "20px",
                     paddingLeft: "400px",
+
                   }}
                 >
                   Total:
@@ -339,7 +343,7 @@ const ShopCart = () => {
           <Button
             variant="contained"
             sx={{
-              width: "186px",
+              width: "10rem",
               height: "44px",
               fontSize: "1.05rem",
               borderRadius: "40px",

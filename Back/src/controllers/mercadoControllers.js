@@ -42,7 +42,7 @@ const {
           pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
           failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
         },
-        notification_url: `https://4dcc-186-136-152-49.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
+        notification_url: `https://fcfb-186-136-152-49.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
       };
 
 

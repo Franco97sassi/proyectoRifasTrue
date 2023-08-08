@@ -32,7 +32,7 @@ const CurrentRifas = () => {
     margin='4rem'
     marginTop='0.1rem'
     padding='0.1rem'
-    
+    maxWidth="100%"
     
     >
          
