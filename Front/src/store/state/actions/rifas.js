@@ -35,6 +35,10 @@ export const addNumbersToCart =
  (selectedNumbers, rifaId, numbersPrice, productName, imgProduct) =>
  async (dispatch) => {
   let { id } = JSON.parse(sessionStorage.getItem('userData')).user;
+
+  let { username } = JSON.parse(sessionStorage.getItem('userData')).user;
+  let { email } = JSON.parse(sessionStorage.getItem('userData')).user;
+
   let rifas = JSON.parse(localStorage.getItem('persist:root'));
   let { cart } = JSON.parse(rifas.rifas);
 
@@ -56,6 +60,9 @@ export const addNumbersToCart =
      numbersPrice,
      imgProduct,
      userId: id,
+      username: username,
+      email: email,
+
     });
    }
   });

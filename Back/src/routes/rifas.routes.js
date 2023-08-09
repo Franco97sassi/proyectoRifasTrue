@@ -13,7 +13,7 @@ const {
 
 } = require('../controllers/rifas.controller');
 
-const{postPagar,getMercado, Ordenes}=require("../controllers/mercadoControllers")
+const{postPagar,getMercado, Ordenes,allOrdenes}=require("../controllers/mercadoControllers")
 const router = Router();
 
 //-------------------- Rifas Routes --------------------------
@@ -37,6 +37,7 @@ router.post("/mercadoPago",postPagar)
 router.post("/webhook",getMercado)
 
 router.get("/ordenes/:userId", Ordenes)
+router.get("/allordenes", allOrdenes)
 
 
 module.exports = router;

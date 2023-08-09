@@ -4,7 +4,7 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import './App.css';
-
+import AllOrdenes from './pages/Orden/AllOrden';
 
 
 const svHost = import.meta.env.VITE_SV_HOST;
@@ -88,9 +88,10 @@ function App() {
       path='/'
       element={<LandingPage />}
      />
+
  <Route
       path='/admin'
-      element={isUserAdmin ? <Admin isUserAdmin={isUserAdmin} /> : <Navigate to='/Home' />}  
+      element={isUserAdmin ? <Admin isUserAdmin={isUserAdmin}  /> : <Navigate to='/Home' />}  
      />
 
      <Route

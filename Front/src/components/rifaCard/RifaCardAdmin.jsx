@@ -7,30 +7,22 @@ import axios from 'axios';
 import cardImg from '../../assets/cardImg.webp';
 const host = import.meta.env.VITE_SV_HOST;
 //////////////////////////////////
-const onDelete = async (rifaId) => {
-    // if (!product || !imgProduct || !description || !numbersPrice || !totalNumbers) {
-    //   console.error('Todos los campos deben completarse');
-    //   return;
-    // }
+ 
 
-    // const data = {
-    //   product: product,
-    //   imgProduct: imgProduct,
-    //   description: description,
-    //   numbersPrice: numbersPrice,
-    //   totalNumbers: totalNumbers,
-    // };
-
-  //  console.log(data)
+const RifaCardAdmin = ({ rifa ,handleNow}) => {
+  const onDelete = async (rifaId) => {
+  
     try {
-      const res = await axios.delete(`${host}/rifas/deleteRifa/:${rifaId}`  );
+      const res = await axios.delete(`${host}/rifas/deleteRifa/${rifaId}`  );
       console.log(res);
+      handleNow()
     } catch (error) {
       console.error(error);
     }
   };
 
-const RifaCardAdmin = ({ rifa }) => {
+  
+
     return (
         <Box
             sx={{

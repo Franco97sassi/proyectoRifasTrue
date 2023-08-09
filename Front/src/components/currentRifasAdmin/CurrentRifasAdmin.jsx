@@ -24,7 +24,9 @@ const CurrentRifasAdmin = () => {
  }, []);
 
  //  console.log(allRifas);
-
+const handleNow=()=>{
+   dispatch(getRifas())
+}
 
 
  return (
@@ -33,7 +35,7 @@ const CurrentRifasAdmin = () => {
  alignItems="spaceBetween" >
       {allRifas.map((rifa) => (
         <Grid item key={rifa.id}   >
-          <RifaCardAdmin rifa={rifa} />
+          <RifaCardAdmin rifa={rifa} handleNow={handleNow} />
         </Grid>
       ))}
     </Grid>

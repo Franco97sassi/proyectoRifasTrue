@@ -66,9 +66,10 @@
 import { Box, Button, Divider, Grid, Input, TextField } from '@mui/material';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/navbar/navBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CurrentRifasAdmin from '../../components/currentRifasAdmin/CurrentRifasAdmin.jsx';
+import AllOrdenes from '../Orden/AllOrden';
 
 const host = import.meta.env.VITE_SV_HOST;
 
@@ -103,7 +104,18 @@ const Admin = () => {
       console.error(error);
     }
   };
-
+  const [otherRifas, setOtherRifas] = useState([]);
+  const loadOtherRifas = async () => {
+    try {
+      const res = await axios.get(`${host}/rifas/otherRifas`);
+      setOtherRifas(res.data); // Actualiza el estado con las rifas de otros usuarios
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    loadOtherRifas();
+  }, []);
   return (
     <>
 
@@ -177,6 +189,20 @@ const Admin = () => {
              <h2>Lista de Productos</h2>
              </Grid>
             <CurrentRifasAdmin />   
+            <h2>Lista de Rifas</h2>
+<AllOrdenes/>
+
+            
+             
+{/* <ul> */}
+  {/* {otherRifas.map((rifa) => ( */}
+    {/* // <li key={rifa.id}>
+    //   <div>Nombre del Producto: {rifa.product}</div>
+    //   <div>Descripción: {rifa.description}</div> */}
+      {/* Mostrar más información si es necesario */}
+    {/* </li>
+  ))}
+</ul> */}
 
     </>
   );
