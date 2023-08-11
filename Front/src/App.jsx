@@ -15,16 +15,19 @@ import { themeSettings } from './utils/theme';
 //-------------------- Pages --------------------------
 import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import Home from './pages/Home/Home';
-import Admin from './pages/Admin/Admin';
-import Login from './pages/Login/Login';
+ import Login from './pages/Login/Login';
 import NotFound from './pages/404/NotFound.jsx';
 import Register from './pages/Register/Register';
 import RifaDetail from './pages/RifaDetail/RifaDetail';
 import Cart from './pages/Cart/Cart';
 import ActivateAccount from './pages/ActivateAccount/ActivateAccount';
 import OrdenesComponent from './pages/Orden/Orden';
-
-/////////////////
+import productosAdmin from './pages/Admin/productosAdmin';
+import ProductosAdmin from './pages/Admin/productosAdmin';
+import OrdenesAdmin from './pages/Admin/ordenesAdmin';
+import Agregar from './pages/Admin/Admin';
+import Ordenusuarios from './pages/Orden/Ordenusuarios';
+ /////////////////
 function App() {
  //  const mode = useSelector((state) => state.mode.mode);
  const mode = 'light';
@@ -88,17 +91,35 @@ function App() {
       path='/'
       element={<LandingPage />}
      />
-
- <Route
+{/* Rutas Admin */}
+ {/* <Route
       path='/admin'
       element={isUserAdmin ? <Admin isUserAdmin={isUserAdmin}  /> : <Navigate to='/Home' />}  
+     /> */}
+ <Route
+      path='/productosAdmin'
+      element={isUserAdmin ? <ProductosAdmin   /> : <Navigate to='/Home' />}  
      />
+<Route
+      path='/ordenesAdmin'
+      element={isUserAdmin ? <OrdenesAdmin   /> : <Navigate to='/Home' />}  
+     />
+     
+<Route
+      path='/agregar'
+      element={isUserAdmin ? <Agregar /> : <Navigate to='/Home' />}  
+     />
+     {/* Rutas FinAdmin */}
+
 
      <Route
       path='/home'
       element={isUserLoggedIn ? <Home isUserAdmin={isUserAdmin}  /> : <Navigate to='/login' />}
      />
-
+ <Route
+      path='/ordenes'
+      element={isUserLoggedIn ? <OrdenesComponent/>: <Navigate to='/login' /> }  
+     />
      <Route
       path='/login'
       element={!isUserLoggedIn ? <Login isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}

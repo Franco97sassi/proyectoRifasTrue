@@ -208,11 +208,16 @@ const NavBar = ({ isUserAdmin }) => {
                     display='flex'
                     flexDirection='column'
                     justifyContent='center'
-                    gap='3rem'
-                    alignItems='center'>
+                    gap='3rem'  
+                    backgroundColor={white}
+                    alignItems='center'
+                     
+                    >
                     <UserIcon
                       onLoginClick={handleLoginClick}
                       onRegisterClick={handleRegisterClick}
+                        
+                       
                     />
 
 

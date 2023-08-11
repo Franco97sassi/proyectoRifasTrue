@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem, IconButton, useTheme } from '@mui/material';
 import { AccountCircleRounded } from '@mui/icons-material';
+import { Box } from '@mui/system';
 
 //////////////////////////////////////////////////////////
 const UserIcon = ({ onLoginClick, onRegisterClick   }) => {
@@ -39,41 +40,76 @@ const UserIcon = ({ onLoginClick, onRegisterClick   }) => {
  const handleScroll = () => {
   setAnchorEl(null);
  };
- const handleOrdenes = () => {
+ const handleMisOrdenes = () => {
     handleMenuClose();
-    window.location.href = '/admin';
+    window.location.href = '/ordenes';
     };
-    const handleMisOrdenes = () => {
+    // const handleMisOrdenes = () => {
+    //     handleMenuClose();
+    //     window.location.href = '/ordenesAdmin';
+    //     };
+     const handlePanel = () => {
         handleMenuClose();
-        window.location.href = '/ordenes';
+        window.location.href = '/productosAdmin';
         };
-        
+        const handleOrdenes = () => {
+          handleMenuClose();
+          window.location.href = '/ordenesAdmin';
+          };
 
  document.addEventListener('scroll', handleScroll);
 
  return (
   <>
+    
    <IconButton onClick={handleMenuOpen}>
     <AccountCircleRounded sx={{ color: font, fontSize: '45px' }} />
    </IconButton>
-   <Menu
+    <Menu
+     
     anchorEl={anchorEl}
     open={Boolean(anchorEl)}
     onClose={handleMenuClose}
-    disableScrollLock={true}>
-    <MenuItem onClick={handleRegisterClick}>Cerrar Sesion</MenuItem>
+    disableScrollLock={true}
+    PaperProps={{
+        style: {
+          backgroundColor: '#D68E30',
+          width: '200px', // Ajusta el ancho según tus necesidades
+            maxHeight: '400px', // Ajusta el alto máximo según tus necesidades
+        },
+      }}>
+     {isUserAdmin ?  ( 
+      <div>  
+    <Box sx={{textAlign:"center", py: 1 }}> <h4>Panel Admin </h4> 
+    </Box>  
+    </div> ):(
+      <Box sx={{textAlign:"center", py: 1 }}> <h4>Menu </h4> 
+      </Box> 
+    )}
+   <Box sx={{width:"center",  }}> 
+    <MenuItem    onClick={handleRegisterClick}
+      sx={{
+        display:"flex",justifyContent:"center" // Añade el estilo para centrar el texto
+      }}
+    >Cerrar Sesion</MenuItem>  </Box>
     {isUserAdmin ?  (
         <div> 
-    <MenuItem onClick={handleOrdenes}>  Pedidos</MenuItem>
-    <MenuItem  >  Productos</MenuItem>
+    <MenuItem onClick={handleOrdenes}   sx={{
+    display:"flex",justifyContent:"center" // Añade el estilo para centrar el texto
+  }} >  Ordenes</MenuItem>
+    <MenuItem onClick={handlePanel}   sx={{
+    display:"flex",justifyContent:"center" // Añade el estilo para centrar el texto
+  }} >  Panel</MenuItem>
     </div>
     ) : (
        
-        <MenuItem onClick={handleMisOrdenes}>Mis Pedidos</MenuItem>
+        <MenuItem onClick={handleMisOrdenes}   sx={{
+          display:"flex",justifyContent:"center" // Añade el estilo para centrar el texto
+        }}>Mis Pedidos</MenuItem>
          
        
     )}
-   </Menu>
+   </Menu> 
   </>
  );
 };

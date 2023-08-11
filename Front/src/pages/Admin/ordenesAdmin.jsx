@@ -1,9 +1,15 @@
 import React from 'react'
+import AllOrdenes from '../Orden/AllOrden'
+import NavBar from '../../components/navbar/navBar'
 
-const ordenesAdmin = () => {
+const OrdenesAdmin = () => {
   return (
-    <div></div>
+    <div>
+        <NavBar />
+      <AllOrdenes/>
+
+    </div>
   )
 }
 
-export default ordenesAdmin
+export default OrdenesAdmin

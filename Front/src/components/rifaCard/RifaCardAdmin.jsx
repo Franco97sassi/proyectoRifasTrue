@@ -27,7 +27,7 @@ const RifaCardAdmin = ({ rifa ,handleNow}) => {
       <Box
                     sx={{
                       
-                       background: "#D9D9D9",
+                       background: "#423E3F" ,
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
@@ -77,8 +77,8 @@ height: '125px',
     src={rifa.imgProduct}
     alt={rifa.product}
     style={{
-     width: '50px',
-     height: '50px',
+     width: '93px',
+     height: '93px',
      
      marginBottom: '1rem',
     //  boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
@@ -100,7 +100,7 @@ height: '125px',
                       justifyContent="center"
                       alignItems="center"  
                     >
-                      <Typography variant="h4">{rifa.description}</Typography>
+                      <Typography sx={{ fontSize: '24px',fontWeight:"700",color:"#FFFFFF" }}>{rifa.description}</Typography>
                     </Grid>
 
                     <Grid
@@ -111,7 +111,7 @@ height: '125px',
                       justifyContent="center"
                       alignItems="center" 
                     >
-                       <Typography variant="h4"> 
+                       <Typography sx={{ fontSize: '24px',fontWeight:"700",color:"#FFFFFF"  }}> 
 
                        ${rifa.numbersPrice}
                        </Typography>
@@ -126,17 +126,19 @@ height: '125px',
                       justifyContent="center"
                       alignItems="center" 
                     >
-                      <Typography variant="h4">BORRAR
+                      
                       <IconButton
                       onClick={() => onDelete(rifa.id)}
                       edge="end"
                       padding="1rem"
-
+                     
                       aria-label="delete"
+                      sx={{ fontSize: '124px',color:"black" }}
+
                     >
-                      <DeleteIcon />
+                      <DeleteIcon fontSize="large" />
                     </IconButton> 
-                      </Typography>
+                       
                       {/* <Divider sx={{ margin: '1rem 0' }} />  */}
                     </Grid>
                     {/* <Divider sx={{ margin: '1rem 0' }} />  */}

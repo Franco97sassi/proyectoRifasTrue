@@ -50,7 +50,7 @@ const AllOrdenes = () => {
           >
             <div
               style={{
-                background: "#1E1E1E",
+                background: "#D9D9D9",
                 width: "80%",
                 padding: "20px",
                 borderRadius: "5px",
@@ -65,7 +65,7 @@ const AllOrdenes = () => {
                 Órdenes  
               </Typography>
 
-              <hr />
+               
               {ordenes.length === 0 ? (
                 <Typography variant="body1">No se encontraron órdenes para el usuario.</Typography>
               ) : (
@@ -73,7 +73,20 @@ const AllOrdenes = () => {
 
                   {ordenes.map(orden => (
                     <Box sx={{ marginBottom: "100px" }}>
-                      
+                  <Box
+                    sx={{
+                       width: "max-width",
+                      // height: "282px",
+ 
+                      background: "#1E1E1E8A",
+                      backgroundPosition: "center",
+                     
+                      borderRadius: 2,
+                      padding: "1rem",
+                      textAlign: "center",
+                       
+                    }}
+                  >    
               <Typography
                 variant="h5"
                 sx={{ display: "flex", justifyContent: "center", }}
@@ -81,7 +94,7 @@ const AllOrdenes = () => {
               >
                 Detalle de la orden  
               </Typography>
-
+              </Box>  
                       <li key={orden.id}>
                         {/* Mostrar información relevante de la orden */}
 
@@ -111,7 +124,7 @@ const AllOrdenes = () => {
                           </Box>
                         </Typography>
 
-                        <Grid container spacing={0} display="flex" >
+                        {/* <Grid container spacing={0} display="flex" >
                           <Grid
                             item
                             xs={12}
@@ -159,14 +172,13 @@ const AllOrdenes = () => {
                             <Typography variant="h4">Precio</Typography>
                           </Grid>
 
-                        </Grid>
+                        </Grid> */}
                         {orden?.cart?.map((el) => {
                           return (
                             <>
 
                               <>
-
-                                <hr />
+ 
                                 {/* <Grid container
                                   // spacing={3}
                                   display="flex" justifyContent="space-between">
@@ -266,7 +278,7 @@ const AllOrdenes = () => {
                       // width: "230px",
                       // height: "282px",
  
-                      background: "#D9D9D9",
+                      background: "#1E1E1E8A",
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
@@ -285,7 +297,7 @@ const AllOrdenes = () => {
                       // key={el.id}
                       textOverflow="ellipsis"
                       style={{
-                        color: "#423E3F",
+                        color: "#FFFFFF",
                         fontWeight: "600",
                       }}
                     >
@@ -296,7 +308,7 @@ const AllOrdenes = () => {
                       alt={el.product}
                       style={{
                         width: "172px",
-                        height: "178px",
+                        height: "190px",
                         marginBottom: "1rem",
                         borderRadius: 10,
                         borderColor: "#423E3F  ",
@@ -308,7 +320,7 @@ const AllOrdenes = () => {
                       sx={{
                         fontSize: "13px",
                         fontWeight: "600",
-                        color: "#423E3F",
+                        color: "#FFFFFF",
                       }}
                     >
                       $ {el.numbersPrice}
@@ -318,7 +330,7 @@ const AllOrdenes = () => {
                     sx={{
                       width: "50rem",
                       height: "282px",
-                      background: "#D9D9D9",
+                      background: "#1E1E1E",
                       backgroundSize: "contain",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
@@ -331,20 +343,6 @@ const AllOrdenes = () => {
 
                     }}
                   >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                       <Box
@@ -367,7 +365,7 @@ const AllOrdenes = () => {
                         // paddingTop="10px"
                         paddingLeft={5}
 
-                        style={{ color: "#423E3F", fontWeight: "bold" }}
+                        style={{ color: "#FFFFFF", fontWeight: "bold" }}
                       >
                         Números Seleccionados:
                       </Typography>
@@ -375,8 +373,8 @@ const AllOrdenes = () => {
                         variant="body1"
                         // paddingTop="10px"
                         paddingLeft={5}
-
-                        style={{ color: "#423E3F", fontWeight: "bold" }}
+                           fontSize="20px"
+                        style={{ color: "#FFFFFF", fontWeight: "bold" }}
                       >
                        {el.number}
                       </Typography>
@@ -436,14 +434,14 @@ const AllOrdenes = () => {
 
 
 
-                    </Box>
+                     
                       <ListItemText
 
                       primary={
                         <Typography
                           variant="h5"
                           style={{
-                            color: "#423E3F",
+                            color: "#FFFFFF",
                             textAlign: "right",
                             display: "flex",
                             flexDirection: "row",
@@ -473,7 +471,8 @@ const AllOrdenes = () => {
                     >
                       <DeleteIcon />
                     </IconButton>{" "} */}
-                  {/* </Box> */}
+                  {/* </Box> */} 
+                  </Box>
                 </ListItem>
  
 
@@ -490,11 +489,12 @@ const AllOrdenes = () => {
                             </>
                           )
                         })}
-                        <hr />
-                        <Typography variant="h5" sx={{ textAlign: 'right', paddingRight: '1rem', paddingBottom: "2rem", fontWeight: "bold" }}>
+                       
+                        <Typography variant="h5" sx={{ textAlign: 'right', paddingRight: '3.5rem', paddingBottom: "2rem", fontWeight: "bold" }}>
                           Total: ${calcularTotalCompra(orden.cart).toFixed(2)}
                         </Typography>
                       </li>
+                      <hr />
                     </Box>
                   ))}
 

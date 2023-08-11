@@ -639,6 +639,9 @@ const RifaDetailCard = ({ rifaDetail }) => {
        style={{ color: '#33333', textAlign: 'center' }}>
        Selecciona los números que desees comprar
       </Typography>
+     
+     
+     
       <Box
        maxHeigth='10%'
 
