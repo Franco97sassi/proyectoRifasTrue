@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem, IconButton, useTheme } from '@mui/material';
 import { AccountCircleRounded } from '@mui/icons-material';
 
 //////////////////////////////////////////////////////////
-const UserIcon = ({ onLoginClick, onRegisterClick   }) => {
+const UserIconAdmin = ({ onLoginClick, onRegisterClick   }) => {
  const [anchorEl, setAnchorEl] = useState(null);
  const theme = useTheme();
  const font = theme.palette.others.font;
@@ -31,18 +31,11 @@ const UserIcon = ({ onLoginClick, onRegisterClick   }) => {
   sessionStorage.removeItem('userData');
   window.location.href = '/';
  };
-//  const handleProductos = () => {
-//     handleMenuClose();
-//     window.location.href = '/admin/productos';
-//     };
 
  const handleScroll = () => {
   setAnchorEl(null);
  };
- const handleOrdenes = () => {
-    handleMenuClose();
-    window.location.href = '/admin';
-    };
+ 
     const handleMisOrdenes = () => {
         handleMenuClose();
         window.location.href = '/ordenes';
@@ -63,19 +56,14 @@ const UserIcon = ({ onLoginClick, onRegisterClick   }) => {
     disableScrollLock={true}>
     <MenuItem onClick={handleRegisterClick}>Cerrar Sesion</MenuItem>
     {isUserAdmin ?  (
-        <div> 
-    <MenuItem onClick={handleOrdenes}>  Pedidos</MenuItem>
-    <MenuItem  >  Productos</MenuItem>
-    </div>
+    <MenuItem  >  Pedidos</MenuItem>
     ) : (
-       
         <MenuItem onClick={handleMisOrdenes}>Mis Pedidos</MenuItem>
-         
-       
+
     )}
    </Menu>
   </>
  );
 };
 
-export default UserIcon;
+export default UserIconAdmin;

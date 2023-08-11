@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, Grid, IconButton, Typography } from '@mui/material';
+import { Box, Button, Divider, Grid, IconButton, Typography } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from 'react';
 import axios from 'axios';
@@ -24,6 +24,26 @@ const RifaCardAdmin = ({ rifa ,handleNow}) => {
   
 
     return (
+      <Box
+                    sx={{
+                      
+                       background: "#D9D9D9",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+
+                      borderRadius: 2,
+                      margin: "1rem",
+                      display: "flex",
+
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      
+                      paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
+                      paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
+height: '125px',
+                    }}
+                  > 
         <Box
             sx={{
                 display: 'flex',
@@ -37,6 +57,7 @@ const RifaCardAdmin = ({ rifa ,handleNow}) => {
                     flexDirection: 'row',
                     justifyContent: 'center',
 
+
                 }}> 
             
             <Grid container spacing={0} display="flex" >
@@ -49,30 +70,10 @@ const RifaCardAdmin = ({ rifa ,handleNow}) => {
                       justifyContent="center"
                       alignItems="center"  
                     >
-                      <Typography variant="h4">{rifa.product}</Typography>
-                    </Grid>
-                  
-                    <Grid
-                      item
-                        xs={12}
-                       sm={3}
-                      // container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"  
-                    >
-                      <Typography variant="h4">${rifa.numbersPrice}</Typography>
-                    </Grid>
-
-                    <Grid
-                      item
-                       xs={12}
-                       sm={2.5}
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center" 
-                    >
-                       <Typography variant="h4"><img
+                      
+                      <Typography variant="h4">
+                        
+                      <img
     src={rifa.imgProduct}
     alt={rifa.product}
     style={{
@@ -86,8 +87,34 @@ const RifaCardAdmin = ({ rifa ,handleNow}) => {
         // borderStyle: 'solid',
         // borderWidth: '6px',
 
-    }}
-   /> </Typography>
+    }}/>
+                        </Typography>
+                    </Grid>
+                  
+                    <Grid
+                      item
+                        xs={12}
+                       sm={3}
+                      // container
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"  
+                    >
+                      <Typography variant="h4">{rifa.description}</Typography>
+                    </Grid>
+
+                    <Grid
+                      item
+                       xs={12}
+                       sm={2.5}
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center" 
+                    >
+                       <Typography variant="h4"> 
+
+                       ${rifa.numbersPrice}
+                       </Typography>
                     </Grid>
                    
                     <Grid
@@ -110,16 +137,17 @@ const RifaCardAdmin = ({ rifa ,handleNow}) => {
                       <DeleteIcon />
                     </IconButton> 
                       </Typography>
-                      <Divider sx={{ margin: '1rem 0' }} /> 
+                      {/* <Divider sx={{ margin: '1rem 0' }} />  */}
                     </Grid>
-                    <Divider sx={{ margin: '1rem 0' }} /> 
+                    {/* <Divider sx={{ margin: '1rem 0' }} />  */}
                     
                   </Grid>
-                  <Divider sx={{ margin: '1rem 0' }} /> 
+                  {/* <Divider sx={{ margin: '1rem 0' }} />  */}
             {/* <Typography sx={{ fontSize: "13px", fontWeight: "600", color: '#423E3F' }}>$ {rifa.totalNumbers}</Typography> */}
 
-        </Box>    <Divider sx={{ margin: '1rem 0' }} /> 
-  </Box >   
+        </Box>    
+        {/* <Divider sx={{ margin: '1rem 0' }} />  */}
+  </Box >   </Box>
  );
 };
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, ListItem, ListItemText, Typography } from '@mui/material';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/navbar/navBar';
- 
+
 const AllOrdenes = () => {
-    const [ordenes, setOrdenes] = useState([]);
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
-    const userId = userData?.user?.id;
+  const [ordenes, setOrdenes] = useState([]);
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
+  const userId = userData?.user?.id;
 
   useEffect(() => {
     // Si no hay ID de usuario, detener la solicitud
@@ -32,190 +32,479 @@ const AllOrdenes = () => {
   console.log(ordenes)
 
   return (
-    <> 
-    <Box
-    sx={{
-     height: '100vh',
-     display: 'flex',
-     flexDirection: 'column',
-    }}>  
-     <Container>
-    <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "28px",
-          marginTop: "28px",
-        }}
-      >
-        <div
-          style={{
-            background:  "white",
-            width: "80%",
-            padding: "20px",
-            borderRadius: "5px",
-          }}
-        >
-       
-      <Typography
-            variant="h5"
-            sx={{ display: "flex", justifyContent: "center", }}
-            fontFamily={'TanPearl'} fontSize={"2rem"} my={3}
+    <>
+      <Box
+        sx={{
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+        <Container>
+          <div
+            style={{
+              display: "flex",
+               justifyContent: "center",
+              marginBottom: "28px",
+              marginTop: "28px",
+            }}
           >
-        Órdenes del usuario
-          </Typography>
-          <hr />
-      {ordenes.length === 0 ? (
-        <Typography variant="body1">No se encontraron órdenes para el usuario.</Typography>
-      ) : (
-        <ul>
-          
-          {ordenes.map(orden => (
- <Box sx={{marginBottom:"100px"}}> 
-            <li key={orden.id}>
-              {/* Mostrar información relevante de la orden */}
-              <Typography variant="h4" sx={{paddingBottom:"1rem"}}>
-                Orden ID: {orden.id}, Estado: {orden.estado} ,email:{orden.cart[0].email},
-                usuario:{orden.cart[0].username}
-              </Typography>
-              <Grid container spacing={0} display="flex" >
-                    <Grid
-                      item
-                       xs={12}
-                       sm={3}
-                      // container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"  
-                    >
-                      <Typography variant="h4">Producto</Typography>
-                    </Grid>
-                  
-                    <Grid
-                      item
-                        xs={12}
-                       sm={3}
-                      // container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"  
-                    >
-                      <Typography variant="h4">Numero</Typography>
-                    </Grid>
+            <div
+              style={{
+                background: "#1E1E1E",
+                width: "80%",
+                padding: "20px",
+                borderRadius: "5px",
+              }}
+            >
 
-                    <Grid
-                      item
-                       xs={12}
-                       sm={2.5}
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center" 
-                    >
-                      <Typography variant="h4">Precio</Typography>
-                    </Grid>
-                   
-                    <Grid
-                      item
-                       xs={12}
-                       sm={3.5}
-                      // container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center" 
-                    >
-                      <Typography variant="h4">Imagen</Typography>
-                    </Grid>
-                   
-                  </Grid>
-              {orden?.cart?.map((el)=>{
-                return(
-                    <>
-                  
-                    <>
-                   
-                  <hr />
-                  <Grid container 
-                  // spacing={3}
-                   display="flex" justifyContent="space-between">
-                    <Grid
-                      item
-                      xs={12}
-                      sm={3}
-                      container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    > 
-                  <Typography  variant="body1">
-                       Producto: {el.productName}
-                    </Typography></Grid> <Grid
-                      item
-                      xs={12}
-                      sm={3}
-                      container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
+              <Typography
+                variant="h5"
+                sx={{ display: "flex", justifyContent: "center", }}
+                fontFamily={'TanPearl'} fontSize={"2rem"} my={3}
+              >
+                Órdenes  
+              </Typography>
+
+              <hr />
+              {ordenes.length === 0 ? (
+                <Typography variant="body1">No se encontraron órdenes para el usuario.</Typography>
+              ) : (
+                <ul>
+
+                  {ordenes.map(orden => (
+                    <Box sx={{ marginBottom: "100px" }}>
                       
-                    > 
-                    <Typography variant="body1">
-                       Numero: {el.number}
-                    </Typography></Grid>
-                    <Grid
-                      item
-                      xs={12}
-                      sm={3}
-                      container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    > 
-                    <Typography variant="body1">
-                       Precio: ${el.numbersPrice}
-                    </Typography> </Grid><Grid
-                      item
-                      xs={12}
-                      sm={3}
-                      container
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    > 
-                    <div>
-                       <img
+              <Typography
+                variant="h5"
+                sx={{ display: "flex", justifyContent: "center", }}
+                fontFamily={'TanPearl'} fontSize={"2rem"} my={3}
+              >
+                Detalle de la orden  
+              </Typography>
+
+                      <li key={orden.id}>
+                        {/* Mostrar información relevante de la orden */}
+
+                        <Typography variant="h4">
+                          
+                                <Box
+                    sx={{
+                      // width: "230px",
+                      // height: "282px",
+ 
+                      background: "#D9D9D9",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      borderRadius: 2,
+                      padding: "2rem",
+                      textAlign: "left",
+                      transition: "0.3s",
+                      "&:hover": {
+                        boxShadow: " 0px 5px 61px 6px #D9D9D9",
+                      },
+                    }}>  
+                         <li>   Orden ID: {orden.id}</li>  
+                            <li>  Estado: {orden.estado} </li>
+                            {/* <li> email:{orden.cart[0].email}</li> */}
+                            <li> Comprador:{orden.cart[0].username}</li>
+                          </Box>
+                        </Typography>
+
+                        <Grid container spacing={0} display="flex" >
+                          <Grid
+                            item
+                            xs={12}
+                            sm={3}
+                            // container
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Typography variant="h4">Producto</Typography>
+                          </Grid>
+
+                          <Grid
+                            item
+                            xs={12}
+                            sm={3}
+                            // container
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Typography variant="h4">Numeros</Typography>
+                          </Grid>
+
+                          <Grid
+                            item
+                            xs={12}
+                            sm={2.5}
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Typography variant="h4">Producto</Typography>
+                          </Grid>
+
+                          <Grid
+                            item
+                            xs={12}
+                            sm={3.5}
+                            // container
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                          >
+                            <Typography variant="h4">Precio</Typography>
+                          </Grid>
+
+                        </Grid>
+                        {orden?.cart?.map((el) => {
+                          return (
+                            <>
+
+                              <>
+
+                                <hr />
+                                {/* <Grid container
+                                  // spacing={3}
+                                  display="flex" justifyContent="space-between">
+                                      
+                                  <Grid
+                                    item
+                                    xs={12}
+                                    sm={3}
+                                    container
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  > 
+                                  <Grid
+                                    item
+                                    xs={12}
+                                    sm={3}
+                                    container
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  >
+                                       
+                                      <div>
+                                        <img
+                                          src={el.imgProduct}
+                                          style={{
+                                            width: "100px",
+                                            height: "100px",
+                                            marginBottom: "1rem",
+                                            borderRadius: 10,
+                                          }}
+                                        />
+                                      </div></Grid>
+                                     
+                                  </Grid> <Grid
+                                    item
+                                    xs={12}
+                                    sm={3}
+                                    container
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+
+                                  >
+                                    <Typography variant="body1">
+                                      Numero: {el.number}
+                                    </Typography></Grid>
+                                  <Grid
+                                    item
+                                    xs={12}
+                                    sm={3}
+                                    container
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  >
+                                    <Typography variant="body1">
+                                       {el.productName}
+                                    </Typography> 
+                                      
+                                    </Grid>
+                                    <Grid
+                                    item
+                                    xs={12}
+                                    sm={3}
+                                    container
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  >
+                                    <Typography variant="body1">
+                                    ${el.numbersPrice}
+                                    </Typography> 
+                                      
+                                    </Grid>
+                                  
+
+                                  
+
+                                </Grid>   */}
+
+
+
+
+
+
+
+
+
+
+
+
+                 <ListItem>
+                  <Box
+                    sx={{
+                      // width: "230px",
+                      // height: "282px",
+ 
+                      background: "#D9D9D9",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      borderRadius: 2,
+                      padding: "1rem",
+                      textAlign: "center",
+                      transition: "0.3s",
+                      "&:hover": {
+                        boxShadow: " 0px 5px 61px 6px #D9D9D9",
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="body1"
+                      fontSize="13px"
+                      // key={el.id}
+                      textOverflow="ellipsis"
+                      style={{
+                        color: "#423E3F",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {el.productName}
+                    </Typography>
+                    <img
                       src={el.imgProduct}
-                       style={{
-                        width: "100px",
-                        height: "100px",
+                      alt={el.product}
+                      style={{
+                        width: "172px",
+                        height: "178px",
                         marginBottom: "1rem",
                         borderRadius: 10,
-                       }}
+                        borderColor: "#423E3F  ",
+                        borderStyle: "solid",
+                        borderWidth: "6px",
+                      }}
                     />
-                    </div></Grid>
-                    <hr/> 
-                    
-                     
-                   
-                    </Grid> 
-                </>
-                    </>
-                )
-              }) }
-              <hr />
-              <Typography variant="h5" sx={{ textAlign: 'right', paddingRight: '1rem',  paddingBottom:"2rem" ,fontWeight:"bold" }}>
-                        Total de la Orden: ${calcularTotalCompra(orden.cart).toFixed(2)}
+                    <Typography
+                      sx={{
+                        fontSize: "13px",
+                        fontWeight: "600",
+                        color: "#423E3F",
+                      }}
+                    >
+                      $ {el.numbersPrice}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "50rem",
+                      height: "282px",
+                      background: "#D9D9D9",
+                      backgroundSize: "contain",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      borderRadius: 2,
+                      margin: "1rem",
+                      display: "flex",
+                      flexDirection: "row",
+                      paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
+                      paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
+
+                    }}
+                  >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        paddingTop: "1px",
+                        paddingBottom: "1rem", // Añade un poco de espacio en la parte inferior
+                        maxHeight: "282", // Establece una altura máxima para la caja
+                        // overflowY: "auto", // Habilita el desplazamiento vertical si el contenido excede la altura máxima
+                        paddingRight: "0.1rem", // Añade un poco de espacio en la parte derecha
+                        // Añade un poco de espacio en la parte superior
+                        // Añade un poco de espacio en la parte inferior
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        // paddingTop="10px"
+                        paddingLeft={5}
+
+                        style={{ color: "#423E3F", fontWeight: "bold" }}
+                      >
+                        Números Seleccionados:
                       </Typography>
-            </li>
-            </Box>
-          )) }
-           
-        </ul>
-      )}
-      </div>
-      </div>
-    </Container>
-    <Footer />
-        </Box>  
+                      <Typography
+                        variant="body1"
+                        // paddingTop="10px"
+                        paddingLeft={5}
+
+                        style={{ color: "#423E3F", fontWeight: "bold" }}
+                      >
+                       {el.number}
+                      </Typography>
+                    <Box
+                        sx={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                         {/* {el.number.map((numbe) => (
+                          
+                          <Button
+                            //  key={number}
+                            sx={{
+                              backgroundColor: "#423E3F",
+                              borderRadius: "50%",
+                              fontSize: "2rem",
+                              width: "4rem",
+                              height: "4rem",
+                              display: "flex",
+                              margin: "0.5rem",
+                              color: "#D9D9D9",
+                              "&:hover": {
+                                backgroundColor: "#423E3F",
+                              },
+                            }}
+                          >
+                            {number}
+                          </Button>
+                        ))}  */}
+                      </Box>  
+                     
+                    </Box>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </Box>
+                      <ListItemText
+
+                      primary={
+                        <Typography
+                          variant="h5"
+                          style={{
+                            color: "#423E3F",
+                            textAlign: "right",
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "flex-end",
+                            paddingTop: "235px",
+                            paddingRight: "1rem",
+                            fontWeight: "bold",
+                          }}
+
+                        >
+                          <Box
+                          >
+                            Subtotal: ${
+                            // e.numbers.length * 
+                            el.numbersPrice}
+                          </Box>
+                        </Typography>
+                      }
+                      style={{ textAlign: "right" }}
+                    />   
+                    {/* <IconButton
+                      onClick={() => handleDeleteCart(item.rifaId)}
+                      edge="end"
+                      padding="1rem"
+
+                      aria-label="delete"
+                    >
+                      <DeleteIcon />
+                    </IconButton>{" "} */}
+                  {/* </Box> */}
+                </ListItem>
+ 
+
+
+
+
+
+
+
+
+
+
+                              </>
+                            </>
+                          )
+                        })}
+                        <hr />
+                        <Typography variant="h5" sx={{ textAlign: 'right', paddingRight: '1rem', paddingBottom: "2rem", fontWeight: "bold" }}>
+                          Total: ${calcularTotalCompra(orden.cart).toFixed(2)}
+                        </Typography>
+                      </li>
+                    </Box>
+                  ))}
+
+                </ul>
+              )}
+            </div>
+          </div>
+        </Container>
+        <Footer />
+      </Box>
     </>
   );
 };

@@ -35,7 +35,7 @@ import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import UserIcon from './userIcon';
 import UserIconNoLogged from './userIconNoLogged';
 import venado from '../../assets/venado.png';
-
+import UserIconAdmin from './userIconAdmin';
 /////////////////////////
 const NavBar = ({ isUserAdmin }) => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -132,14 +132,18 @@ const NavBar = ({ isUserAdmin }) => {
                 justifyContent='flex-end'
                 alignItems='center'
                 gap='0.1rem'
-                height='75px' paddingLeft='1000px'
+                height='75px'
+                //  paddingLeft='1000px'
               >
 
 
                 <RouterLink to='/cart'>
                   <IconButton>
                     {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
-                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>CARRITO</Typography>
+                    <Typography sx={{ 
+                                       paddingLeft:'1000px'
+,
+                      color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>CARRITO</Typography>
                   </IconButton>
                 </RouterLink>
 { isUserAdmin &&   
@@ -147,7 +151,11 @@ const NavBar = ({ isUserAdmin }) => {
  
                   <IconButton>
                     {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
-                    <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>PANEL</Typography>
+                    {/* <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>PANEL
+                     <UserIconAdmin
+                    onLoginClick={handleLoginClick}
+                    onRegisterClick={handleRegisterClick}/>   
+                    </Typography> */}
                   </IconButton>
                 </RouterLink>
  }
@@ -362,7 +370,7 @@ const NavBar = ({ isUserAdmin }) => {
                     alignItems='center'>
                     <UserIconNoLogged
                       onLoginClick={handleLoginClick}
-                      onRegisterClick={handleRegisterClick}
+                      onRegisterClick={handleRegisterClick}  isUserAdmin={isUserAdmin }
                     />
 
                     <RouterLink to=''>

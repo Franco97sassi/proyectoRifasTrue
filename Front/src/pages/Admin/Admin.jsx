@@ -184,12 +184,49 @@ const Admin = () => {
       
  
       <Button  sx={{ marginLeft:"20px" }}
-      type="submit" onClick={onSubmit} variant="contained" color="primary">Crear Producto</Button>
-       <Grid container    paddingLeft="550px"     > 
-             <h2>Lista de Productos</h2>
+      type="submit" onClick={onSubmit} variant="contained" color="primary" >Crear Producto</Button>
+       <Grid    > 
+       <Box sx={{
+              display:"flex", justifyContent:"center"
+              }}> ,
+ 
+             <h2  >Lista de Productos</h2></Box>
+              
+             <Box sx={{
+              display:"flex", justifyContent:"flex-end"
+              }}> ,
+
+            
+             <Button
+            variant="contained"
+            sx={{
+              
+              
+
+              width: "10rem",
+              height: "44px",
+              fontSize: "1.05rem",
+              borderRadius: "40px",
+              color: "#423E3F",
+              fontWeight: "700",
+              marginRight: "5rem",
+            backgroundColor: "#D68E30",
+              "&:hover": {
+                backgroundColor: "#630014",
+              },
+            }}
+            // onClick={() => {
+            //   // Realizar acción de compra
+            //   handleBuyClick();
+            // }}
+          >
+            Agregar
+          </Button>
+          </Box>
              </Grid>
             <CurrentRifasAdmin />   
-            <h2>Lista de Rifas</h2>
+            {/* <h2>Lista de Rifas</h2> */}
+             
 <AllOrdenes/>
 
             
