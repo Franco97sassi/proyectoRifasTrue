@@ -1,66 +1,4 @@
-
-// import { TextField } from '@mui/material';
-// import Footer from '../../components/footer/footer';
-// import NavBar from '../../components/navbar/navBar';
-// import { useState } from 'react';
-// import axios from 'axios';
-// const   VITE_SV_HOST   = import.meta.env.VITE_SV_HOST;  
-// const Admin = () => {
-//     const [svHost, setSvHost] = useState('');
-//     const [product, setProduct] = useState('');
-//     const [imgProduct, setImgProduct] = useState('');
-//     const [description, setDescription] = useState('');
-//     const [numbersPrice, setNumbersPrice] = useState('');
-//     const [totalNumbers, setTotalNumbers] = useState('');
-
-
-//     const onSubmit = async ()  => {
-
-
-//         const data={
-//             product: product,
-//             imgProduct: imgProduct,
-//             description: description,
-//             numbersPrice: numbersPrice,
-//             totalNumbers: totalNumbers,
-
-//         }
-//     try{
-//         const res = await axios.post(`${VITE_SV_HOST}/createRifa`, data)
-//         console.log(res)
-
-//      }
-//      catch(error){
-//         console.error(error)
-
-//     }
-
-//     }
-
-
-//  return (
-//   <>
-//    <NavBar />
-
-//    <div>
-//         Product: <input type="text" onChange={(e) => setProduct(e.target.value)} />
-//         Img Product: <input type="text" onChange={(e) => setImgProduct(e.target.value)} />
-//         Description: <input type="text" onChange={(e) => setDescription(e.target.value)} />
-//         Numbers Price: <input type="text" onChange={(e) => setNumbersPrice(e.target.value)} />
-//         Total Numbers: <input type="text" onChange={(e) => setTotalNumbers(e.target.value)} />
-//       </div>
-//     <button onClick={onSubmit}> Crear Producto</button> 
-
-
-//    <Footer />
-//    </>
-//  );
-// };
-
-
-
-// export default Admin;
-
+ 
 
 
 import { Box, Button, Divider, Grid, Input, TextField, Typography } from '@mui/material';
@@ -70,12 +8,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CurrentRifasAdmin from '../../components/currentRifasAdmin/CurrentRifasAdmin.jsx';
 import AllOrdenes from '../Orden/AllOrden';
-
-const host = import.meta.env.VITE_SV_HOST;
-
+ const host = import.meta.env.VITE_SV_HOST;
+import NavBarLogo from '../../assets/NavBarLogo.png';
 const Agregar = () => {
   const [product, setProduct] = useState('');
-  const [imgProduct, setImgProduct] = useState('');
+  const [imgProduct, setImgProduct] = useState(null);
   const [description, setDescription] = useState('');
   const [numbersPrice, setNumbersPrice] = useState('');
   const [totalNumbers, setTotalNumbers] = useState('');
@@ -100,6 +37,8 @@ const Agregar = () => {
     try {
       const res = await axios.post(`${host}/rifas/createRifa`, data);
       console.log(res);
+      window.location.href = '/productosAdmin';
+
     } catch (error) {
       console.error(error);
     }
@@ -116,6 +55,7 @@ const Agregar = () => {
   useEffect(() => {
     loadOtherRifas();
   }, []);
+  
   return (
     <>
       <NavBar />
@@ -129,7 +69,7 @@ const Agregar = () => {
       gap="2em"
       // flexDirection='row'
      sx={{
-      bgcolor: '#FFFFFF',
+      bgcolor: '#D9D9D9',
      }}>
       
      <Box
@@ -145,57 +85,51 @@ const Agregar = () => {
       </Typography>
        
       
-      <Box
-   sx={{
-    width: '230px',
-    height: '282px',
-    background:"#D9D9D9",
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    borderRadius: 6,
-    marginTop:'4em',
-
-    padding: '1rem',
-    textAlign: 'center',
-    transition: '0.3s',
-    '&:hover': {
-     boxShadow: ' 0px 5px 61px 6px #FFA840',
-    },
-   }}>
-    
-
-    
-   <Typography
-    variant='body1' // HACER RESPONSIVE CARD
-    fontSize='1epx'
-    textOverflow='ellipsis'
-    style={{ color: '#423E3F', 
-    fontWeight:"600"    // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
-    }}>
-    {/* {rifaDetail.product} */}{product.product}
-   </Typography>
- 
-   <img
-    // src={rifaDetail.imgProduct}
-    // alt={rifaDetail.product}
-    style={{
-     width: '172px',
-     height: '178px',
      
-     marginBottom: '1rem',
-      borderRadius: 10,
     
 
-    }}
-   />
+    
+    <Box
+         sx={{
+          width: '230px',
+          height: '282px',
+          background:"black",
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          borderRadius: 6,
+          marginTop:'4em',
+      
+          padding: '1rem',
+          textAlign: 'center',
+          transition: '0.3s',
+          '&:hover': {
+           boxShadow: ' 0px 5px 61px 6px #FFA840',
+          },
+         }}
+        >
+           
+           
+            <img
+              src={NavBarLogo}
+              style={{
+                width: '172px',
+                height: '178px',
+                marginBottom: '1rem',
+                borderRadius: 10,
+              }}
+            />
+         
+          <Typography sx={{ fontSize: "13px", fontWeight: "600", color: "#423E3F" }}>
+            {product.numbersPrice}
+          </Typography>
+        </Box>
         <Typography sx={{fontSize:"13px", fontWeight:"600", color:"#423E3F"}}
         >
           {/* $ {rifaDetail.numbersPrice} */}{product.numbersPrice}
         </Typography>  
 
-  </Box>
-      
+    
           <Box
        
 
@@ -254,15 +188,8 @@ const Agregar = () => {
                       alignItems="center"
                       
                          >
- {/* <Box sx={{display:"flex",flexDirection:"column", justifyContent:"spaceBetween"}}>  
-<Typography>  Producto: </Typography>
-<Typography> Imagen URL:</Typography>
-<Typography>   Descripcion: </Typography> 
-<Typography>  Numeros: </Typography> 
-
-
-</Box>    */}
-<Grid container spacing={2}>
+ 
+<Grid container spacing={2}  alignItems="center">
 
 {/* <Box sx={{display:"flex",flexDirection:"column"}}>   */}
 <Grid item xs={12}>
@@ -271,22 +198,23 @@ const Agregar = () => {
             name="name"
             value={product.name}
             onChange={(e) => setProduct(e.target.value)}
-            sx={{ width: 500,marginLeft:"25px" ,  marginTop: "25px" }}
+            sx={{ width: 500  }}
           /> 
-         </Grid>   <Grid item xs={12}>
+         </Grid>    
+          <Grid item xs={12}>
          <Typography variant="body1">Imagen URL:</Typography>
            <TextField required
             name="name"
             value={product.name}
             onChange={(e) => setImgProduct(e.target.value)}
-            sx={{ width: 500,marginLeft:"25px" ,  marginTop: "25px" }}
-          /> </Grid> 
+            sx={{ width: 500  }}
+          /> </Grid>  
       <Grid item xs={12}>    <Typography variant="body1">Descripcion:</Typography>
            <TextField required
             name="name"
             value={product.name}
             onChange={(e) => setDescription(e.target.value)}
-            sx={{ width: 500,marginLeft:"25px" ,  marginTop: "25px"  }}
+            sx={{width: 500  }}
           /> </Grid>
      
         {/* Numbers Price:
@@ -303,140 +231,26 @@ const Agregar = () => {
            <TextField required
             name="name"
             value={product.name}
-            onChange={(e) => setNumbersPrice(e.target.value)}            sx={{ width: 500 ,marginBottom:"20px",marginLeft:"25px" , marginTop: "25px"  }}
-          />    </Grid>
+            onChange={(e) => setNumbersPrice(e.target.value)}
+            sx={{ width: 500  }}            
+          />   
+          
+           </Grid>
             <Grid item xs={12}>
     <Typography variant="body1">Numeros:</Typography>
            <TextField required
             name="name"
             value={product.name}
             onChange={(e) => setTotalNumbers(e.target.value)}
-            sx={{ width: 500 ,marginBottom:"20px",marginLeft:"25px" , marginTop: "25px"  }}
+            sx={{ width: 500 }}
           />    </Grid></Grid>
-          
-        </Grid> <Button  sx={{ marginLeft:"300px" }}
-      type="submit" onClick={onSubmit} variant="contained" color="primary" >Crear Producto</Button>
+           
+        </Grid> <Button  sx={{ marginLeft:"300px",background:"black" ,marginTop: '2rem'}}
+      type="submit" onClick={onSubmit} variant="contained"  >Crear Producto</Button>
          </Box>
      </div> 
       </Box> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
-       
-
-
-
-
-
-
-
-
-      {/* <div>
-        <Box sx={{ display:"flex"  ,
-     flexDirection: 'column',  alignItems:"center" ,  justifyContent:"center"  
-     
-      }} >
-        <h1>Cargar Productos</h1>
-
-
-
-        
-        <Grid container   display="flex"
-                      paddingLeft="10px"
-                      alignItems="center"     >
-
-        Product:
-        <Grid item xs={12}    >
-          <TextField required
-            name="name"
-            value={product.name}
-            onChange={(e) => setProduct(e.target.value)}
-            sx={{ width: 500 }}
-          />
-        </Grid>
-        Img Product:
-        <Grid item xs={12}>
-          <TextField required
-            name="name"
-            value={product.name}
-            onChange={(e) => setImgProduct(e.target.value)}
-            sx={{ width: 500 }}
-          />
-        </Grid>
-        Description:
-        <Grid item xs={12}>
-          <TextField required
-            name="name"
-            value={product.name}
-            onChange={(e) => setDescription(e.target.value)}
-            sx={{ width: 500 }}
-          />
-        </Grid>
-        Numbers Price:
-        <Grid item xs={12}>
-          <TextField required
-            name="name"
-            value={product.name}
-            onChange={(e) => setNumbersPrice(e.target.value)}
-            sx={{ width: 500 }}
-          />
-        </Grid>
-         Total Numbers:
-        <Grid item xs={12}>
-          <TextField required
-            name="name"
-            value={product.name}
-            onChange={(e) => setTotalNumbers(e.target.value)}
-            sx={{ width: 500 ,marginBottom:"20px" }}
-          />
-        </Grid>
-        </Grid>
-         </Box>
-     </div> */}
-      
-      
-
-
-
-
-       {/* <Grid    > 
-               {/* <Input type="text" onChange={(e) => setNumbersPrice(e.target.value)} /> */}
-        {/* <Input type="text" onChange={(e) => setTotalNumbers(e.target.value)} /> */}
-
-      
- 
-              
-              
-             
-             {/* </Grid>
-            <CurrentRifasAdmin />      */}
-            {/* <h2>Lista de Rifas</h2> */}
-             
-{/* <AllOrdenes/> */}
-
-            
-             
-{/* <ul> */}
-  {/* {otherRifas.map((rifa) => ( */}
-    {/* // <li key={rifa.id}>
-    //   <div>Nombre del Producto: {rifa.product}</div>
-    //   <div>Descripción: {rifa.description}</div> */}
-      {/* Mostrar más información si es necesario */}
-    {/* </li>
-  ))}
-</ul> */}
 
     </>
   );

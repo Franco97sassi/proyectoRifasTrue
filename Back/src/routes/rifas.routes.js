@@ -9,11 +9,11 @@ const {
  updateRifa,
  buyRifa,
  deleteRifa,
- 
+  
 
 } = require('../controllers/rifas.controller');
 
-const{postPagar,getMercado, Ordenes,allOrdenes}=require("../controllers/mercadoControllers")
+const{postPagar,getMercado, Ordenes,allOrdenes,ordenesId}=require("../controllers/mercadoControllers")
 const router = Router();
 
 //-------------------- Rifas Routes --------------------------
@@ -38,6 +38,7 @@ router.post("/webhook",getMercado)
 
 router.get("/ordenes/:userId", Ordenes)
 router.get("/allordenes", allOrdenes)
-
+router.get("/ordenesAgregadas/:preferenceId", ordenesId)
+ 
 
 module.exports = router;

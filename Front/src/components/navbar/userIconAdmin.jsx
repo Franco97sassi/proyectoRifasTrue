@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem, IconButton, useTheme } from '@mui/material';
 import { AccountCircleRounded } from '@mui/icons-material';
+import { Box } from '@mui/system';
 
 //////////////////////////////////////////////////////////
 const UserIconAdmin = ({ onLoginClick, onRegisterClick   }) => {
@@ -54,12 +55,22 @@ const UserIconAdmin = ({ onLoginClick, onRegisterClick   }) => {
     open={Boolean(anchorEl)}
     onClose={handleMenuClose}
     disableScrollLock={true}>
+        
     <MenuItem onClick={handleRegisterClick}>Cerrar Sesion</MenuItem>
     {isUserAdmin ?  (
     <MenuItem  >  Pedidos</MenuItem>
     ) : (
+        <Box  sx={{
+            width: 300,
+            height: 300,
+            backgroundColor: 'blue',
+            '&:hover': {
+              backgroundColor: 'red',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}>  
         <MenuItem onClick={handleMisOrdenes}>Mis Pedidos</MenuItem>
-
+        </Box>
     )}
    </Menu>
   </>

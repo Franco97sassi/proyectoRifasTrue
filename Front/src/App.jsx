@@ -5,8 +5,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import './App.css';
 import AllOrdenes from './pages/Orden/AllOrden';
-
-
+ 
 const svHost = import.meta.env.VITE_SV_HOST;
 
 //-------------------- Assets --------------------------
@@ -27,6 +26,7 @@ import ProductosAdmin from './pages/Admin/productosAdmin';
 import OrdenesAdmin from './pages/Admin/ordenesAdmin';
 import Agregar from './pages/Admin/Admin';
 import Ordenusuarios from './pages/Orden/Ordenusuarios';
+import OrdenesDetail from './pages/Orden/OrdenDetail';
  /////////////////
 function App() {
  //  const mode = useSelector((state) => state.mode.mode);
@@ -87,10 +87,7 @@ function App() {
 
     <Routes>
       
-     <Route
-      path='/'
-      element={<LandingPage />}
-     />
+     <Route path='/' element={<LandingPage />} />
 {/* Rutas Admin */}
  {/* <Route
       path='/admin'
@@ -124,9 +121,7 @@ function App() {
       path='/login'
       element={!isUserLoggedIn ? <Login isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
-
-     
-
+   
      <Route
       path='/register'
       element={!isUserLoggedIn ? <Register isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
@@ -136,16 +131,19 @@ function App() {
       path='/rifa/:id'
       element={isUserLoggedIn ? <RifaDetail isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
-
+ <Route
+      path='/ordenes/:preferenceId'
+      element={isUserLoggedIn ? <OrdenesDetail />: <Navigate to='/login' /> }  
+     />
      <Route
       path='/cart'
       element={isUserLoggedIn ? <Cart isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      />
 
-      <Route
+      {/* <Route
       path='/ordenes'
       element={isUserLoggedIn ? <OrdenesComponent isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
-     />
+     /> */}
 
      <Route
       path='/confirm'

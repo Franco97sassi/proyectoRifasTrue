@@ -42,7 +42,7 @@ const {
           pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
           failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
         },
-        notification_url: `https://64d1-186-136-152-49.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
+        notification_url: `https://7882-186-136-152-49.ngrok-free.app/rifas/webhook?preferenceId=${preferenceId}`,
       };
 
 
@@ -149,9 +149,24 @@ const {
       res.status(500).json({ message: 'Error en el servidor.', error: error.message });
     }
   };
+   
+  const ordenesId = async (req, res) => {
 
+    try {
+      const preferenceId = req.params.preferenceId; 
+      const orden = await Orden.findOne({ where: { preferenceId: preferenceId } });
 
+      if (!orden) {
+        return res.status(404).json({ error: 'Orden no encontrada' });
+      }
+
+      return res.json(orden);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+  };
 
 
   module.exports = {
-     postPagar , getMercado, Ordenes,allOrdenes}; 
+     postPagar , getMercado, Ordenes,allOrdenes,ordenesId}; 
