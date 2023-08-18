@@ -51,11 +51,25 @@ const handleDetalleClick = (id) =>{
             Últimas ordenes realizadas
           </Typography> */}
           <Box sx={{
-              display:"flex", justifyContent:"center"
+              display:"flex", justifyContent:"flexStart",
+              paddingLeft:"2.5em"
+
               }}> ,
  
-             <h2  >Ordenes realizadas</h2></Box>
+             <h2>Pedidos</h2></Box>
+             <Box
+     margin='2rem'
+     boxShadow='12px 12px 12px -5px rgba(0,0,0,0.75)'
+     borderRadius='0.5rem'
+     padding='3em'
+      
+      gap="2em"
+      // flexDirection='row'
+     sx={{
+      bgcolor: '#D9D9D9',      
+     }}> 
           <Grid container spacing={2}>
+            
             {ordenes?.map((purchase) => (
               <Grid item key={purchase.id} xs={12} sm={6} md={4} lg={3}>
                 <Box
@@ -64,23 +78,24 @@ const handleDetalleClick = (id) =>{
                   borderRadius={8}
                   style={{
                     borderColor: '#ccc',
-                    background: 'white',
+                    background: " rgba(30, 30, 30, 0.64)"  ,
                     boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  <Typography variant="subtitle1" sx={{ color: 'black', fontWeight: 'bold' }} gutterBottom>
+                  <Typography variant="subtitle1" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
                     Fecha: {purchase.createdAt.slice(0, 10)}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'black' }} gutterBottom>
+                  <Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
                     Estado: {purchase.estado}
                   </Typography>
 
-                  <Button onClick={() => handleDetalleClick(purchase.preferenceId)}> ver detalles</Button>  
+                  <Button  sx={{ color: '#FFFFFF', fontWeight: 'bold' }}
+                  onClick={() => handleDetalleClick(purchase.preferenceId)}> ver detalles</Button>  
 
                 </Box>
               </Grid>
             ))}
-          </Grid>
+          </Grid> </Box>
         </Box>
 ﻿
      </>

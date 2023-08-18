@@ -17,7 +17,7 @@ import { removeNumbersToCart, buyRifas } from "../../store/state/actions/rifas";
 import "./shopCart.css"; // Importa el archivo CSS para las transiciones
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
-const ShopCart = () => {
+const ShopCart = ({isUserAdmin}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.rifas.cart);
@@ -42,10 +42,15 @@ const ShopCart = () => {
       const { id } = response.data;
       console.log("soy response", response)
       if (response.data.response && response.data.response.body) {
+        if (isUserAdmin) {
+          // Si el usuario es un administrador, redirige a la página de inicio
+          navigate("/ordenesAdmin");
+          return;
+        }else{
         const initPoint = response.data.response.body.sandbox_init_point
 
         console.log("soy initPoint", initPoint)
-         window.location.href = initPoint
+         window.location.href = initPoint}
       }
       return id;
     } catch (error) {
@@ -55,6 +60,7 @@ const ShopCart = () => {
   
 
   const handleBuyClick = () => {
+     
     const { id } = createPreference();
 
     if (id) {

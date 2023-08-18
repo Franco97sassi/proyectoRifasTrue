@@ -58,11 +58,17 @@ const ProductosAdmin = () => {
     <>
 
       <NavBar />
- 
+      <Box
+   sx={{
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    bgcolor: '#F5F5F5',
+   }}>
       
        <Grid    > 
        <Box sx={{
-              display:"flex", justifyContent:"center"
+              display:"flex", justifyContent:"flexStart",paddingLeft:"4.5em"
               }}> ,
  
              <h2  >Lista de Productos</h2></Box>
@@ -98,7 +104,7 @@ const ProductosAdmin = () => {
           </Box>
              </Grid>
             <CurrentRifasAdmin />   
-    
+            </Box>
             
  
 

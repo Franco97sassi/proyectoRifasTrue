@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Typography, Button, Grid, useMediaQuery } from '@mui/material';
+import { Box, Typography, Button, Grid, useMediaQuery, Autocomplete, TextField } from '@mui/material';
 
 //-------------------- Actions --------------------------
 import { addNumbersToCart } from '../../store/state/actions/rifas';
@@ -14,9 +14,11 @@ import { addNumbersToCart } from '../../store/state/actions/rifas';
 
 ///////////////////////////////
 const RifaDetailCard = ({ rifaDetail }) => {
+    
  const navigate = useNavigate();
  const dispatch = useDispatch();
  console.log(rifaDetail);
+ const [searchTerm, setSearchTerm] = useState("");
 
  /* Parte del Responsive del texto */
 
@@ -36,8 +38,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
  /* Compra Rifas action */
  const [selectedNumbers, setSelectedNumbers] = useState([]);
- //  console.log(selectedNumbers);
-
+ 
  const handleNumberClick = (number) => {
   if (selectedNumbers.includes(number)) {
    setSelectedNumbers(selectedNumbers.filter((num) => num !== number));
@@ -46,9 +47,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
   }
  };
 
- //  const userDataString = sessionStorage.getItem('userData');
- //  const userData = userDataString ? JSON.parse(userDataString) : null;
-
+  
  const addToCart = (selectedNumbers) => {
   dispatch(
    addNumbersToCart(
@@ -67,7 +66,9 @@ const RifaDetailCard = ({ rifaDetail }) => {
  const sortedNumeros = [...rifaDetail.numeros].sort(
   (a, b) => a.number - b.number,
  );
-
+ const filteredNumeros = sortedNumeros.filter(element =>
+  element.number.toString().includes(searchTerm)
+);
  return (
   <>
    {Object.keys(rifaDetail).length > 0 ? (
@@ -80,8 +81,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
      display='flex'
      flexDirection="row"
       gap="2em"
-      // flexDirection='row'
-     sx={{
+      sx={{
       bgcolor: '#FFFFFF',
      }}>
       
@@ -97,55 +97,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
        Finalizar  
       </Typography>
        
-      {/* <Box
-       maxWidth='60%'
-       maxHeight='20rem'
-       borderRadius='0.5rem'
-       sx={{
-        bgcolor: '#adadad',
-        overflow: 'hidden',
-       }}
-       boxShadow='11px 9px 12px -5px rgba(0,0,0,0.75)'> */}
-       {/* <Typography
-        style={{ color: '#333333' }}
-        variant='h1'
-        margin='20px'
-        textAlign='center'>
-        {rifaDetail.product}
-       </Typography> */}
-       {/* <Typography
-        style={{ color: '#333333' }}
-        variant={typographyVariant}
-        padding='1em'
-        margin='16px'>
-        {rifaDetail.description}
-       </Typography> */}
-      {/* </Box> */}
-{/*       
-      <Box
-       borderRadius='0.5rem'
-       maxWidth='35rem'
-       maxHeight='20rem'
-       boxShadow='11px 9px 12px -5px rgba(0,0,0,0.75),inset 0px 5px 91px -6px'
-       sx={{
-        backgroundColor: '#f83f3f',
-        display: 'flex',
-        alignItems: 'center',
-       }}>
-        
-       <img
-        src={rifaDetail.imgProduct}
-        alt={rifaDetail.product}
-        style={{
-         width: imgSize.width,
-         height: '15rem',
-         objectFit: 'cover',
-         margin: '2rem',
-         boxShadow: '11px 9px 12px -5px rgba(0,0,0,0.75)',
-         borderRadius: '0.5rem',
-        }}
-       />
-      </Box> */}
+      
       <Box
    sx={{
     width: '230px',
@@ -185,11 +137,8 @@ const RifaDetailCard = ({ rifaDetail }) => {
      height: '178px',
      
      marginBottom: '1rem',
-    //  boxShadow: '8px 8px 8px 8px rgba(0.75,0.75,0.75,0.75)',
-     borderRadius: 10,
-    //  borderColor: '#423E3F  ',
-        // borderStyle: 'solid',
-        // borderWidth: '6px',
+          borderRadius: 10,
+     
 
     }}
    />
@@ -211,11 +160,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
         bgcolor: '#D9D9D9',
          height: "70px",
          width:"224px",
-        // height: 300,
-        // width: 300,
-        // boxShadow:
-        //  '3px 3px 15px 3px rgba(11,61,15,1),  inset 0px 0px 66px 17px rgba(41,125,47,1)',
-        }}>
+         }}>
     
        <Typography
          variant='h6'
@@ -230,30 +175,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
         ${rifaDetail.numbersPrice}
        </Typography>
         </Box></Box>
-     {/* <Box
-      margin='10em'
-      sx={{
-       border: '0.2em solid #213911d2',
-       borderRadius: '0.5rem',
-       bgcolor: '#58aa2271',
-       boxShadow:
-        '3px 3px 15px 3px rgba(11,61,15,1),  inset 0px 0px 66px 17px rgba(41,125,47,1)',
-      }}>
-      <Box>
-       <Typography
-        variant='h2'
-        margin='1em'
-        style={{ color: '#333333', textAlign: 'center' }}>
-        Valor de cada número
-       </Typography>
-       <Typography
-        variant='h2'
-        margin='1em'
-        style={{ color: '#333333', textAlign: 'center' }}>
-        ${rifaDetail.numbersPrice}
-       </Typography>
-      </Box>
-     </Box> */}
+      
      <Box>
       <Typography
        variant='h1'
@@ -272,29 +194,63 @@ const RifaDetailCard = ({ rifaDetail }) => {
        style={{ color: '#33333', textAlign: 'center' }}>
        Selecciona los números que desees comprar
       </Typography>
-     
+      <Box sx={{ marginBottom: '1rem' }}>
+    <TextField
+      type="text"
+      placeholder="Buscar número"
+      value={searchTerm}
+      onChange={e => setSearchTerm(e.target.value)}
+    />
+  </Box>
      
      
       <Box
-       maxHeigth='10%'
-
-       sx={{
+               
+        sx={{
          borderRadius: '0.5rem',
         padding: '2em',
-         bgcolor: '#D9D9D9',
-       }}>
+         bgcolor: '#D9D9D9',     overflowY: 'scroll',  // Habilitar el scroll vertical
+          height: '30rem',
+       }}> 
        <Grid
         container
         justifyContent='center'
-         spacing={2}>
+         
+         spacing={0}>
+           {filteredNumeros.map((element) => (
+        <Grid item key={element.number}>
+          {/* Botón para mostrar el número */}
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            width="2rem"
+            height="2rem"
+            borderRadius="50%"
+            backgroundColor={
+              selectedNumbers.includes(element)
+                ? '#1A5276'
+                : element.available
+                ? '#423E3F'
+                : '#3336'
+            }
+            margin="0.25rem"
+            opacity={!element.available ? 0.5 : 1}
+            cursor={element.available ? 'pointer' : 'not-allowed'}
+            onClick={() => element.available && handleNumberClick(element)}>
+            {element.number}
+          </Box>
+        </Grid>
+      ))}
 
         {sortedNumeros.map((element) => (
          <Grid
           item
+           
           key={element.number}>
         
-         <Button
-           fullWidth
+         {/* <Button
+           fullWidth 
            sx={{
             color: selectedNumbers.includes(element) ? '#D9D9D9' : '#D9D9D9',
             backgroundColor: selectedNumbers.includes(element)
@@ -304,7 +260,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
              : '#3336',
             borderRadius: '50%',
             fontSize: '1.5rem',
-            width: '4rem',
+            width: '1rem',
             height: '4rem',
            }}
            variant={!element.available ? 'outlined' : 'text'}
@@ -312,7 +268,41 @@ const RifaDetailCard = ({ rifaDetail }) => {
            disabled={!element.available}>
            {element.number}
 
-          </Button>
+          </Button> */}
+          {/* <Box
+  display="flex"
+  justifyContent="center"
+  alignItems="center"
+  width="2rem"
+  height="2rem"
+  borderRadius="50%"
+> 
+           <Button
+           fullWidth 
+           sx={{
+            color: selectedNumbers.includes(element) ? '#D9D9D9' : '#D9D9D9',
+            backgroundColor: selectedNumbers.includes(element)
+             ? '#1A5276'
+             : element.available
+             ? '#423E3F'
+             : '#3336',
+              borderRadius: '50%',
+            fontSize: '1.0rem',
+            width: '1.0rem',
+            width: '100%',
+            height: '100%', 
+                  padding: 0, // Añadimos esta línea para eliminar el relleno interno del botón
+
+            // width: '1rem',
+            // height: '4rem',
+           }}
+           variant={!element.available ? 'outlined' : 'text'}
+           onClick={() => handleNumberClick(element)}
+           disabled={!element.available}>
+           {element.number}
+
+          </Button></Box> */}
+          
          </Grid>
          
         ))}
@@ -344,16 +334,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
          addToCart(selectedNumbers);
          navigate('/cart');
         }}>Agregar al Carrito
-          {/* <Typography
-       variant='h4'
-       margin='10px'
-       marginTop='3rem'
-       fontWeight="700"
-       fontSize= '20px' >  
-      //  style={{ color: '#33333', textAlign: 'center' }}
-        
-        Agregar al Carrito
-      </Typography> */}
+          
         </Button>
       </Box>
      </Box>

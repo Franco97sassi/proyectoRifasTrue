@@ -14,7 +14,7 @@ import rifaMuestra  from "./rifaMuestra.js"
   import Form from '../../components/Form';
 import NavBar from '../../components/navbar/navBar';
 ////////////////////
-const Cart = () => {
+const Cart = ({isUserAdmin}) => {
   const rifaas=  
     [{
       imgProduct: "https://imgur.com/Fe6Kc6H",
@@ -41,7 +41,7 @@ const Cart = () => {
        <Box
     sx={{ flex: '1 1 auto' }}
     bgcolor='#F5F5F5'> 
-        <ShopCart />   
+        <ShopCart    isUserAdmin={isUserAdmin} />   
       {/* <Typography
     margin='1em'
     style={{ color: '#333333' }} // Aumenta el tamaño de la fuente

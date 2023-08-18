@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Container, Grid, ListItem, ListItemText, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, ListItem, ListItemText, Typography } from '@mui/material';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/navbar/navBar';
 import { useParams } from "react-router-dom";
@@ -47,30 +47,18 @@ const OrdenesDetail = ( ) => {
         flexDirection: 'column',
       }}>
       <Container>
-        <div
+        <Box
           style={{
-            display: "flex",
-             justifyContent: "center",
+            background: "#D9D9D9",
+
             marginBottom: "28px",
             marginTop: "28px",
+                            borderRadius: "5px",
+
           }}
         >
-          <div
-            style={{
-              background: "#D9D9D9",
-              width: "80%",
-              padding: "20px",
-              borderRadius: "5px",
-            }}
-          >
-
-            <Typography
-              variant="h5"
-              sx={{ display: "flex", justifyContent: "center", }}
-              fontFamily={'TanPearl'} fontSize={"2rem"} my={3}
-            >
-              Órdenes  
-            </Typography>
+           
+            
 
              
             {ordenes.length === 0 ? (
@@ -96,24 +84,27 @@ key={orden.id}>
 
                 <Box
                   sx={{
-                     width: "max-width",
+                     
                     // height: "282px",
 
-                    background: "#1E1E1E8A",
+                    background: "rgba(66, 62, 63, 0.54)",
                     backgroundPosition: "center",
                    
                     borderRadius: 2,
-                    padding: "1rem",
+                     paddingTop:"0.5rem",
                     textAlign: "center",
-                     
+                   height:"61px",
+                    
                   }}
                 >    
             <Typography
-              variant="h5"
-              sx={{ display: "flex", justifyContent: "center", }}
-              fontFamily={'TanPearl'} fontSize={"2rem"} my={3}
+              variant="h5" 
+              fontWeight="700"
+               fontFamily={'TanPearl'} 
+               fontSize={"2rem"}    
+              color="rgba(255, 255, 255, 1)"
             >
-              Detalle de la orden  
+              Detalle del  Pedido 
             </Typography>
             </Box>  
                    
@@ -135,18 +126,19 @@ key={orden.id}>
                     borderRadius: 2,
                     padding: "2rem",
                     textAlign: "left",
-                    transition: "0.3s",
-                    "&:hover": {
-                      boxShadow: " 0px 5px 61px 6px #D9D9D9",
-                    },
+                     
                   }}>  
-                   <Typography variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}  >
+                                         <Typography fontSize="16px" variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}>   Orden ID: {ordenes.id}</Typography>  
+
+                   {/* <Typography variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}  >
                     Fecha: {ordenes.createdAt.slice(0, 10)}
-                  </Typography>
-                       <Typography variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}>   Orden ID: {ordenes.id}</Typography>  
-                          <Typography variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}>  Estado: {ordenes.estado} </Typography>
+                  </Typography> */}
+                  <Typography fontSize="16px" variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}>
+  Fecha y Hora: {ordenes.createdAt.slice(0, 10)} {ordenes.createdAt.slice(11, 19)}
+</Typography>
+                           <Typography fontSize="16px" variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}>  Estado: {ordenes.estado} </Typography>
                           {/* <li> email:{orden.cart[0].email}</li> */}
-                          <Typography variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}> Comprador:{ordenes.cart[0].username}</Typography>
+                          <Typography fontSize="16px" variant="h7" sx={{ color: 'black', fontWeight: 'bold' }}> Comprador:{ordenes.cart[0].username}</Typography>
                         </Box>
                       </Typography>
 
@@ -287,28 +279,18 @@ key={orden.id}>
 
                               </Grid>   */}
 
-
-
-
-
-
-
-
-
-
-
-
+ 
                <ListItem>
                 <Box
                   sx={{
                     // width: "230px",
                     // height: "282px",
 
-                    background: "#1E1E1E8A",
+                    background: "rgba(30, 30, 30, 0.54)",
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    borderRadius: 2,
+                    // borderRadius: 2,
                     padding: "1rem",
                     textAlign: "center",
                     transition: "0.3s",
@@ -337,12 +319,13 @@ key={orden.id}>
                       height: "190px",
                       marginBottom: "1rem",
                       borderRadius: 10,
-                      borderColor: "#423E3F  ",
+                      borderColor: "rgba(66, 62, 63, 1)",
                       borderStyle: "solid",
                       borderWidth: "6px",
                     }}
                   />
-                  <Typography
+                  
+                  {/* <Typography
                     sx={{
                       fontSize: "13px",
                       fontWeight: "600",
@@ -350,19 +333,56 @@ key={orden.id}>
                     }}
                   >
                     $ {el.numbersPrice}
-                  </Typography>
+                    
+                  </Typography> */}
+                  <Box
+       
+
+       sx={{
+ display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-evenly',
+  alignItems: 'center',
+  
+         border: '0.2em solid #213911d2',
+        borderRadius: '20px',
+        bgcolor: '#D9D9D9',
+         height: "70px",
+         width:"224px",
+         background:"rgba(66, 62, 63, 1)" 
+        // height: 300,
+        // width: 300,
+        // boxShadow:
+        //  '3px 3px 15px 3px rgba(11,61,15,1),  inset 0px 0px 66px 17px rgba(41,125,47,1)',
+        }}>
+    
+       <Typography
+         variant='h6'
+         color="rgba(217, 217, 217, 0.9)
+" 
+
+          style={{ color: 'rgba(217, 217, 217, 0.9)',
+            textAlign: 'center',fontWeight:"700",fontSize:"20px" }}>
+         Valor por número
+        </Typography>
+       <Typography
+        variant='h6'
+         
+        style={{ color: 'rgba(217, 217, 217, 0.9)', textAlign: 'center',fontWeight:"700",fontSize:"15px"  }}>
+        ${el.numbersPrice}
+       </Typography>
+        </Box>
                 </Box>
                 <Box
                   sx={{
                     width: "50rem",
-                    height: "282px",
-                    background: "#1E1E1E",
+                    height: "334px",
+                    background: "rgba(30, 30, 30, 0.54) ",
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
-                    borderRadius: 2,
-                    margin: "1rem",
-                    display: "flex",
+                    // borderRadius: 2,
+                     display: "flex",
                     flexDirection: "row",
                     paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
                     paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
@@ -390,12 +410,12 @@ key={orden.id}>
                       variant="body1"
                       // paddingTop="10px"
                       paddingLeft={5}
-
+fontSize={20}
                       style={{ color: "#FFFFFF", fontWeight: "bold" }}
                     >
                       Números Seleccionados:
                     </Typography>
-                    <Typography
+                    {/* <Typography
                       variant="body1"
                       // paddingTop="10px"
                       paddingLeft={5}
@@ -403,7 +423,22 @@ key={orden.id}>
                       style={{ color: "#FFFFFF", fontWeight: "bold" }}
                     >
                      {el.number}
-                    </Typography>
+                    </Typography> */}
+                     <Button
+           fullWidth
+           sx={{
+            color:"#D9D9D9",
+            backgroundColor: '#423E3F',
+             
+            borderRadius: '50%',
+            fontSize: '1.5rem',
+            width: '4rem',
+            height: '4rem',
+           }}
+            >
+           {el.number}
+
+          </Button>
                   <Box
                       sx={{
                         display: "flex",
@@ -451,6 +486,7 @@ key={orden.id}>
                           flexDirection: "row",
                           justifyContent: "flex-end",
                           paddingTop: "235px",
+                          fontSize: "20px",
                           paddingRight: "1rem",
                           fontWeight: "bold",
                         }}
@@ -494,7 +530,8 @@ key={orden.id}>
                         )
                       })}
                      
-                      <Typography variant="h5" sx={{ textAlign: 'right', paddingRight: '3.5rem', paddingBottom: "2rem", fontWeight: "bold" }}>
+                      <Typography variant="h5" sx={{ textAlign: 'right',fontSize:"20px",
+                      paddingRight: '4rem', paddingBottom: "2rem", fontWeight: "bold" }}>
                         Total: ${calcularTotalCompra(ordenes.cart).toFixed(2)}
                       </Typography>
                      
@@ -504,8 +541,8 @@ key={orden.id}>
 
               </ul>
             )}
-          </div>
-        </div>
+          
+        </Box>
       </Container>
       <Footer />
     </Box>

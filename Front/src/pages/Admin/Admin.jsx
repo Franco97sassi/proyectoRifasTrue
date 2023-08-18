@@ -79,7 +79,7 @@ const Agregar = () => {
       flexDirection="column"> 
        <Typography
        variant='h1'        fontWeight="700"
-
+         fontSize="24px         "
         style={{ color: '#333333', textAlign: 'center' }}>
        Agregar Productos  
       </Typography>
@@ -138,7 +138,8 @@ const Agregar = () => {
   flexDirection: 'column',
   justifyContent: 'space-evenly',
   alignItems: 'center',
-  
+  background:"rgba(66, 62, 63, 1)",
+
          border: '0.2em solid #213911d2',
         borderRadius: '20px',
         bgcolor: '#D9D9D9',
@@ -149,8 +150,7 @@ const Agregar = () => {
     
        <Typography
          variant='h6'
-         
-          style={{ color: '#333333', textAlign: 'center',fontWeight:"700",fontSize:"20px" }}>
+           style={{ color: '#333333', textAlign: 'center',fontWeight:"700",fontSize:"20px" }}>
          Valor por número
         </Typography>
        <Typography
@@ -178,8 +178,7 @@ const Agregar = () => {
      flexDirection: 'column',  alignItems:"center" ,  justifyContent:"center"  
      
       }} >
-        <h1>Cargar Productos</h1>
-
+ 
 
 
         
@@ -245,7 +244,7 @@ const Agregar = () => {
             sx={{ width: 500 }}
           />    </Grid></Grid>
            
-        </Grid> <Button  sx={{ marginLeft:"300px",background:"black" ,marginTop: '2rem'}}
+        </Grid> <Button  sx={{ marginLeft:"90px",background:"black" ,marginTop: '2rem'}}
       type="submit" onClick={onSubmit} variant="contained"  >Crear Producto</Button>
          </Box>
      </div> 

@@ -40,8 +40,9 @@ const OrdenesComponent = () => {
     <>
     <NavBar />
      <Box marginBottom={2}>
-          <Typography sx={{marginTop:"28px", marginBottom:"28px"}} variant="h6" gutterBottom>
-            Últimas ordenes realizadas
+          <Typography sx={{marginTop:"28px",fontWeight:"bold",
+           marginBottom:"28px",fontSize:"24px"}} variant="h6" gutterBottom>
+            Pedidos
           </Typography>
           <Grid container spacing={2}>
             {ordenes?.map((purchase) => (
@@ -52,18 +53,18 @@ const OrdenesComponent = () => {
                   borderRadius={8}
                   style={{
                     borderColor: '#ccc',
-                    background: 'white',
+                    background: '#1E1E1E                    ',
                     boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  <Typography variant="subtitle1" sx={{ color: 'black', fontWeight: 'bold' }} gutterBottom>
+                  <Typography variant="subtitle1" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
                     Fecha: {purchase.createdAt.slice(0, 10)}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: 'black' }} gutterBottom>
+                  <Typography variant="body2" sx={{ color: '#FFFFFF',fontWeight: 'bold'  }} gutterBottom>
                     Estado: {purchase.estado}
                   </Typography>
 
-                  <Button onClick={() => handleDetalleClick(purchase.preferenceId)}> ver detalles</Button>  
+                  <Button onClick={() => handleDetalleClick(purchase.preferenceId)} sx={{ color: '#FFFFFF' }}> ver detalles</Button>  
 
                 </Box>
               </Grid>
