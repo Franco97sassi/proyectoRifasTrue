@@ -21,7 +21,7 @@ import OrdenesComponent from './pages/Orden/Orden';
 import productosAdmin from './pages/Admin/productosAdmin';
 import ProductosAdmin from './pages/Admin/productosAdmin';
 import OrdenesAdmin from './pages/Admin/ordenesAdmin';
-import Agregar from './pages/Admin/Admin';
+import Agregar from './pages/Admin/Agregar';
 import Ordenusuarios from './pages/Orden/Ordenusuarios';
 import OrdenesDetail from './pages/Orden/OrdenDetail';
 /////////////////
@@ -143,13 +143,7 @@ function App() {
                               element={isUserAdmin ? <Agregar /> : <Navigate to='/Home' />}
                          />
                          {/* Rutas FinAdmin */}
-
-
-
-
-
-
-
+ 
                          <Route
                               path='/ordenes/:preferenceId'
                               element={isUserLoggedIn ? <OrdenesDetail /> : <Navigate to='/login' />}

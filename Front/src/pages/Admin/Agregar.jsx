@@ -1,6 +1,3 @@
- 
-
-
 import { Box, Button, Divider, Grid, Input, TextField, Typography } from '@mui/material';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/navbar/navBar';

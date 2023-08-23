@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Typography, Button, Grid, useMediaQuery, Autocomplete, TextField } from '@mui/material';
+import { Box, Typography, Button, Grid, useMediaQuery, Autocomplete, TextField, Pagination } from '@mui/material';
 
 //-------------------- Actions --------------------------
 import { addNumbersToCart } from '../../store/state/actions/rifas';
@@ -14,8 +14,8 @@ import { addNumbersToCart } from '../../store/state/actions/rifas';
 
 ///////////////////////////////
 const RifaDetailCard = ({ rifaDetail }) => {
-    
- const navigate = useNavigate();
+  
+  const navigate = useNavigate();
  const dispatch = useDispatch();
  console.log(rifaDetail);
  const [searchTerm, setSearchTerm] = useState("");
@@ -69,6 +69,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
  const filteredNumeros = sortedNumeros.filter(element =>
   element.number.toString().includes(searchTerm)
 );
+ 
  return (
   <>
    {Object.keys(rifaDetail).length > 0 ? (
@@ -87,7 +88,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
       
      <Box
       display='flex'
-      gap="2em"
+      gap="7em"
        
       flexDirection="column"> 
        <Typography
@@ -112,9 +113,9 @@ const RifaDetailCard = ({ rifaDetail }) => {
     padding: '1rem',
     textAlign: 'center',
     transition: '0.3s',
-    '&:hover': {
-     boxShadow: ' 0px 5px 61px 6px #FFA840',
-    },
+    // '&:hover': {
+    //  boxShadow: ' 0px 5px 61px 6px #FFA840',
+    // },
    }}>
     
 
@@ -155,8 +156,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
   justifyContent: 'space-evenly',
   alignItems: 'center',
   
-         border: '0.2em solid #213911d2',
-        borderRadius: '20px',
+         borderRadius: '20px',
         bgcolor: '#D9D9D9',
          height: "70px",
          width:"224px",
@@ -195,7 +195,8 @@ const RifaDetailCard = ({ rifaDetail }) => {
        Selecciona los números que desees comprar
       </Typography>
       <Box sx={{ marginBottom: '1rem' }}>
-    <TextField
+   
+      <TextField
       type="text"
       placeholder="Buscar número"
       value={searchTerm}
@@ -224,13 +225,24 @@ const RifaDetailCard = ({ rifaDetail }) => {
             display="flex"
             justifyContent="center"
             alignItems="center"
-            width="2rem"
-            height="2rem"
-            
+            width="46px
+            "
+            height="46px
+            " 
+            fontFamily="Work Sans, sans-serif"
+            fontWeight="700"
+            fontSize="20px"
+            color={
+              selectedNumbers.includes(element)
+                ? '#070707                '
+                : element.available
+                ? '#D9D9D9'
+                : '#070707'
+            }
             borderRadius="50%"
             backgroundColor={
               selectedNumbers.includes(element)
-                ? '#1A5276'
+                ? '#004F81                '
                 : element.available
                 ? '#423E3F'
                 : '#3336'
@@ -241,73 +253,12 @@ const RifaDetailCard = ({ rifaDetail }) => {
             onClick={() => element.available && handleNumberClick(element)}>
             {element.number}
           </Box>
+ 
         </Grid>
       ))}
-
-        {sortedNumeros.map((element) => (
-         <Grid
-          item
-           
-          key={element.number}>
-        
-         {/* <Button
-           fullWidth 
-           sx={{
-            color: selectedNumbers.includes(element) ? '#D9D9D9' : '#D9D9D9',
-            backgroundColor: selectedNumbers.includes(element)
-             ? '#1A5276'
-             : element.available
-             ? '#423E3F'
-             : '#3336',
-            borderRadius: '50%',
-            fontSize: '1.5rem',
-            width: '1rem',
-            height: '4rem',
-           }}
-           variant={!element.available ? 'outlined' : 'text'}
-           onClick={() => handleNumberClick(element)}
-           disabled={!element.available}>
-           {element.number}
-
-          </Button> */}
-          {/* <Box
-  display="flex"
-  justifyContent="center"
-  alignItems="center"
-  width="2rem"
-  height="2rem"
-  borderRadius="50%"
-> 
-           <Button
-           fullWidth 
-           sx={{
-            color: selectedNumbers.includes(element) ? '#D9D9D9' : '#D9D9D9',
-            backgroundColor: selectedNumbers.includes(element)
-             ? '#1A5276'
-             : element.available
-             ? '#423E3F'
-             : '#3336',
-              borderRadius: '50%',
-            fontSize: '1.0rem',
-            width: '1.0rem',
-            width: '100%',
-            height: '100%', 
-                  padding: 0, // Añadimos esta línea para eliminar el relleno interno del botón
-
-            // width: '1rem',
-            // height: '4rem',
-           }}
-           variant={!element.available ? 'outlined' : 'text'}
-           onClick={() => handleNumberClick(element)}
-           disabled={!element.available}>
-           {element.number}
-
-          </Button></Box> */}
-          
-         </Grid>
-         
-        ))}
+ 
        </Grid>
+       
       </Box>
       <Box
        width='100%'

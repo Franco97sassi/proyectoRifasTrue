@@ -38,14 +38,7 @@ const UserIconNoLogged = ({ onLoginClick, onRegisterClick }) => {
    <IconButton onClick={handleMenuOpen}>
     <AccountCircleRounded sx={{ color: font, fontSize: '45px' }} />
    </IconButton>
-   {/* <Menu
-    anchorEl={anchorEl}
-    open={Boolean(anchorEl)}
-    onClose={handleMenuClose}
-    disableScrollLock={true}>
-    <MenuItem onClick={handleLoginClick}>Logeate</MenuItem>
-    <MenuItem onClick={handleRegisterClick}>Registrate</MenuItem>
-   </Menu> */}
+   
   </>
  );
 };

@@ -65,26 +65,13 @@ const Footer = () => {
       display='grid'
       justifyItems='center'
       flexWrap='nowrap'>
-      {/* <Typography align='center'>
-       ¿Querés saber más sobre las novedades de RifasMX?
-      </Typography>
-      <Typography align='center'> Dejanos tu Mail</Typography> */}
+     
      </Grid>
      <Grid
       item
       display='flex'
       marginTop='1rem'>
-      {/* <TextField
-       label='Ingrese su Mail'
-       size='small'
-       variant='standard'
-       InputLabelProps={{
-        style: {
-         color: 'white',
-        },
-       }}
-      /> */}
-      {/* <Button variant='filled'>Suscríbete</Button> */}
+      
      </Grid>
     </Grid>
    </Grid>
@@ -108,11 +95,10 @@ const Footer = () => {
      padding='0.5rem'
      borderRadius='25px'>
      <img
-      src={FooterLogo}
-      width='100rem'
+       width='100rem'
      />
     </Box>
-    <Box
+    {/* <Box
      display='grid'
      margin='1rem'
      justifyItems='center'>
@@ -121,8 +107,8 @@ const Footer = () => {
        ¿Querés saber más sobre las novedades de RifasMX?
       </Typography>
       <Typography align='center'>Dejanos tu Mail</Typography>
-     </Box>
-     <Box
+     </Box> */}
+     {/* <Box
       display='flex'
       marginTop='1rem'>
       <TextField
@@ -136,15 +122,15 @@ const Footer = () => {
        }}
       />
       <Button variant='filled'>Suscríbete</Button>
-     </Box>
-    </Box>
-    <Box
+     </Box> */}
+    {/* </Box> */}
+    {/* <Box
      margin='1rem'
      display='flex'
      gap='1.5rem'>
      <InstagramIcon />
      <LinkedInIcon />
-    </Box>
+    </Box> */}
    </Box>
   </AppBar>
  );

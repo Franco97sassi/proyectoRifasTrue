@@ -42,8 +42,7 @@ const handleNow=()=>{
       gap="2em"
       // flexDirection='row'
      sx={{
-      bgcolor: '#D9D9D9',      
-     }}> 
+      }}> 
       {allRifas.map((rifa) => (
             
       

@@ -75,20 +75,20 @@ const NavBar = ({ isUserAdmin }) => {
         // User Logged Navbar
         <AppBar position='static'>
           <CssBaseline />
+          
+          {/* despues de iniciar sesion */}
           <Box
             display='flex'
-            // justifyContent='space-around'
+            justifyContent='space-between'
 
             alignItems='center'
             bgcolor={alt}>
             <Box
               display='flex'
 
-              // justifyContent='space-around'
+              justifyContent='space-around'
               alignItems='center'
               height='75px'
-              paddingLeft='50px'
-            // paddingLeft='100px'
             >
               <Typography
                 fontWeight='bold'
@@ -104,6 +104,7 @@ const NavBar = ({ isUserAdmin }) => {
 
                   },
                 }}>
+
                 {isNonMobileScreens ? (
                   <img
                     src={venado}
@@ -133,32 +134,29 @@ const NavBar = ({ isUserAdmin }) => {
                 alignItems='center'
                 gap='0.1rem'
                 height='75px'
-                //  paddingLeft='1000px'
+              //  paddingLeft='1000px'
               >
 
 
                 <RouterLink to='/cart'>
                   <IconButton>
                     {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
-                    <Typography sx={{ 
-                                       paddingLeft:'1000px'
-,
-                      color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>CARRITO</Typography>
+                    <Typography sx={{
+                      // paddingLeft: '1000px'
+                      // ,
+                      color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px',
+                    }}>CARRITO</Typography>
                   </IconButton>
                 </RouterLink>
-{ isUserAdmin &&   
-                <RouterLink to='/admin'>
- 
-                  <IconButton>
-                    {/* <ShoppingBasketIcon sx={{ color: font, fontSize: '25px' }} /> */}
-                    {/* <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px', }}>PANEL
-                     <UserIconAdmin
-                    onLoginClick={handleLoginClick}
-                    onRegisterClick={handleRegisterClick}/>   
-                    </Typography> */}
-                  </IconButton>
-                </RouterLink>
- }
+                
+                {isUserAdmin &&
+                  <RouterLink to='/admin'>
+
+                    <IconButton>
+                      
+                    </IconButton>
+                  </RouterLink>
+                }
                 <UserIcon
                   onLoginClick={handleLoginClick}
                   onRegisterClick={handleRegisterClick}
@@ -208,16 +206,16 @@ const NavBar = ({ isUserAdmin }) => {
                     display='flex'
                     flexDirection='column'
                     justifyContent='center'
-                    gap='3rem'  
+                    gap='3rem'
                     // backgroundColor={white}
                     alignItems='center'
-                     
-                    >
+
+                  >
                     <UserIcon
                       onLoginClick={handleLoginClick}
                       onRegisterClick={handleRegisterClick}
-                        
-                       
+
+
                     />
 
 
@@ -228,12 +226,17 @@ const NavBar = ({ isUserAdmin }) => {
           </Box>
         </AppBar>
       ) : (
+        
+
         // User No Logged Navbar
-        <AppBar position='static'>
+
+<AppBar position='static'>
+                    {/* antes de iniciar sesion */}
+
           <CssBaseline />
           <Box
             display='flex'
-            // justifyContent='space-around'
+            justifyContent='space-between'
 
             alignItems='center'
             height='75px'
@@ -282,22 +285,14 @@ const NavBar = ({ isUserAdmin }) => {
             {/* DESKTOP NAV */}
 
             {isNonMobileScreens ? (
-              <Box
-                display='flex'
-                justifyContent='space-between'
-                alignItems='center'
-                flexGrow={1}
-                gap='1rem'
-                paddingLeft='825px'
-                paddingRight='25px'
-              >
+              <Box >
+
                 <Box
                   display='flex'
 
-                  justifyContent='flex-end'  // Alinea RouterLink a la derecha
+                  // justifyContent='flex-end'  // Alinea RouterLink a la derecha
                   gap='1rem'
                   alignItems='center'
-
 
                 >
                   <RouterLink
@@ -311,8 +306,8 @@ const NavBar = ({ isUserAdmin }) => {
                     style={{ textDecoration: 'none' }}>
                     <Typography sx={{ color: font, fontSize: "15px", fontWeight: "1000", letterSpacing: '2px' }}>INICIO SESION</Typography>
                   </RouterLink>
-                </Box>
-                <Box flexGrow={1} display='flex' justifyContent='flex-end'>
+                  {/* </Box> */}
+                  {/* <Box   display='flex' justifyContent='flex-end'> */}
                   <UserIconNoLogged
                     onLoginClick={handleLoginClick}
                     onRegisterClick={handleRegisterClick}
@@ -327,14 +322,7 @@ const NavBar = ({ isUserAdmin }) => {
                 </IconButton>
               )
             }
-
-
-
-
-
-
-
-
+            
             {/* MOBILE NAV */}
             {!isNonMobileScreens && isMobileMenuToggled && (
               <Drawer
@@ -375,9 +363,8 @@ const NavBar = ({ isUserAdmin }) => {
                     alignItems='center'>
                     <UserIconNoLogged
                       onLoginClick={handleLoginClick}
-                      onRegisterClick={handleRegisterClick}  isUserAdmin={isUserAdmin }
+                      onRegisterClick={handleRegisterClick} isUserAdmin={isUserAdmin}
                     />
-
                     <RouterLink to=''>
                       <IconButton>
                         <Help sx={{ color: font, fontSize: '25px' }} />
