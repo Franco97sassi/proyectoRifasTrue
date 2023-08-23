@@ -5,14 +5,14 @@ const { v4: uuidv4 } = require('uuid');
 
 const {
   NOTIFICATION_MERCADOPAGO_FRONT,
-  NOTIFICATION_MERCADOPAGO_BACK
+  NOTIFICATION_MERCADOPAGO_BACK,ACCESS_TOKEN_MP,CLIENT_PORT,PORT
 } = process.env;
 
 
   const postPagar = async (req, res) => {
     
     mercadopago.configure({
-    access_token: "TEST-8021216670138113-070920-8fec9d16d8b40375f92b98e1eb06b24d-235741436"
+    access_token:  `${ACCESS_TOKEN_MP}`
 });
 
     const preferenceId = uuidv4();
@@ -38,7 +38,7 @@ const {
         items: items,
 
         back_urls: {
-          success: `http://localhost:5173/ordenes`,
+          success: `${CLIENT_PORT}/ordenes`,
           pending: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
           failure: `${NOTIFICATION_MERCADOPAGO_FRONT}/success?preferenceId=${preferenceId}`,
         },

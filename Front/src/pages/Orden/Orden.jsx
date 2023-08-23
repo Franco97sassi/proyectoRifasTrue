@@ -6,7 +6,7 @@ import NavBar from '../../components/navbar/navBar';
 import { Link } from 'react-router-dom';
 import OrdenesDetail from './OrdenDetail';
 import OrdenCard from '../Admin/OrdenCard';
-
+const svHost = import.meta.env.VITE_SV_HOST;
 const OrdenesComponent = () => {
   const [ordenes, setOrdenes] = useState([]);
   const userData = JSON.parse(sessionStorage.getItem('userData'));
@@ -21,7 +21,7 @@ const OrdenesComponent = () => {
     console.log(userId)
 
     // Realizar la solicitud GET a las órdenes del usuario con el ID de usuario como parte de la URL
-    axios.get(`http://localhost:4000/rifas/ordenes/${userId}`)
+    axios.get(`${svHost}/rifas/ordenes/${userId}`)
       .then(response => {
         setOrdenes(response.data);
       })

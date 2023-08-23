@@ -6,8 +6,8 @@ import { Box, Button, Typography, useTheme } from '@mui/material';
 import LandingImg from '../../assets/Landing.jpg';
 
 //-------------------- Components --------------------------
-import NavBar from '../../components/navbar/NavBar.jsx';
-import Footer from '../../components/footer/footer.jsx';
+ import Footer from '../../components/footer/footer.jsx';
+import NavBar from '../../components/navbar/navBar';
 
 /////////////////////
 const LandingPage = () => {

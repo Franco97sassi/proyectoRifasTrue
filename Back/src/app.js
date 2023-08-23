@@ -8,7 +8,8 @@ const morgan = require('morgan');
 const routes = require('./routes/index.routes.js');
   const mercadopago=require('mercadopago');
 require('./db.js');
-
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT,CLIENT_PORT } = process.env;
+ 
  
 server.name = 'RIFASMX BACK';
 
@@ -55,8 +56,8 @@ server.post("/create_preference", (req, res) => {
             },
         ],
         back_urls: {
-            success: "http://localhost:5173",
-            failure: "http://localhost:5173",
+            success: `${CLIENT_PORT}`,
+            failure:  `${CLIENT_PORT}`,
             pending: "",
         },
         auto_return: "approved",

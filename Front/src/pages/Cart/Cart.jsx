@@ -11,8 +11,7 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import  ReactTextTransition  from 'react-text-transition';
 import RifaCard from '../../components/rifaCard/RifaCard';
 import rifaMuestra  from "./rifaMuestra.js"
-  import Form from '../../components/Form';
-import NavBar from '../../components/navbar/navBar';
+ import NavBar from '../../components/navbar/navBar';
 ////////////////////
 const Cart = ({isUserAdmin}) => {
   

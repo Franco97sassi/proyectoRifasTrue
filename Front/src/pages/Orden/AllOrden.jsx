@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Button, Container, Grid, ListItem, ListItemText, Typography } from '@mui/material';
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/navbar/navBar';
+const host = import.meta.env.VITE_SV_HOST;
 
 const AllOrdenes = () => {
   const [ordenes, setOrdenes] = useState([]);
@@ -20,7 +21,7 @@ const AllOrdenes = () => {
     // Realizar la solicitud GET a las órdenes del usuario con el ID de usuario como parte de la URL
     // axios.get(`http://localhost:4000/rifas/allordenes`)
      
-    axios.get(`http://localhost:4000/rifas/allordenes`)
+    axios.get(`${host}/rifas/allordenes`)
 
       .then(response => {
         setOrdenes(response.data);

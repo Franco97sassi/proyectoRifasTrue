@@ -17,6 +17,8 @@ import { removeNumbersToCart, buyRifas } from "../../store/state/actions/rifas";
 import "./shopCart.css"; // Importa el archivo CSS para las transiciones
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
+const host = import.meta.env.VITE_SV_HOST;
+
 const ShopCart = ({isUserAdmin}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ const ShopCart = ({isUserAdmin}) => {
   const createPreference = async () => {
     console.log(createPreference)
     try {
-      const response = await axios.post("http://localhost:4000/rifas/mercadoPago", {
+      const response = await axios.post(`${host}/rifas/mercadoPago`, {
         cart
 
       })
