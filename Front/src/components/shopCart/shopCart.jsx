@@ -226,24 +226,22 @@ const ShopCart = ({isUserAdmin}) => {
                       >
                         {item.numbers.map((number) => (
                           
-                          <Button
-                            key={number}
-                            sx={{
-                              backgroundColor: "#423E3F",
-                              borderRadius: "50%",
-                              fontSize: "2rem",
-                              width: "4rem",
-                              height: "4rem",
-                              display: "flex",
-                              margin: "0.5rem",
-                              color: "#D9D9D9",
-                              "&:hover": {
-                                backgroundColor: "#423E3F",
-                              },
-                            }}
+                          <Box
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          width="2rem"
+                          height="2rem"
+                          borderRadius="50%"
+                          backgroundColor= 
+                                 '#423E3F'
+                            
+                          margin="0.25rem"
                           >
-                            {number}
-                          </Button>
+                         {number}
+                        </Box>
+                             
+                           
                         ))}
                       </Box>
                     </Box>

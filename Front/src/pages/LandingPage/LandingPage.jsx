@@ -49,13 +49,7 @@ const LandingPage = () => {
      }}>
      Bienvenidos 
     </Typography>
-    {/* <Typography
-     variant='h3'
-     textAlign='center'
-     marginTop='1em'
-     color='whitesmoke'>
-      Explora nuestras increíbles rifas
-    </Typography> */}
+    
     <Box
      sx={{
       display: 'flex',

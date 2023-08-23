@@ -15,6 +15,7 @@ const Home = ({isUserAdmin}) => {
     flexDirection: 'column',
     overflowX: 'hidden',
    }}>
+   
    <NavBar isUserAdmin={isUserAdmin} />
    
 

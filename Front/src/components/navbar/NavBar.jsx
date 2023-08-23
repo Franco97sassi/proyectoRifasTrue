@@ -209,7 +209,7 @@ const NavBar = ({ isUserAdmin }) => {
                     flexDirection='column'
                     justifyContent='center'
                     gap='3rem'  
-                    backgroundColor={white}
+                    // backgroundColor={white}
                     alignItems='center'
                      
                     >

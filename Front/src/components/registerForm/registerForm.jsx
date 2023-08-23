@@ -251,6 +251,7 @@ function RegisterForm() {
         Iniciar sesión.
        </Link>
       </Typography>
+      
           <Button
            type='submit'
            fullWidth
@@ -266,6 +267,7 @@ function RegisterForm() {
            }}>
            Crear cuenta
           </Button>
+
           {/*                           google auth  */}
          </Box>
         )}

@@ -6,11 +6,11 @@ import NavBar from '../../components/navbar/navBar';
 import { Link } from 'react-router-dom';
 import OrdenesDetail from './OrdenDetail';
 import OrdenCard from '../Admin/OrdenCard';
- 
+
 const OrdenesComponent = () => {
-    const [ordenes, setOrdenes] = useState([]);
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
-    const userId = userData?.user?.id;
+  const [ordenes, setOrdenes] = useState([]);
+  const userData = JSON.parse(sessionStorage.getItem('userData'));
+  const userId = userData?.user?.id;
 
   useEffect(() => {
     // Si no hay ID de usuario, detener la solicitud
@@ -33,45 +33,47 @@ const OrdenesComponent = () => {
     return cart.reduce((total, el) => total + el.numbersPrice, 0);
   };
   console.log(ordenes)
-  const handleDetalleClick = (id) =>{
+  const handleDetalleClick = (id) => {
     window.location.href = `/ordenes/${id}`;
   }
   return (
     <>
-    <NavBar />
-     <Box marginBottom={2}>
-          <Typography sx={{marginTop:"28px",fontWeight:"bold",
-           marginBottom:"28px",fontSize:"24px"}} variant="h6" gutterBottom>
-            Pedidos
-          </Typography>
-          <Grid container spacing={2}>
-            {ordenes?.map((purchase) => (
-              <Grid item key={purchase.id} xs={12} sm={6} md={4} lg={3}>
-                <Box
-                  border={1}
-                  padding={2}
-                  borderRadius={8}
-                  style={{
-                    borderColor: '#ccc',
-                    background: '#1E1E1E                    ',
-                    boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
-                  }}
-                >
-                  <Typography variant="subtitle1" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
-                    Fecha: {purchase.createdAt.slice(0, 10)}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#FFFFFF',fontWeight: 'bold'  }} gutterBottom>
-                    Estado: {purchase.estado}
-                  </Typography>
+      <NavBar />
+      <Box marginBottom={2}>
+        <Typography sx={{
+          marginTop: "28px", fontWeight: "bold",
+          marginBottom: "28px", fontSize: "24px"
+        }} variant="h6" gutterBottom>
+          Pedidos
+        </Typography>
+        <Grid container spacing={2}>
+          {ordenes?.map((purchase) => (
+            <Grid item key={purchase.id} xs={12} sm={6} md={4} lg={3}>
+              <Box
+                border={1}
+                padding={2}
+                borderRadius={8}
+                style={{
+                  borderColor: '#ccc',
+                  background: '#1E1E1E                    ',
+                  boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
+                }}
+              >
+                <Typography variant="subtitle1" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
+                  Fecha: {purchase.createdAt.slice(0, 10)}
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
+                  Estado: {purchase.estado}
+                </Typography>
 
-                  <Button onClick={() => handleDetalleClick(purchase.preferenceId)} sx={{ color: '#FFFFFF' }}> ver detalles</Button>  
+                <Button onClick={() => handleDetalleClick(purchase.preferenceId)} sx={{ color: '#FFFFFF' }}> ver detalles</Button>
 
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-  </>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    </>
   );
 };
 

@@ -84,6 +84,46 @@ function App() {
                     <Routes>
 
                          <Route path='/' element={<LandingPage />} />
+
+                         <Route
+                              path='/login'
+                              element={!isUserLoggedIn ? <Login isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
+                         />
+
+                         <Route
+                              path='/register'
+                              element={!isUserLoggedIn ? <Register isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
+                         />
+
+                         <Route
+                              path='/home'
+                              element={isUserLoggedIn ? <Home isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
+                         />
+
+                         <Route
+                              path='/rifa/:id'
+                              element={isUserLoggedIn ? <RifaDetail isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
+                         />
+
+                         <Route
+                              path='/cart'
+                              element={isUserLoggedIn ? <Cart isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
+                         />
+
+                         <Route
+                              path='/ordenes'
+                              element={isUserLoggedIn ? <OrdenesComponent /> : <Navigate to='/login' />}
+                         />
+
+                         <Route
+                              path='/confirm'
+                              element={<ActivateAccount />}
+                         />
+
+                         <Route
+                              path='*'
+                              element={<NotFound />}
+                         />
                          {/* Rutas Admin */}
                          {/* <Route
       path='/admin'
@@ -105,51 +145,23 @@ function App() {
                          {/* Rutas FinAdmin */}
 
 
-                         <Route
-                              path='/home'
-                              element={isUserLoggedIn ? <Home isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
-                         />
-                         <Route
-                              path='/ordenes'
-                              element={isUserLoggedIn ? <OrdenesComponent /> : <Navigate to='/login' />}
-                         />
-                         <Route
-                              path='/login'
-                              element={!isUserLoggedIn ? <Login isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
-                         />
 
-                         <Route
-                              path='/register'
-                              element={!isUserLoggedIn ? <Register isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
-                         />
 
-                         <Route
-                              path='/rifa/:id'
-                              element={isUserLoggedIn ? <RifaDetail isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
-                         />
+
+
+
                          <Route
                               path='/ordenes/:preferenceId'
                               element={isUserLoggedIn ? <OrdenesDetail /> : <Navigate to='/login' />}
                          />
-                         <Route
-                              path='/cart'
-                              element={isUserLoggedIn ? <Cart isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
-                         />
+
 
                          {/* <Route
       path='/ordenes'
       element={isUserLoggedIn ? <OrdenesComponent isUserAdmin={isUserAdmin} /> : <Navigate to='/login' />}
      /> */}
 
-                         <Route
-                              path='/confirm'
-                              element={<ActivateAccount />}
-                         />
 
-                         <Route
-                              path='*'
-                              element={<NotFound />}
-                         />
                     </Routes>
                </ThemeProvider>
           </>

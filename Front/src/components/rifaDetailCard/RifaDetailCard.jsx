@@ -226,6 +226,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
             alignItems="center"
             width="2rem"
             height="2rem"
+            
             borderRadius="50%"
             backgroundColor={
               selectedNumbers.includes(element)
