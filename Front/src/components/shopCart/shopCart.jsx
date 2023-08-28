@@ -7,6 +7,8 @@ import {
   ListItemText,
   IconButton,
   Button,
+  useMediaQuery,
+  Grid,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -15,11 +17,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { removeNumbersToCart, buyRifas } from "../../store/state/actions/rifas";
 import "./shopCart.css"; // Importa el archivo CSS para las transiciones
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
+import { useTheme } from "@emotion/react";
 const host = import.meta.env.VITE_SV_HOST;
 
-const ShopCart = ({isUserAdmin}) => {
+const ShopCart = ({ isUserAdmin }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.rifas.cart);
@@ -27,12 +30,14 @@ const ShopCart = ({isUserAdmin}) => {
   const handleDeleteCart = (rifaId) => {
     dispatch(removeNumbersToCart(rifaId));
   };
+  const theme1 = useTheme();
+  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
 
 
 
   //mercado pago
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago("TEST-b3944798-0320-4a5f-9f12-f95c52c42fd5");
+  // initMercadoPago("TEST-b3944798-0320-4a5f-9f12-f95c52c42fd5");
 
   const createPreference = async () => {
     console.log(createPreference)
@@ -48,21 +53,22 @@ const ShopCart = ({isUserAdmin}) => {
           // Si el usuario es un administrador, redirige a la página de inicio
           navigate("/ordenesAdmin");
           return;
-        }else{
-        const initPoint = response.data.response.body.sandbox_init_point
+        } else {
+          const initPoint = response.data.response.body.sandbox_init_point
 
-        console.log("soy initPoint", initPoint)
-         window.location.href = initPoint}
+          console.log("soy initPoint", initPoint)
+          window.location.href = initPoint
+        }
       }
       return id;
     } catch (error) {
       console.log(error);
     }
   };
-  
+
 
   const handleBuyClick = () => {
-     
+
     const { id } = createPreference();
 
     if (id) {
@@ -94,22 +100,26 @@ const ShopCart = ({isUserAdmin}) => {
   return (
     <Box
       display="flex"
-      flexDirection="column"
+      flexDirection={isNonMobileScreens ? "column" : "column"}
       alignItems="center"
-      width="80%" // Añadido para reducir el ancho del componente
-      margin="0 auto" // Centra el componente horizontalmente
-      padding="2rem" 
-      >
+      justifyContent="center"
+      // alignItems="center"
+      // width="80%" // Añadido para reducir el ancho del componente
+      // margin="0 auto" // Centra el componente horizontalmente
+      padding="0rem"
+    >
+
       <Typography
-        margin="1em"
+        marginTop="1em"
         style={{ color: "#333333" }} // Aumenta el tamaño de la fuente
         variant="h2"
         gutterBottom
       >
         Carrito de Compras
       </Typography>
+
       <TransitionGroup component={List}>
-        
+
         {cart && cart.length > 0 ? (
           cart
             .reduce((acc, item) => {
@@ -123,174 +133,237 @@ const ShopCart = ({isUserAdmin}) => {
             }, [])
             .map((item) => (
               <CSSTransition key={item.rifaId} classNames="fade" timeout={300}>
-                <ListItem>
+                <ListItem  >
+
                   <Box
                     sx={{
-                      // width: "230px",
-                      // height: "282px",
- 
-                      background: "#D9D9D9",
-                      backgroundSize: "contain",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      borderRadius: 2,
-                      padding: "1rem",
-                      textAlign: "center",
-                      transition: "0.3s",
-                      "&:hover": {
-                        boxShadow: " 0px 5px 61px 6px #D9D9D9",
-                      },
-                    }}
-                  >
-                    <Typography
-                      variant="body1"
-                      fontSize="13px"
-                      key={item.id}
-                      textOverflow="ellipsis"
-                      style={{
-                        color: "#423E3F",
-                        fontWeight: "600",
-                      }}
-                    >
-                      {item.productName}
-                    </Typography>
-                    <img
-                      src={item.imgProduct}
-                      alt={item.product}
-                      style={{
-                        width: "172px",
-                        height: "178px",
-                        marginBottom: "1rem",
-                        borderRadius: 10,
-                        borderColor: "#423E3F  ",
-                        borderStyle: "solid",
-                        borderWidth: "6px",
-                      }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: "13px",
-                        fontWeight: "600",
-                        color: "#423E3F",
-                      }}
-                    >
-                      $ {item.numbersPrice}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      width: "50rem",
-                      height: "282px",
-                      background: "#D9D9D9",
-                      backgroundSize: "contain",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      borderRadius: 2,
-                      margin: "1rem",
                       display: "flex",
-                      flexDirection: "row",
-                      paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
-                      paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
- 
+                      flexDirection: isNonMobileScreens ? "row" : "column",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
                   >
                     <Box
                       sx={{
+                        width: "15rem",
+                         height: "282px",
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "flex-start",
                         alignItems: "center",
-                        paddingTop: "1px",
-                        paddingBottom: "1rem", // Añade un poco de espacio en la parte inferior
-                        maxHeight: "282", // Establece una altura máxima para la caja
-                        // overflowY: "auto", // Habilita el desplazamiento vertical si el contenido excede la altura máxima
-                        paddingRight: "0.1rem", // Añade un poco de espacio en la parte derecha
-                        // Añade un poco de espacio en la parte superior
-                        // Añade un poco de espacio en la parte inferior
+                        justifyContent: "center",
+                        background: "#D9D9D9",
+                        borderRadius: 2,
+                        padding: "1rem",
+                        transition: "0.3s",
+                        "&:hover": {
+                          boxShadow: " 0px 5px 61px 6px #D9D9D9",
+                        },
                       }}
                     >
                       <Typography
                         variant="body1"
-                        // paddingTop="10px"
-                        paddingLeft={5}
-
-                        style={{ color: "#423E3F", fontWeight: "bold" }}
+                        fontSize="13px"
+                        key={item.id}
+                        textOverflow="ellipsis"
+                        style={{
+                          color: "#423E3F",
+                          fontWeight: "600",
+                        }}
                       >
-                        Números Seleccionados:
+                        {item.productName}
                       </Typography>
+                      <img
+                        src={item.imgProduct}
+                        alt={item.product}
+                        style={{
+                          width: "172px",
+                          height: "178px",
+                          marginBottom: "1rem",
+                          borderRadius: 10,
+                          borderColor: "#423E3F  ",
+                          borderStyle: "solid",
+                          borderWidth: "6px",
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          fontSize: "13px",
+                          fontWeight: "600",
+                          color: "#423E3F",
+                        }}
+                      >
+                        $ {item.numbersPrice}
+                      </Typography>
+                    </Box>
+
+
+
+
+
+                    <Box
+                      sx={{
+                        width: isNonMobileScreens ? "50rem" : "15rem",
+                        display: "flex",
+                        flexDirection: isNonMobileScreens ? "row" : "column",
+                        // justifyContent: "center",
+
+                        alignItems: isNonMobileScreens ? "flex-start" : "center",
+                        justifyContent: isNonMobileScreens ? "space-between" : "center",
+                        background: "#D9D9D9",
+                        backgroundSize: "contain",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        borderRadius: 2,
+                        marginTop: "1rem",
+                        margin: "1rem",
+                        minHeight: "6rem",
+                        height: isNonMobileScreens ? "max-content" : "max-content",
+                        // paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
+                        // paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
+
+                      }}
+
+
+                    >
                       <Box
                         sx={{
                           display: "flex",
-                          flexWrap: "wrap",
+                          flexDirection: "column",
                           justifyContent: "center",
+
                           alignItems: "center",
+
+                          paddingTop: "1px",
+                          paddingBottom: "1rem", // Añade un poco de espacio en la parte inferior
+                          // Establece una altura máxima para la caja
+                          // overflowY: "auto", // Habilita el desplazamiento vertical si el contenido excede la altura máxima
+                          // paddingRight: "0.1rem", // Añade un poco de espacio en la parte derecha
+                          // Añade un poco de espacio en la parte superior
+                          // Añade un poco de espacio en la parte inferior
                         }}
                       >
-                        {item.numbers.map((number) => (
-                          
-                          <Box
-                          display="flex"
-                          justifyContent="center"
-                          alignItems="center"
-                          width="46px
-                          "
-                          height="46px
-                          " 
-                          fontFamily="Work Sans, sans-serif"
-                          fontWeight="700"
-                          fontSize="20px"             borderRadius="50%"
 
-                          backgroundColor= 
-                                 '#423E3F'
-                            color="white"
-                          margin="0.25rem"
-                          >
-                         {number}
-                        </Box>
-                             
-                           
-                        ))}
-                      </Box>
-                    </Box>
-                    <ListItemText
-
-                      primary={
                         <Typography
-                          variant="h5"
-                          style={{
-                            color: "#423E3F",
-                            textAlign: "right",
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "flex-end",
-                            paddingTop: "235px",
-                            paddingRight: "1rem",
-                            fontWeight: "bold",
-                          }}
-
+                          variant="body1"
+                          paddingTop="10px"
+                          style={{ color: "#423E3F", fontWeight: "bold" }}
                         >
-                          <Box
-                          >
-                            Subtotal: ${item.numbers.length * item.numbersPrice}
-                          </Box>
+                          Números Seleccionados:
                         </Typography>
-                      }
-                      style={{ textAlign: "right" }}
-                    />
-                    <IconButton
-                      onClick={() => handleDeleteCart(item.rifaId)}
-                      edge="end"
-                      padding="1rem"
 
-                      aria-label="delete"
-                    >
-                      <DeleteIcon />
-                    </IconButton>{" "}
+
+
+
+
+                        <Box
+                          sx={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                            marginLeft: isNonMobileScreens?"1rem":"0rem",
+                            marginTop: isNonMobileScreens?"0.5rem":"0rem",
+
+                           }}
+                        >
+                          {item.numbers.map((number) => (
+
+                            <Box
+                              key={number}
+                              sx={{
+                                backgroundColor: "#423E3F",
+                                borderRadius: "50%",
+                                fontSize: "2rem",
+                                width: "46px",
+                                height: "46px",
+                                fontSize: "20px",
+
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                color: "#D9D9D9",
+                                fontWeight: "700",
+                                backgroundColor: "#423E3F",
+                                "&:hover": {
+                                  backgroundColor: "#423E3F",
+                                },
+                              }}
+                            >
+                              {number}
+                            </Box>
+                          ))}
+                        </Box>
+
+
+
+
+
+
+                      </Box>
+
+
+
+                      <Box
+                        sx={{
+                          display: "flex", flexDirection: "column",
+                          
+                          alignItems: isNonMobileScreens ? "flex-end" : "center",
+                        }}>
+
+
+
+                        <IconButton
+                          onClick={() => handleDeleteCart(item.rifaId)}
+                          edge="end"
+                          padding="1rem"
+                          aria-label="delete"
+
+                          sx={{
+                            marginTop: isNonMobileScreens ? "6rem" : "0rem",
+                            // Agrega otros estilos necesarios aquí
+                          }}                        >
+                          <DeleteIcon />
+                        </IconButton>
+                        <ListItemText
+
+                          primary={
+                            <Typography
+                              variant="h5"
+                              style={{
+                                color: "#423E3F",
+                                textAlign: "right",
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "flex-end",
+                                alignItems: "flex-end",
+                                marginTop: isNonMobileScreens ? "8rem" : "1rem",
+
+
+                                fontWeight: "bold",
+                              }}
+
+                            >
+
+                              Subtotal: ${item.numbers.length * item.numbersPrice}
+
+
+                            </Typography>
+                          }
+                          style={{ textAlign: "right" }}
+                        />
+
+
+                      </Box>
+
+                    </Box>
                   </Box>
                 </ListItem>
               </CSSTransition>
             ))
         ) : (
+
+
           <Typography
             variant="body1"
             align="center"
@@ -302,83 +375,80 @@ const ShopCart = ({isUserAdmin}) => {
         )}
       </TransitionGroup>
 
-      {cart.length > 0 && (
-        <Box 
-          sx={{
-            width:"100%",
 
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "flex-end",
-            // marginLeft: "21.0rem",
-          }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {cart.length > 0 && (
+        <Box
+          width="50rem"
+          marginTop="3rem"
+
+          marginBottom="1rem"
+          display="flex" 
+           marginLeft={isNonMobileScreens ? "15rem" : "0rem"}
+          flexDirection="column"
+          alignItems={isNonMobileScreens ? "flex-end" : "center"}
         >
           <Box
             sx={{
-              width: "50rem",
-              height: "65px",
               background: "#D9D9D9",
-              backgroundSize: "contain",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
               borderRadius: 2,
-              marginRight: "0.8rem",
-              paddingRight: "3.5rem",
-              display:"flex",
-              justifyContent:"flex-end",
-              alignItems:"center" // Alinear verticalmente en el centro
-              
-            }}
+              display: "flex",
+              flexDirection: "column",
+              alignItems: isNonMobileScreens ? "flex-end" : "center",
+              justifyContent: "flex-end",
+              width: isNonMobileScreens ? "50rem" : "15rem",
+             }}
           >
-            <ListItemText
-              primary={
-                <Typography
-                  variant="h4"
-                  style={{
-                    color: "#423E3F",
-                    fontWeight: "bold",
-                    paddingTop: "20px",
-                    paddingLeft: "400px",
+            <Typography
+              variant="h4" 
+              sx={{ color: "#423E3F", fontWeight: "bold"     }}
+            >
+              Total: {" $" + cart.reduce((acc, item) => acc + item.numbersPrice, 0)}
+            </Typography>
 
-                  }}
-                >
-                  Total:
-                  <span
-                    children={
-                      "$" +
-                      cart.reduce((acc, item) => acc + item.numbersPrice, 0)
-                    }
-                  />
-                </Typography>
-              }
-              style={{ textAlign: "right" }}
-            />
+            <Button
+              variant="contained"
+              sx={{
+                fontSize: "1.05rem",
+                borderRadius: "40px",
+                color: "#423E3F",
+                fontWeight: "700",
+                backgroundColor: "#D68E30",
+                "&:hover": {
+                  backgroundColor: "#630014",
+                },
+                marginTop: "1rem",
+              }}
+              onClick={() => {
+                handleBuyClick();
+              }}
+            >
+              COMPRAR
+            </Button>
           </Box>
-
-          <Button
-            variant="contained"
-            sx={{
-              width: "10rem",
-              height: "44px",
-              fontSize: "1.05rem",
-              borderRadius: "40px",
-              color: "#423E3F",
-              fontWeight: "700",
-              margin: "2em",
-              marginRight: "9.5rem",
-              backgroundColor: "#D68E30",
-              "&:hover": {
-                backgroundColor: "#630014",
-              },
-            }}
-            onClick={() => {
-              // Realizar acción de compra
-              handleBuyClick();
-            }}
-          >
-            COMPRAR
-          </Button>
 
           {preferenceId && <Wallet initialization={{ preferenceId }} />}
         </Box>

@@ -11,7 +11,7 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import  ReactTextTransition  from 'react-text-transition';
 import RifaCard from '../../components/rifaCard/RifaCard';
 import rifaMuestra  from "./rifaMuestra.js"
- import NavBar from '../../components/navbar/navBar';
+import NavBar from '../../components/navbar/NavBar.jsx';
 ////////////////////
 const Cart = ({isUserAdmin}) => {
   
@@ -23,7 +23,7 @@ const Cart = ({isUserAdmin}) => {
 
        <Box
    sx={{
-    height: '100vh',
+    // height: '100vh',
     display: 'flex',
     flexDirection: 'column',
    }}>  
