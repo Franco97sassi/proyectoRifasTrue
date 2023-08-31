@@ -304,8 +304,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
 
               {/* <Stack spacing={2}> */}
-  <Pagination count={""} page={page} onChange={(event, value) => setPage(value)} />  
-  <Pagination
+   <Pagination
             count={rifaDetail && rifaDetail.rifa ? rifaDetail.pagination.totalPages : 0}
             page={page}
             onChange={handlePageChange}
