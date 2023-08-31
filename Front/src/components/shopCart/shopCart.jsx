@@ -26,7 +26,7 @@ const ShopCart = ({ isUserAdmin }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.rifas.cart);
-
+  console.log(cart)
   const handleDeleteCart = (rifaId) => {
     dispatch(removeNumbersToCart(rifaId));
   };
