@@ -4,6 +4,8 @@ import { Box, Button, Container, Grid, ListItem, ListItemText, Typography, useMe
 import Footer from '../../components/footer/footer';
 import NavBar from '../../components/navbar/NavBar.jsx';
 import { useTheme } from '@emotion/react';
+import '../../index.css'
+
 const host = import.meta.env.VITE_SV_HOST;
 
 const AllOrdenes = () => {
@@ -11,7 +13,8 @@ const AllOrdenes = () => {
   const userData = JSON.parse(sessionStorage.getItem('userData'));
   const userId = userData?.user?.id;
   const theme1 = useTheme();
-  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  // const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
   useEffect(() => {
     // Si no hay ID de usuario, detener la solicitud
@@ -19,7 +22,7 @@ const AllOrdenes = () => {
       return;
     }
 
-    console.log(userId)
+    // console.log(userId)
 
     // Realizar la solicitud GET a las órdenes del usuario con el ID de usuario como parte de la URL
     // axios.get(`http://localhost:4000/rifas/allordenes`)
@@ -36,7 +39,7 @@ const AllOrdenes = () => {
   const calcularTotalCompra = (cart) => {
     return cart.reduce((total, el) => total + el.numbersPrice, 0);
   };
-  console.log(ordenes)
+  // console.log(ordenes)
  
 const handleDetalleClick = (id) =>{
     window.location.href = `/ordenes/${id}`;
@@ -54,11 +57,11 @@ const handleDetalleClick = (id) =>{
           {/* <Typography sx={{marginTop:"28px", marginBottom:"28px"}} variant="h6" gutterBottom>
             Últimas ordenes realizadas
           </Typography> */}
-          <Box sx={{
+          <Box sx={{fontFamily: "Work Sans",
               display:"flex", justifyContent:isNonMobileScreens?"flexStart":"center",
-              paddingLeft:"2.5em"
+              paddingLeft:isNonMobileScreens?"2.5em":"0em"
 
-              }}> ,
+              }}>  
  
              <h2>Pedidos</h2></Box>
              <Box
@@ -86,14 +89,14 @@ const handleDetalleClick = (id) =>{
                     boxShadow: '0px 2px 6px rgba(0, 0, 0, 0.1)',
                   }}
                 >
-                  <Typography variant="subtitle1" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
+                  <Typography variant="subtitle1" sx={{ color: '#FFFFFF', fontWeight: 'bold',fontFamily: 'Work Sans' }} gutterBottom>
                     Fecha: {purchase.createdAt.slice(0, 10)}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 'bold' }} gutterBottom>
-                    {/* Estado: {purchase.estado}   */}
+                  <Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 'bold',fontFamily: 'Work Sans' }} gutterBottom>
+                    Estado: {purchase.estado}  
                   </Typography>
 
-                  <Button  sx={{ color: '#FFFFFF', fontWeight: 'bold' }}
+                  <Button  sx={{ color: '#FFFFFF', fontWeight: 'bold',fontFamily: 'Work Sans' }}
                   onClick={() => handleDetalleClick(purchase.preferenceId)}> ver detalles</Button>  
 
                 </Box>

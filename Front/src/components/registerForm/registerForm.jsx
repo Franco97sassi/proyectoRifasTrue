@@ -52,7 +52,8 @@ function RegisterForm() {
  const navigate = useNavigate();
  const dispatch = useDispatch();
  const theme1 = useTheme();
-  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  // const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
  // const handleSubmit = (event) => {
  //   event.preventDefault();
@@ -85,13 +86,18 @@ function RegisterForm() {
    <Grid
     container
     component='main'
-    sx={{ alignItems: 'center', background: loginbackground, padding: '1em' }}>
+    sx={{ alignItems: 'center', background: loginbackground }}>
     <Grid
-     item
-     md={7}
-     sx={{
-      display: { xs: 'none', md: 'flex', sm: 'none' },
-      }}>
+          item
+          xs={12}
+          sm={12}
+          md={7}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center', // Centrar verticalmente en pantallas pequeñas
+          }}
+        >
      <Grid
       sx={{
        display: 'flex',
@@ -107,7 +113,7 @@ function RegisterForm() {
          maxWidth: '100%',
          maxHeight: '100%',
          width: 'auto',
-         height: 'auto',
+         height: '454px',
         }}
        />
       </Box>

@@ -20,19 +20,24 @@ import "./shopCart.css"; // Importa el archivo CSS para las transiciones
 import { Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
 import { useTheme } from "@emotion/react";
+ 
+ 
 const host = import.meta.env.VITE_SV_HOST;
 
-const ShopCart = ({ isUserAdmin }) => {
+const ShopCart = (
+  { isUserAdmin }
+) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.rifas.cart);
-  console.log(cart)
+  // console.log(cart)
   const handleDeleteCart = (rifaId) => {
     dispatch(removeNumbersToCart(rifaId));
   };
   const theme1 = useTheme();
-  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
-
+  // const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
+ 
 
 
   //mercado pago
@@ -40,14 +45,14 @@ const ShopCart = ({ isUserAdmin }) => {
   // initMercadoPago("TEST-b3944798-0320-4a5f-9f12-f95c52c42fd5");
 
   const createPreference = async () => {
-    console.log(createPreference)
+    // console.log(createPreference)
     try {
       const response = await axios.post(`${host}/rifas/mercadoPago`, {
         cart
 
       })
       const { id } = response.data;
-      console.log("soy response", response)
+      // console.log("soy response", response)
       if (response.data.response && response.data.response.body) {
         if (isUserAdmin) {
           // Si el usuario es un administrador, redirige a la página de inicio
@@ -56,7 +61,7 @@ const ShopCart = ({ isUserAdmin }) => {
         } else {
           const initPoint = response.data.response.body.sandbox_init_point
 
-          console.log("soy initPoint", initPoint)
+          // console.log("soy initPoint", initPoint)
           window.location.href = initPoint
         }
       }
@@ -82,13 +87,14 @@ const ShopCart = ({ isUserAdmin }) => {
         userId: item.userId,
       };
     });
-    console.log("filtrado", filteredCart);
+    // console.log("filtrado", filteredCart);
     // Llamar a la acción buyRifas con el carrito filtrado
     dispatch(buyRifas(filteredCart));
     // navigate("");
 
   };
-  console.log("soy cart", cart)
+  // console.log("soy cart", cart)
+
 
 
 
@@ -108,17 +114,20 @@ const ShopCart = ({ isUserAdmin }) => {
       // margin="0 auto" // Centra el componente horizontalmente
       padding="0rem"
       width="100%"
+ 
     >
 
       <Typography
         marginTop="1em"
-        style={{ color: "#333333" }} // Aumenta el tamaño de la fuente
+        paddingLeft={2.5}
+        style={{ fontFamily: 'Work Sans', color: "#333333" }} // Aumenta el tamaño de la fuente
+        //  fontWeight="1700px"
+
         variant="h2"
         gutterBottom
       >
         Carrito de Compras
       </Typography>
-
       <TransitionGroup component={List}>
 
         {cart && cart.length > 0 ? (
@@ -133,7 +142,9 @@ const ShopCart = ({ isUserAdmin }) => {
               return acc;
             }, [])
             .map((item) => (
-              <CSSTransition key={item.rifaId} classNames="fade" timeout={300}>
+              <CSSTransition key={item.rifaId} classNames="fade"
+                timeout={300}
+              >
                 <ListItem  >
 
                   <Box
@@ -142,20 +153,23 @@ const ShopCart = ({ isUserAdmin }) => {
                       flexDirection: isNonMobileScreens ? "row" : "column",
                       alignItems: "center",
                       justifyContent: "center",
+ 
                     }}
                   >
                     <Box
                       sx={{
-                        width: "15rem",
-                         height: "282px",
+                        width: "14.38rem",
+                        height: isNonMobileScreens ?"307px":"auto",
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: "column", marginTop: "5rem",
+                        marginLeft: isNonMobileScreens ? "2rem" : "0rem",
                         alignItems: "center",
                         justifyContent: "center",
                         background: "#D9D9D9",
                         borderRadius: 2,
-                        padding: "1rem",
-                        transition: "0.3s",
+                        padding: "1rem",            
+                  
+                        transition: "0.3s", paddingTop: "0rem",
                         "&:hover": {
                           boxShadow: " 0px 5px 61px 6px #D9D9D9",
                         },
@@ -163,12 +177,14 @@ const ShopCart = ({ isUserAdmin }) => {
                     >
                       <Typography
                         variant="body1"
-                        fontSize="13px"
+                        fontSize="1.4rem"
                         key={item.id}
                         textOverflow="ellipsis"
                         style={{
                           color: "#423E3F",
-                          fontWeight: "600",
+                          fontWeight: "600", fontFamily: 'Work Sans',
+                          // Agrega el marginTop aquí
+
                         }}
                       >
                         {item.productName}
@@ -179,18 +195,21 @@ const ShopCart = ({ isUserAdmin }) => {
                         style={{
                           width: "172px",
                           height: "178px",
-                          marginBottom: "1rem",
-                          borderRadius: 10,
-                          borderColor: "#423E3F  ",
-                          borderStyle: "solid",
-                          borderWidth: "6px",
+                          marginTop: "1.5rem",
+
+                          marginBottom: "1.5rem",
+                          // borderRadius: 10,
+                          // borderColor: "#423E3F  ",
+                          // borderStyle: "solid",
+                          // borderWidth: "6px",
                         }}
                       />
                       <Typography
                         sx={{
-                          fontSize: "13px",
+                          fontSize: "1rem", fontFamily: 'Work Sans',
                           fontWeight: "600",
                           color: "#423E3F",
+
                         }}
                       >
                         $ {item.numbersPrice}
@@ -203,7 +222,9 @@ const ShopCart = ({ isUserAdmin }) => {
 
                     <Box
                       sx={{
-                        width: isNonMobileScreens ? "50rem" : "15rem",
+                        // width: isNonMobileScreens ? "50rem" : "15rem",
+                        width: isNonMobileScreens ? "50rem" : "100%", // Ajusta el ancho para que sea 100% en pantallas pequeñas
+ 
                         display: "flex",
                         flexDirection: isNonMobileScreens ? "row" : "column",
                         // justifyContent: "center",
@@ -215,13 +236,27 @@ const ShopCart = ({ isUserAdmin }) => {
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
                         borderRadius: 2,
-                        marginTop: "1rem",
-                          margin: "1rem",
+                        marginLeft: isNonMobileScreens ? "5rem" : "0rem",
+                        marginTop: "5rem",
                         minHeight: "6rem",
-                        height: isNonMobileScreens ? "max-content" : "max-content",
+                        height: isNonMobileScreens ? "19rem" : "auto",
                         // paddingRight: "0.7rem", // Añade un poco de espacio en la parte inferior
                         // paddingTop: "1.1rem", // Añade un poco de espacio en la parte inferior
+                         
+                        overflowX:"hidden", overflowY: 'auto', 
+                        maxWidth: isNonMobileScreens ?'100%':"15rem",
 
+    //                     width: "100%", // Establece el ancho del contenedor del subtotal al 100%
+    // display: "flex",
+    // flexDirection: "column",
+    // // Elimina el margen izquierdo
+    // // marginLeft: isNonMobileScreens ? "5rem" : "0rem",
+    // marginTop: "5rem",
+    // minHeight: "6rem",
+    // height: isNonMobileScreens ? "max-content" : "max-content",
+    // overflowY: 'scroll',
+    // height: '19rem',
+    // overflorX: "hidden",
                       }}
 
 
@@ -231,9 +266,7 @@ const ShopCart = ({ isUserAdmin }) => {
                           display: "flex",
                           flexDirection: "column",
                           justifyContent: "center",
-
-                          alignItems: "center",
-
+                          paddingLeft: "20px",
                           paddingTop: "1px",
                           paddingBottom: "1rem", // Añade un poco de espacio en la parte inferior
                           // Establece una altura máxima para la caja
@@ -241,15 +274,29 @@ const ShopCart = ({ isUserAdmin }) => {
                           // paddingRight: "0.1rem", // Añade un poco de espacio en la parte derecha
                           // Añade un poco de espacio en la parte superior
                           // Añade un poco de espacio en la parte inferior
+                          // display: "flex",
+                          // flexDirection: "column",
+                          // justifyContent: "center",
+
+                          paddingLeft: "20px",
+                          paddingTop: "1px",
+                          paddingBottom: "1rem",
+                          maxHeight: isNonMobileScreens?"maxContent":"auto", // Limita la altura máxima de la sección de números seleccionados
+                           height: "auto",
+                             alignItems: "center",
+                          marginTop:"10px"
                         }}
                       >
 
                         <Typography
                           variant="body1"
                           paddingTop="10px"
-                          padding={isNonMobileScreens ? "1rem":"1rem"}
+                          fontSize="20px"
+                          padding={isNonMobileScreens ? "0rem" : "1rem"}
+                          paddingLeft={isNonMobileScreens ? "2" : "0"}
+                          textAlign={isNonMobileScreens ? "left" : "center"}
 
-                          style={{ color: "#423E3F", fontWeight: "bold" }}
+                          style={{ color: "#423E3F", fontWeight: "bold", fontFamily: 'Work Sans' }}
                         >
                           Números Seleccionados:
                         </Typography>
@@ -262,25 +309,25 @@ const ShopCart = ({ isUserAdmin }) => {
                           sx={{
                             display: "flex",
                             flexWrap: "wrap",
-                            justifyContent: "center",
+                            justifyContent: isNonMobileScreens ? "flex-start" : "flex-start",
                             alignItems: "center",
                             gap: "0.5rem",
-                            marginLeft: isNonMobileScreens?"1rem":"0rem",
-                            marginTop: isNonMobileScreens?"0.5rem":"0rem",
+                            marginLeft: isNonMobileScreens ? "1rem" : "0rem",
+                            marginTop:   "0.5rem"  
 
-                           }}
+                          }}
                         >
                           {item.numbers.map((number) => (
 
                             <Box
                               key={number}
                               sx={{
-                                backgroundColor: "#423E3F",
+                                // backgroundColor: "#423E3F",
                                 borderRadius: "50%",
-                                fontSize: "2rem",
+                                // fontSize: "2rem",
                                 width: "46px",
                                 height: "46px",
-                                fontSize: "20px",
+                                fontSize: "15px",
 
                                 display: "flex",
                                 justifyContent: "center",
@@ -310,8 +357,9 @@ const ShopCart = ({ isUserAdmin }) => {
                       <Box
                         sx={{
                           display: "flex", flexDirection: "column",
-                          
+                          paddingRight: "0.5rem",padding:"2rem",
                           alignItems: isNonMobileScreens ? "flex-end" : "center",
+                          
                         }}>
 
 
@@ -319,12 +367,17 @@ const ShopCart = ({ isUserAdmin }) => {
                         <IconButton
                           onClick={() => handleDeleteCart(item.rifaId)}
                           edge="end"
-                          padding="1rem"
+                          padding="5rem"
                           aria-label="delete"
-
                           sx={{
-                            marginTop: isNonMobileScreens ? "6rem" : "0rem",
+                            paddingTop: isNonMobileScreens ? "6.2rem" : "0rem",
                             // Agrega otros estilos necesarios aquí
+                            //                         display: "flex",
+                            // flexDirection: "column",
+                            // alignItems: "center", // Centra el contenido verticalmente
+                            // "& .MuiSvgIcon-root": {
+                            //   fontSize: " 2rem", // Tamaño del icono
+                            // },
                           }}                        >
                           <DeleteIcon />
                         </IconButton>
@@ -335,16 +388,26 @@ const ShopCart = ({ isUserAdmin }) => {
                               variant="h5"
                               style={{
                                 color: "#423E3F",
-                                textAlign: "right",
-                                display: "flex",
-                                flexDirection: "row",
-                                justifyContent: "flex-end",
-                                alignItems: "flex-end",
+                                // textAlign: "right",
+                                // display: "flex",
+                                // flexDirection: "row",
+                                // justifyContent: "flex-end",
+                                // alignItems: "flex-end",
                                 marginTop: isNonMobileScreens ? "8rem" : "1rem",
-                                padding:isNonMobileScreens ? "0rem":"1rem",
-
-                                fontWeight: "bold",
-                              }}
+                                padding: isNonMobileScreens ? "0.5rem" : "1rem",
+                                fontSize: "20px",
+                                fontWeight: "bold", fontFamily: 'Work Sans',
+                                  position: "absolute",
+                                bottom: "0",
+                                left: "0",
+                                width: "100%",
+                                paddingRight: isNonMobileScreens ?"2.5rem":"0rem",
+                               display: "flex",
+                                 justifyContent:isNonMobileScreens ?" flex-end":"center", /* Alinea el contenido del subtotal a la derecha */
+                                  alignItems: "center",
+                                  overflowX: 'hidden',
+                                  paddingBottom:"10px", fontWeight: "bold",
+                               }}
 
                             >
 
@@ -366,27 +429,28 @@ const ShopCart = ({ isUserAdmin }) => {
             ))
         ) : (
 
-
-          <Typography
-            variant="body1"
-            align="center"
-            color="textSecondary"
-            style={{ margin: "1em 0" }}
-          >
-            Sin items
-          </Typography>
+          <Box sx={{ height: "100vh" }}  >
+            <Typography
+              variant="body1"
+              align="center"
+              fontSize="20px"
+              color="textSecondary"
+              style={{ margin: "1em 0" }}
+            >
+              Sin ítems
+            </Typography> </Box>
         )}
       </TransitionGroup>
 
- 
+
       {cart.length > 0 && (
         <Box
-          width={isNonMobileScreens?"50rem":"0"}
+          width={isNonMobileScreens ? "50rem" : "0"}
           marginTop="3rem"
 
           marginBottom="1rem"
-          display="flex" 
-           marginLeft={isNonMobileScreens ? "15rem" : "0rem"}
+          display="flex"
+          marginLeft={isNonMobileScreens ? "21.5rem" : "0rem"}
           flexDirection="column"
           alignItems={isNonMobileScreens ? "flex-end" : "center"}
         >
@@ -399,12 +463,15 @@ const ShopCart = ({ isUserAdmin }) => {
               alignItems: isNonMobileScreens ? "flex-end" : "center",
               justifyContent: "flex-end",
               width: isNonMobileScreens ? "50rem" : "15rem",
-              padding:isNonMobileScreens ? "0rem":"1rem",
-             }}
+              padding: isNonMobileScreens ? "1rem" : "1rem",
+              paddingRight: isNonMobileScreens ? "30px" : "20px"
+            }}
           >
             <Typography
-              variant="h4" 
-              sx={{ color: "#423E3F", fontWeight: "bold"     }}
+              variant="h4"
+              sx={{
+                color: "#423E3F", fontWeight: "bold", fontFamily: 'Work Sans'
+              }}
             >
               Total: {" $" + cart.reduce((acc, item) => acc + item.numbersPrice, 0)}
             </Typography>
@@ -412,7 +479,7 @@ const ShopCart = ({ isUserAdmin }) => {
             <Button
               variant="contained"
               sx={{
-                 
+                fontFamily: "Work Sans",
                 fontSize: "1.05rem",
                 borderRadius: "40px",
                 color: "#423E3F",
@@ -431,7 +498,7 @@ const ShopCart = ({ isUserAdmin }) => {
             </Button>
           </Box>
 
-          {preferenceId && <Wallet initialization={{ preferenceId }} />}
+         {preferenceId && <Wallet initialization={{ preferenceId }} />} 
         </Box>
       )}
     </Box>

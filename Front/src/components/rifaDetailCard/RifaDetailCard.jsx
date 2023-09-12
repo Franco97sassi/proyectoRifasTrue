@@ -11,6 +11,7 @@ import { useTheme } from '@emotion/react';
 
 import { getRifaDetail } from '../../store/state/actions/rifas';
 //-------------------- Components --------------------------
+import '../../index.css'
 
 // implementar precio
 
@@ -19,7 +20,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(rifaDetail);
+  // console.log(rifaDetail);
   const [searchTerm, setSearchTerm] = useState("");
 
   /* Parte del Responsive del texto */
@@ -73,32 +74,36 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
 
   const addToCart = (selectedNumbers) => {
+    if (selectedNumbers.length === 0) {
+      // Mostrar un mensaje de error o realizar alguna acción aquí
+     } else {
     dispatch(
       addNumbersToCart(
         selectedNumbers,
-        rifaDetail.rifa.id,
-        rifaDetail.rifa.numbersPrice,
-        rifaDetail.rifa.product,
-        rifaDetail.rifa.imgProduct,
+        rifaDetail?.rifa?.id,
+        rifaDetail?.rifa?.numbersPrice,
+        rifaDetail?.rifa?.product,
+        rifaDetail?.rifa?.imgProduct,
       ),
     );
     setSelectedNumbers([]);
-
-  };
+    navigate('/cart');
+  } };
 
   // Ordenar los números en función de su valor
   const sortedNumeros = [...rifaDetail?.rifa?.numeros].sort(
     (a, b) => a.number - b.number,
   );
-  console.log(rifaDetail)
+  // console.log(rifaDetail)
   const filteredNumeros = sortedNumeros.filter(element =>
     element.number.toString().includes(searchTerm)
   );
-
+// console.log("filteredN",filteredNumeros);
 
   const theme1 = useTheme();
-  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
-  
+  // const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
+
   const [page, setPage] = useState(1);
   
  
@@ -123,13 +128,13 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
           <Box
             display='flex'
-            gap="7em"
-
+            // gap="7em"
+            
             flexDirection="column">
             <Typography
               variant='h1' fontWeight="700"
-
-              style={{ color: '#333333', textAlign: 'center' }}>
+              
+              style={{fontFamily: 'Work Sans', color: '#333333', textAlign: 'center' }}>
               Finalizar
             </Typography>
 
@@ -143,7 +148,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 borderRadius: 6,
-                marginTop: '4em',
+                marginTop: '11em',
 
                 padding: '1rem',
                 textAlign: 'center',
@@ -157,11 +162,11 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
               <Typography
                 variant='body1' // HACER RESPONSIVE CARD
-                fontSize='1epx'
+                fontSize='1.4rem'
                 textOverflow='ellipsis'
-                style={{
+                style={{fontFamily: 'Work Sans',
                   color: '#423E3F',
-                  fontWeight: "600"    // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
+                      // backgroundColor: 'rgba(0, 0, 0, 0.5)' 
                 }}>
                 {rifaDetail?.rifa?.product}
               </Typography>
@@ -179,7 +184,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
 
                 }}
               />
-              <Typography sx={{ fontSize: "13px", fontWeight: "600", color: "#423E3F" }}>$ {rifaDetail?.rifa?.numbersPrice}</Typography>
+              <Typography sx={{ fontSize: "1rem", fontWeight: "600", color: "#423E3F" }}>$ {rifaDetail?.rifa?.numbersPrice}</Typography>
 
             </Box>
 
@@ -191,7 +196,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
                 flexDirection: 'column',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
-
+                marginTop:"2.25rem",
                 borderRadius: '20px',
                 bgcolor: '#D9D9D9',
                 height: "70px",
@@ -201,13 +206,13 @@ const RifaDetailCard = ({ rifaDetail }) => {
               <Typography
                 variant='h6'
 
-                style={{ color: '#333333', textAlign: 'center', fontWeight: "700", fontSize: "20px" }}>
+                style={{ color: '#333333', textAlign: 'center', fontWeight: "700", fontSize: "20px",fontFamily: 'Work Sans', }}>
                 Valor por número
               </Typography>
               <Typography
                 variant='h6'
 
-                style={{ color: '#333333', textAlign: 'center', fontWeight: "700", fontSize: "15px" }}>
+                style={{ color: '#333333', textAlign: 'center', fontWeight: "700", fontSize: "1rem",fontFamily: 'Work Sans' }}>
                 ${rifaDetail?.rifa?.numbersPrice}
               </Typography>
             </Box></Box>
@@ -216,9 +221,9 @@ const RifaDetailCard = ({ rifaDetail }) => {
             <Typography
               variant='h1'
               marginTop='0em'
-              textAlign= {isNonMobileScreens ? "left" : "center"} 
+              textAlign= {isNonMobileScreens ? "center" : "center"} 
               fontWeight="700"
-              style={{ color: '#333333' }}>
+              style={{ fontFamily: 'Work Sans',color: '#333333' }}>
               Números Disponibles
             </Typography>
             <Typography
@@ -227,7 +232,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
               marginTop='3rem'
               fontWeight="700"
 
-              style={{ color: '#33333', textAlign: 'center' }}>
+              style={{ fontFamily: 'Work Sans',color: '#33333', textAlign: 'center' }}>
               Selecciona los números que desees comprar
             </Typography>
             <Box
@@ -254,6 +259,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
                 padding: '2em',
                 bgcolor: '#D9D9D9', overflowY: 'scroll',  // Habilitar el scroll vertical
                 height: '30rem',
+                width:isNonMobileScreens?"60rem":"100%",
                 overflowX: 'hidden',
               }}>
               <Grid
@@ -274,7 +280,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
             "
                       fontFamily="Work Sans, sans-serif"
                       fontWeight="700"
-                      fontSize="20px"
+                      fontSize="15px"
                       color={
                         selectedNumbers.includes(element)
                           ? '#070707                '
@@ -339,7 +345,7 @@ const RifaDetailCard = ({ rifaDetail }) => {
                 onClick={() => {
                   // Realizar acción con los números seleccionados
                   addToCart(selectedNumbers);
-                  navigate('/cart');
+                   
                 }}>Agregar al Carrito
 
               </Button>
@@ -357,6 +363,43 @@ const RifaDetailCard = ({ rifaDetail }) => {
 //////////////////////////////
 
 export default RifaDetailCard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import React from 'react';
 // import { useState } from 'react';

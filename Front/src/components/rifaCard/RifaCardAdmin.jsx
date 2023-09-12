@@ -3,6 +3,7 @@ import { Box, Button, Divider, Grid, IconButton, Typography } from '@mui/materia
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from 'react';
 import axios from 'axios';
+import "../../index.css"
 //-------------------- Assets --------------------------
 import cardImg from '../../assets/cardImg.webp';
 const host = import.meta.env.VITE_SV_HOST;
@@ -13,7 +14,7 @@ const RifaCardAdmin = ({ rifa, handleNow }) => {
   const onDelete = async (rifaId) => {
     try {
       const res = await axios.delete(`${host}/rifas/deleteRifa/${rifaId}`);
-      console.log(res);
+      // console.log(res);
       handleNow();
     } catch (error) {
       console.error(error);
@@ -23,7 +24,7 @@ const RifaCardAdmin = ({ rifa, handleNow }) => {
   return (
     <Box
     sx={{
-      background: "#423E3F",
+      background: "rgba(66, 62, 63, 0.72)",
       borderRadius: 2,
         margin: "1rem",
       display: "flex",
@@ -51,22 +52,22 @@ const RifaCardAdmin = ({ rifa, handleNow }) => {
           </Box>
         </Grid>  
  
-        <Grid item xs={12} sm={3}>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography sx={{ fontSize: '24px', fontWeight: "700", color: "#FFFFFF" }}>{rifa.description}</Typography>
+        <Grid item xs={12} sm={3} container alignItems="center" justifyContent="center">
+          <Box  >
+            <Typography sx={{ fontFamily: "Work Sans",fontSize: '24px', fontWeight: "700", color: "#FFFFFF" }}>{rifa.product}</Typography>
           </Box>
         </Grid> 
 
-         <Grid item xs={12} sm={3}>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Typography sx={{ fontSize: '24px', fontWeight: "700", color: "#FFFFFF" }}>
+         <Grid item xs={12} sm={3} container alignItems="center" justifyContent="center">
+          <Box  >
+            <Typography sx={{ fontFamily: "Work Sans",fontSize: '24px', fontWeight: "700", color: "#FFFFFF" }}>
               ${rifa.numbersPrice}
             </Typography>
           </Box>
         </Grid>  
         
-     <Grid item xs={12} sm={3}>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+     <Grid item xs={12} sm={3} container alignItems="center" justifyContent="center">
+          <Box >
             <IconButton
               onClick={() => onDelete(rifa.id)}
               edge="end"

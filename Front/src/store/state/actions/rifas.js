@@ -48,11 +48,11 @@ export const addNumbersToCart =
   selectedNumbers.forEach((number) => {
    // Verificar si el número ya existe en el carrito
    const exists = cart.some((item) => {
-    console.log(number, "soy number")
+    // console.log(number, "soy number")
   return item.rifaId === rifaId && item.number === number.number;
 });
 
-   console.log(exists, rifaId, numbersPrice )
+  //  console.log(exists, rifaId, numbersPrice )
 
    // Agregar el número al carrito solo si no existe
    if (!exists) {
@@ -70,6 +70,7 @@ export const addNumbersToCart =
    }
   });
 
+  
   if (numbersToAdd.length > 0) {
    //  console.log(numbersToAdd);
    await dispatch(setNumbersToCart(numbersToAdd));

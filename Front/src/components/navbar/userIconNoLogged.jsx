@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem, IconButton, useTheme, useMediaQuery } from '@mui/material';
+import '../../index.css'
 
 import { AccountCircleRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
@@ -72,7 +73,7 @@ const UserIconNoLogged = ({ onLoginClick, onRegisterClick }) => {
      
     <MenuItem  onClick={handleLogin}   sx={{
     display:"flex",justifyContent:"center" // Añade el estilo para centrar el texto
-  }} >  Inicio Sesion</MenuItem>
+  }} >  Iniciar Sesión</MenuItem>
     </div>
     
        

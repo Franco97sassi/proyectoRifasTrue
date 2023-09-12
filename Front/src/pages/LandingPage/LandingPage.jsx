@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
+import   "./index.css"
+import '../../index.css'
 
 //-------------------- Assets --------------------------
 import LandingImg from '../../assets/Landing.jpg';
@@ -14,7 +16,10 @@ const LandingPage = () => {
  const theme = useTheme();
  const background = theme.palette.background.login;
  const theme1 = useTheme();
-  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  // const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  // const matches = useMediaQuery(theme.breakpoints.down("md"));
+
+  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
  return (
   <Box
@@ -33,7 +38,7 @@ const LandingPage = () => {
      backgroundColor: 'rgba(0, 0, 0, 0.65)',
      display: 'flex',
      flexDirection: 'column',
-     justifyContent: isNonMobileScreens? "flex-start" :"center",
+     justifyContent: isNonMobileScreens? "center" :"center",
      alignItems: isNonMobileScreens? "flex-start" :"center",
      flex: '1 1 auto',
      paddingLeft:isNonMobileScreens?'2em':"0",
@@ -42,8 +47,8 @@ const LandingPage = () => {
     <Typography
      variant='h1'
      textAlign='center'
-     marginTop={isNonMobileScreens ?'2.5em':"0"}
-    paddingLeft={isNonMobileScreens ? '0.3em' : '0em'} // Ajuste del paddingLeft
+    //  marginTop={isNonMobileScreens ?'3.5em':"0"}
+     paddingLeft={isNonMobileScreens ? '11px' : '0em'} // Ajuste del paddingLeft
       fontSize='4em'
      color='whitesmoke'
      style={{
@@ -56,11 +61,14 @@ const LandingPage = () => {
     <Box
      sx={{
       display: 'flex',
+      flexDirection:"cokumn",
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: '0.1em',
      }}>
-     <Link to='/home'>
+     <Link to='/home' 
+      className='no-underline'
+     >
       <Button
        variant='contained'
        sx={{
@@ -68,7 +76,7 @@ const LandingPage = () => {
         height: '40px',
         fontSize: '1rem',
         borderRadius: '2rem',
-        marginLeft:isNonMobileScreens? '3em' :"0em",
+        marginLeft:isNonMobileScreens? '50px' :"0em",
         marginTop: '0.5em',
 
         backgroundColor: '#D68E30',

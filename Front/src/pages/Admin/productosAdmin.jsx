@@ -9,6 +9,8 @@ import CurrentRifasAdmin from '../../components/currentRifasAdmin/CurrentRifasAd
 import AllOrdenes from '../Orden/AllOrden';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@emotion/react';
+import '../../index.css'
+import   "./index.css"
 
 const host = import.meta.env.VITE_SV_HOST;
 
@@ -19,36 +21,46 @@ const ProductosAdmin = () => {
   const [numbersPrice, setNumbersPrice] = useState('');
   const [totalNumbers, setTotalNumbers] = useState('');
   const theme1 = useTheme();
-  const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
-  
+  // const isNonMobileScreens = useMediaQuery(theme1.breakpoints.up('md')); // Cambio de 'min-width' a 'up'
+  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
 
-  const onSubmit = async () => {
-    if (!product || !imgProduct || !description || !numbersPrice || !totalNumbers) {
-      console.error('Todos los campos deben completarse');
-      return;
-    }
 
-    const data = {
-      product: product,
-      imgProduct: imgProduct,
-      description: description,
-      numbersPrice: numbersPrice,
-      totalNumbers: totalNumbers,
-    };
+  // const onSubmit = async () => {
+  //   if (!product || !imgProduct || !description || !numbersPrice || !totalNumbers) {
+  //     console.error('Todos los campos deben completarse');
+  //     return;
+  //   }
 
-    console.log(data)
-    try {
-      const res = await axios.post(`${host}/rifas/createRifa`, data);
-      console.log(res);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const [otherRifas, setOtherRifas] = useState([]);
+  //   const data = {
+  //     product: product,
+  //     imgProduct: imgProduct,
+  //     description: description,
+  //     numbersPrice: numbersPrice,
+  //     totalNumbers: totalNumbers,
+  //   };
+
+  //   // console.log(data)
+  //   try {
+  //     const res = await axios.post(`${host}/rifas/createRifa`, data);
+  //     console.log(res);
+  //   } catch (error) {
+  //     if (error.response) {
+  //       console.error('Respuesta del servidor con estado:', error.response.status);
+  //       console.error('Datos de respuesta:', error.response.data);
+  //     } else if (error.request) {
+  //       console.error('No se pudo realizar la solicitud:', error.request);
+  //     } else {
+  //       console.error('Error:', error.message);
+  //     }
+  //   }
+  // };
+    const [otherRifas, setOtherRifas] = useState([]);
+
   const loadOtherRifas = async () => {
     try {
-      const res = await axios.get(`${host}/rifas/otherRifas`);
+      // const res = await axios.get(`${host}/rifas/otherRifas`);
+      const res = await axios.get(`${host}/rifas/checkRifas`);
       setOtherRifas(res.data); // Actualiza el estado con las rifas de otros usuarios
     } catch (error) {
       console.error(error);
@@ -71,8 +83,8 @@ const ProductosAdmin = () => {
       
        <Grid    > 
        <Box sx={{
-              display:"flex", justifyContent:isNonMobileScreens?"flexStart":"center"
-              // ,paddingLeft:"4.5em"
+              display:"flex", justifyContent:isNonMobileScreens?"flexStart":"center",
+               paddingLeft:isNonMobileScreens?"3.25em":"0",fontFamily: "Work Sans"
               }}> ,
  
              <h2  >Lista de Productos</h2></Box>
@@ -81,12 +93,12 @@ const ProductosAdmin = () => {
               display:"flex", justifyContent:isNonMobileScreens?"flex-end":"center"
               }}> ,
 
-            <Link to="/agregar">  
+            <Link to="/agregar" className='no-underline'>  
              <Button
             variant="contained"
             sx={{
               
-              
+              fontFamily: "Work Sans",
 
               width: "10rem",
               height: "44px",

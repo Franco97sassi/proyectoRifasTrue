@@ -16,13 +16,13 @@ const CurrentRifas = () => {
  const dispatch = useDispatch();
 
  const { allRifas } = useSelector((state) => state.rifas);
- console.log(allRifas);
+//  console.log(allRifas);
 
  useEffect(() => {
   dispatch(getRifas());
  }, []);
 
- //  console.log(allRifas);
+  
 
 
 
@@ -46,7 +46,10 @@ const CurrentRifas = () => {
      letterSpacing='0.1em'
      fontSize="28px"
      color='#433F40'
-     variant='h1'>
+     
+     variant='h1'
+     fontFamily= 'Work Sans'
+     >
         Rifas todas las semanas,prueba y gana!
     
         </Typography>
@@ -60,7 +63,7 @@ const CurrentRifas = () => {
      {allRifas?.map((rifa) => (
       <Grid
        item
-       margin='1.5em'
+       margin='2.4em'
        
        key={rifa.id}>
        <Link

@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem, IconButton, useTheme } from '@mui/material';
 import { AccountCircleRounded } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import '../../index.css'
 
 //////////////////////////////////////////////////////////
 const UserIcon = ({ onLoginClick, onRegisterClick }) => {
@@ -82,7 +82,7 @@ const UserIcon = ({ onLoginClick, onRegisterClick }) => {
         }}>
         {isUserAdmin ? (
           <div>
-            <Box sx={{ textAlign: "center", py: 1 }}> <h4>Panel Admin </h4>
+            <Box sx={{ textAlign: "center", py: 1 ,}}> <h4>Panel Admin </h4>
             </Box>
           </div>) : (
           <Box sx={{ textAlign: "center", py: 1 }}> <h4>Menu </h4>
